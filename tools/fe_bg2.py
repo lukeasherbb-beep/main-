@@ -131,6 +131,53 @@ def grid_pts(r, x0, y0, cols, rows, keep, step=48):
             if r.random() < keep(c, rr)]
 
 
+FONT_BI = "/usr/share/fonts/opentype/inter/InterDisplay-BlackItalic.otf"
+
+
+def _font(size):
+    from PIL import ImageFont
+    return ImageFont.truetype(FONT_BI, size)
+
+
+def ticker(text, size, rgb, alpha, gap=60):
+    """One repeat of a 'TEXT  •  ' tile as RGBA; tile width is the scroll period."""
+    f = _font(size)
+    unit = f"{text}  \u2022  "
+    w = int(ImageDraw.Draw(Image.new("L", (1, 1))).textlength(unit, font=f)) + gap
+    im = Image.new("RGBA", (w, int(size * 1.3)))
+    ImageDraw.Draw(im).text((0, size * 0.65), unit, font=f, fill=tuple(rgb) + (alpha,), anchor="lm")
+    return im
+
+
+def scroll_strip(tile, length, ph, reverse=False):
+    """A strip `length` px long built from repeats of tile, shifted by one tile per loop."""
+    reps = length // tile.width + 2
+    strip = Image.new("RGBA", (tile.width * reps, tile.height))
+    for k in range(reps):
+        strip.paste(tile, (k * tile.width, 0))
+    off = int(ph * tile.width)
+    off = tile.width - off if reverse else off
+    return strip.crop((off, 0, off + length, tile.height))
+
+
+def ghost_logo(size, rgb, alpha):
+    """Logo shape only (brightness as alpha), filled with one flat colour."""
+    lg = logo_bug(size)
+    a = np.asarray(lg)[..., 3].astype(np.float32) * alpha / 255
+    out = np.zeros((lg.height, lg.width, 4), np.uint8)
+    out[..., :3] = rgb
+    out[..., 3] = a.astype(np.uint8)
+    return Image.fromarray(out, "RGBA")
+
+
+def big_word(text, size, rgb, alpha):
+    f = _font(size)
+    w = int(ImageDraw.Draw(Image.new("L", (1, 1))).textlength(text, font=f)) + 40
+    im = Image.new("RGBA", (w, int(size * 1.25)))
+    ImageDraw.Draw(im).text((20, size * 0.62), text, font=f, fill=tuple(rgb) + (alpha,), anchor="lm")
+    return im
+
+
 # ---------------------------------------------------------------- styles
 def torn_split():
     r = rng(21)
@@ -144,10 +191,17 @@ def torn_split():
     tr = grid_pts(r, 1280, 120, 9, 5, lambda c, rr: 0.9 - 0.12 * rr - 0.03 * c)
     bl = grid_pts(r, 160, 640, 6, 6, lambda c, rr: 0.25 + 0.1 * rr)
     bug = logo_bug(110)
+    side_tile = ticker("FIGHT ERA", 64, GREY, 150)
+    ghost = ghost_logo(520, (150, 150, 146), 60)
+    pap_im = Image.fromarray(np.clip(static, 0, 255).astype(np.uint8))
+    pap_im.paste(ghost, (1300, 380), ghost)
+    static = np.asarray(pap_im, np.float32)
 
     def frame(n):
         ph = n / N
         im = Image.fromarray(np.clip(static, 0, 255).astype(np.uint8))
+        st = scroll_strip(side_tile, H + 200, ph).rotate(90, expand=True)
+        im.paste(st, (18, -100), st)
         ov = Image.new("RGBA", (W, H))
         d = ImageDraw.Draw(ov)
         for x, y, p in tr:
@@ -188,6 +242,7 @@ def brush_chevrons():
         sd.ellipse([x - s, y - s, x + s, y + s], fill=255)
     spat = np.asarray(spat, np.float32) / 255
     bug = logo_bug(150)
+    word = big_word("FIGHT ERA", 230, GREY, 60)
 
     def frame(n):
         ph = n / N
@@ -195,6 +250,12 @@ def brush_chevrons():
         m = np.clip((XX - (left[:, None] + wob)) / 2.5, 0, 1) * np.clip(((right[:, None] - wob) - XX) / 2.5, 0, 1)
         m = np.clip(m + spat, 0, 1)
         im = Image.fromarray(np.clip(blend(base, pap, m), 0, 255).astype(np.uint8))
+        wl = Image.new("RGBA", (W, H))
+        wl.paste(word, (int(40 + 60 * math.sin(2 * math.pi * ph)), int(H - word.height * 0.78)))
+        wa = np.asarray(wl).copy()
+        wa[..., 3] = (wa[..., 3] * (1 - m)).astype(np.uint8)  # only on the black board, not the paper
+        wl = Image.fromarray(wa, "RGBA")
+        im.paste(wl, (0, 0), wl)
         ov = Image.new("RGBA", (W, H))
         d = ImageDraw.Draw(ov)
         for k in range(3):  # chevrons down, left side; highlight walks downward
@@ -223,11 +284,13 @@ def gradient_streak():
     m = np.clip((u + half + eL[vi]) / 3, 0, 1) * np.clip((half + eR[vi] - u) / 3, 0, 1)
     pap = paper(r)
     bug = logo_bug(150)
+    ghost = ghost_logo(560, GREY, 110)
 
     def frame(n):
         ph = n / N
         shade = 0.84 + 0.14 * np.clip(XX / W + 0.1 * math.sin(2 * math.pi * ph) - YY / H * 0.25 + 0.1, 0, 1)
         im = Image.fromarray(np.clip(blend(base, pap * shade[..., None], m), 0, 255).astype(np.uint8))
+        im.paste(ghost, (1300, int(70 + 14 * math.sin(2 * math.pi * ph))), ghost)
         ov = Image.new("RGBA", (W, H))
         d = ImageDraw.Draw(ov)
         off = (ph * 4 * 34) % 34  # hash bars slide down, right side
@@ -269,10 +332,16 @@ def torn_panels():
     static = blend(static, to_rgb(np.full((H, W), 14, np.float32)), blk)
     dots = [(1880, 520 + k * 46) for k in range(9)]
     bug = logo_bug(110)
+    band_tile = ticker("FIGHT ERA", 30, (16, 16, 18), 150, gap=30)
 
     def frame(n):
         ph = n / N
         im = Image.fromarray(np.clip(static, 0, 255).astype(np.uint8))
+        for y, rev in ((140, False), (884, True)):
+            st = scroll_strip(band_tile, W, ph, rev)
+            m = (grey[y:y + st.height] * 255).astype(np.uint8)
+            st.putalpha(Image.fromarray(np.minimum(np.asarray(st)[..., 3], m)))
+            im.paste(st, (0, y), st)
         ov = Image.new("RGBA", (W, H))
         d = ImageDraw.Draw(ov)
         for k in range(7):  # thin light streaks sliding diagonally across the panels
