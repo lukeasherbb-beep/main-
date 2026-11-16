@@ -1,126 +1,81 @@
-# WONDERBOY VIDEO — CLIP & IMAGE COLLECTION TEMPLATE
+# WONDERBOY: CLIP & IMAGE CHECKLIST (v2, matches thompson_build.md)
 
-Upload everything to this chat. Name files by their number (e.g. `06.mp4`, `20a.mp4`, `img_thompson_portrait.jpg`). Tell me which number each one is if the name doesn't make it obvious.
+The first version of this template used its own numbering, which did NOT match the build file.
+This version uses the build file's numbers. Name files by number (`04.mp4`, `20a.mp4`, `img_weidman.jpg`).
 
----
+Legend: ⚠ = was missing or mislabelled in template v1 (likely not collected) · ★ = key moment · LIP = LET IT PLAY (narration stops, clip audio plays)
 
-## CLIPS (video)
+## A. Clips the build already asks for
 
-Screen-record from UFC YouTube, Fight Pass, or fighter social media. Keep clips 5-15 seconds unless marked LET IT PLAY.
+| # | Clip | Where | Notes |
+|---|---|---|---|
+| 1 ⚠ | Career montage (kicks, walkouts, wins), ~35 s total | 10:40 ending | v1 had #1 as karate training |
+| 2 ⚠ ★ | Radtke KO in real time (cold open), LIP 8 s | 0:04 | v1 had #2 as kickboxing. Can be the same footage as #20 |
+| 3 | Young Thompson at Upstate Karate + kickboxing-era photo/footage | 1:38, 2:34 | |
+| 4 ⚠ | UFC 143 debut KO (Dan Stittgen), Feb 2012 | 2:45 | v1 only said "early UFC fights" |
+| 5 | Whittaker TKO, UFC 170, Feb 2014 | 3:14 | |
+| 6 ★ | Ellenberger, TUF 21 Finale: ⚠ Ellenberger's right hand dropping Thompson first, then the spinning kick KO (LIP 10 s) | 3:18 | v1 missed the knockdown |
+| 7 | Hendricks TKO, Feb 2016 | 3:45 | |
+| 8 | MacDonald striking exchanges, June 2016 | 3:59 | |
+| 9 ★ | Woodley I, UFC 205: ⚠ Rounds 1-3 striking from range, Round 4 knockdowns + guillotine escape (LIP 20 s), ⚠ scorecards read (LIP 8 s) | 4:35 | |
+| 10 ⚠ | Woodley celebrating after the UFC 209 rematch | 5:09 | v1 said "Woodley II" generically |
+| 11 ⚠ | Masvidal fight, UFC 217, Nov 2017 | 5:16 | not in v1 at all |
+| 12 | Pettis KO, UFC Nashville 2019 (LIP 6 s) | 4th chapter | |
+| 13 | Buckley KO, UFC 307, Oct 2024 | 6:22 | |
+| 14 ⚠ | Thompson with his daughter (only with his permission; otherwise skip) | 6:57 | v1 had it as an optional photo |
+| 15 | Thompson teaching kids at Upstate Karate | 10:20 | |
+| 16 ⚠ | UFC 334 walkout (video) | 0:59 | v1 only asked for a photo |
+| 17 ⚠ | Radtke highlight or UFC 334 weigh-in face-off | 7:43 | v1 only asked for a photo |
+| 18 ⚠ | UFC 334 Round 1: Radtke takedown, Thompson back to his feet (LIP 10 s) | 8:01 | v1's #18 was the Bonfim loss |
+| 20 ★ | Round 3 spinning wheel kick: real time (LIP 10 s) + slow-mo alternate angle (LIP 10 s) | 8:49 | |
+| 21 | Goddard stops it, Thompson reacts (LIP 10 s) | | |
+| 22 | Thompson emotional in the octagon (LIP 12 s), ~35 s of footage total | 9:13 | |
+| 23 ★ | Gloves placed in the center (LIP 10 s) | | |
+| 24 ★ | Mic speech, "spin hook kick to the dome… my fans, y'all" (LIP 20 s) | | |
+| 25 | Joe Rogan reaction (LIP 8 s) | | |
+| 26 | Walking out of the octagon for the last time (LIP 10 s) | ending | |
+| 27 | Holland fight, Dec 2022 | 5:54 | |
+| 28 | Rakhmonov fight, UFC 296, Dec 2023 | 6:11 | |
+| 29 | Bonfim fight, UFC Nashville, July 2025 | 6:28 | |
+| 30 ⚠ | UFC 334 Round 2: ⚠ Radtke takedown against the fence + Thompson's body kick (LIP 8 s) | 8:11 | v1 missed the takedown |
 
-### CHAPTER 01 — KARATE KID (Simpsonville roots)
-| #  | What to record | Length | Notes |
-|----|---------------|--------|-------|
-| 01 | Thompson training at Upstate Karate (kid/teen footage or recent teaching) | 5-10s | |
-| 02 | Thompson in kickboxing or point karate competition | 5-10s | |
-| 03 | Early UFC fights (pre-2015) | 5-10s | |
+Not used by the build (skip unless we add them): Till, Luque, Neal, Belal, MSG exterior.
 
-### CHAPTER 02 — THE RISE
-| #  | What to record | Length | Notes |
-|----|---------------|--------|-------|
-| 04 | Thompson vs. Robert Whittaker (UFC 170, Feb 2014) | 5-10s | |
-| 05 | Thompson vs. Ellenberger — any moment before the kick | 5-10s | |
-| 06 | **Thompson vs. Ellenberger — spinning wheel kick KO** (TUF 21 Finale, July 2015) | 5-10s | **KEY CLIP** |
+## B. Images: none were wired into v1 of the video
 
-### CHAPTER 03 — SO CLOSE (Title shots)
-| #  | What to record | Length | Notes |
-|----|---------------|--------|-------|
-| 07 | Thompson vs. Johny Hendricks (UFC FN 82, Feb 2016) | 5-10s | |
-| 08 | Thompson vs. Rory MacDonald (UFC Ottawa, June 2016) | 5-10s | |
-| 09 | **Thompson vs. Woodley I — Round 4 or draw announcement** (UFC 205, Nov 2016) | 10-15s | **KEY CLIP** |
-| 10 | Woodley's guillotine on Thompson in Round 4 | 5-10s | |
-| 11 | Thompson vs. Woodley II (UFC 209, Mar 2017) | 5-10s | |
+These template graphics in the build need photos. Without them they render as plain text cards.
 
-### CHAPTER 04 — THE HARD YEARS
-| #  | What to record | Length | Notes |
-|----|---------------|--------|-------|
-| 12 | Thompson vs. Darren Till (UFC Liverpool, May 2018) | 5-10s | |
-| 13 | Thompson vs. Anthony Pettis — the KO loss (UFC Nashville, Mar 2019) | 5-10s | |
-| 14 | Thompson vs. Vicente Luque (UFC 244, Nov 2019) | 5-10s | |
-| 15 | Thompson vs. Neal, Belal, or Holland — any later win | 5-10s | |
-| 16 | Thompson vs. Joaquin Buckley — the KO loss (UFC 307, Oct 2024) | 5-10s | |
-| 17 | Thompson vs. Shavkat Rakhmonov (loss) | 5-10s | |
-| 18 | Thompson vs. Gabriel Bonfim (loss) | 5-10s | |
+| ID | Photo | Used in | Where |
+|---|---|---|---|
+| IMG-1 | Thompson in fighting stance (clean background ideal) | WONDERBOY title card | 0:45 |
+| IMG-2 | Chris Weidman headshot | family-tree profiles | 1:20 |
+| IMG-3 | Carlos Machado headshot | family-tree profiles | 1:20 |
+| IMG-4 | Thompson portrait (interview or press) | Helwani quote card | 7:19 |
+| IMG-5 | Ariel Helwani presenting the NMF belt (2019) | "THE NMF" card, currently a 26 s text card | 9:53 |
+| IMG-6 | Young Thompson in karate gear | #3 slot | 1:38 |
+| IMG-7 | Thompson kickboxing (World Combat League era) | #3 slot / kickboxing stats | 2:34 |
 
-### CHAPTER 05 — ONE MORE TIME (UFC 334)
-| #  | What to record | Length | Notes |
-|----|---------------|--------|-------|
-| 19 | MSG exterior or arena crowd shot | 5-10s | |
-| 20a | **Thompson vs. Radtke — the spinning kick KO** (R3, 2:54) — main angle | 10-15s | **KEY CLIP** |
-| 20b | Radtke kick — alternate angle (if available) | 5-10s | |
-| 21 | Radtke on the canvas / ref Marc Goddard stoppage | 5-10s | |
-| 22 | Thompson celebrating after the KO | 5-10s | |
-| 23 | **Gloves left in the octagon** | 5-10s | **KEY CLIP** |
-| 24 | **Post-fight mic speech / interview** | 10-15s | **KEY CLIP** |
-| 25 | Joe Rogan's emotional reaction | 5-10s | |
-| 26 | Thompson walking out of the octagon for the last time | 5-10s | |
+## C. NEW: clips/photos to fill stretches with no footage
 
-### ADDITIONAL (referenced in narration)
-| #  | What to record | Length | Notes |
-|----|---------------|--------|-------|
-| 27 | Thompson vs. Kevin Holland (win) | 5-10s | |
-| 28 | Thompson vs. Shavkat Rakhmonov (alternate angle or different moment than #17) | 5-10s | |
-| 29 | Thompson vs. Gabriel Bonfim (alternate angle or different moment than #18) | 5-10s | |
-| 30 | Round 2 body kick moment vs. Radtke | 5-10s | |
+Graphics-only stretches in the current plan (target: footage or a photo at least every ~20 s):
 
----
+| Stretch | Length | What's on screen now | Add |
+|---|---|---|---|
+| 0:27-0:59 | 33 s | Simpsonville map → WONDERBOY card | IMG-1, IMG-6 |
+| 1:10-1:38 | 28 s | Chapter 01 → family-tree card | IMG-2, IMG-3 |
+| 1:57-2:34 | 37 s | Kickboxing stats → titles list | NEW-A: kickboxing / World Combat League fight footage or photo (IMG-7) |
+| 4:11-4:35 | 24 s | Chapter 03 → Woodley vs Thompson card | NEW-B: UFC 205 face-off or poster |
+| 5:32-5:54 | 22 s | Chapter 04 card held 22 s | NEW-C: Thompson after a loss (Till, Pettis or Luque era) |
+| 7:08-7:43 | 35 s | Chapter 05 → Helwani quote → WONDERDAD → Radtke card | NEW-D: the Helwani interview clip ("I don't see the title anymore"), IMG-4, NEW-E: UFC 334 poster |
+| 8:31-9:13 | 42 s (the climax) | ROUND 3 card 18 s → kick-name card → strike-stats bars | NEW-F: Round 3 footage of Thompson stuffing takedowns, before the kick |
+| 9:48-10:20 | 32 s | Forbes quote → NMF card held 26 s | IMG-5, NEW-G: screenshot of the Forbes headline |
 
-## LET IT PLAY BREAKS (narration stops, clip audio plays)
+## Priority if you're short on time
 
-These are the moments where the voiceover goes silent and we hear the real broadcast/crowd audio. Record these clips LONGER (15-30s) with audio. The build script has ~160 seconds of LET IT PLAY time spread across these breaks:
+1. #2/#20 Radtke kick (+ slow-mo), #24 mic, #23 gloves, #22 emotional, #26 walk-out
+2. #6 Ellenberger (knockdown + kick), #9 Woodley I (R4 + scorecards)
+3. NEW-F Round 3 build-up, #18 Round 1, #30 Round 2 (the fight itself is thin right now)
+4. IMG-1 to IMG-5 (they unlock the photo templates)
+5. Everything else
 
-| Break | Clip # | What we hear | Target length |
-|-------|--------|-------------|---------------|
-| 1 | #20a/b | Radtke kick landing + crowd eruption + commentary | 25-30s |
-| 2 | #22 | Thompson celebrating, crowd roaring | 15-20s |
-| 3 | #23 | Gloves placed down, arena atmosphere | 10-15s |
-| 4 | #24 | Mic speech — Thompson's own words | 30-45s |
-| 5 | #25 | Rogan reacting / commentary booth moment | 10-15s |
-| 6 | #26 | Walking out — crowd chanting, arena audio fading | 20-30s |
-
-**Tip:** For the LET IT PLAY clips, let the screen recording run longer than you think you need. I can trim. The audio quality matters here — try to get clean broadcast audio without you talking over it.
-
----
-
-## IMAGES (photos)
-
-These unlock Faceless Studio templates (portrait, quote, photo-timeline) and work as stills with motion effects where video isn't available.
-
-### Must-have
-| ID | What | Where to find |
-|----|------|---------------|
-| IMG-01 | Thompson fighter portrait (stance or promo shot) | UFC.com athlete page, Google Images |
-| IMG-02 | Thompson at Upstate Karate (teaching or posing) | Thompson's Instagram |
-| IMG-03 | Ellenberger kick landing (action photo) | UFC.com event gallery, Getty |
-| IMG-04 | Radtke kick landing (action photo) | UFC.com UFC 334 gallery, Getty |
-| IMG-05 | Thompson kneeling / emotional post-fight | UFC.com UFC 334 gallery |
-| IMG-06 | Gloves on the canvas | UFC.com, MMA news sites |
-| IMG-07 | MSG exterior or UFC 334 octagon wide shot | UFC.com, Getty |
-
-### Nice to have
-| ID | What | Where to find |
-|----|------|---------------|
-| IMG-08 | Young Thompson in karate gear | Thompson's Instagram, Upstate Karate socials |
-| IMG-09 | Thompson with family (dad Ray, brother Tony) | Thompson's Instagram |
-| IMG-10 | Thompson vs. Woodley weigh-in or staredown | UFC.com event gallery |
-| IMG-11 | Thompson vs. Radtke weigh-in or poster | UFC.com |
-| IMG-12 | Rogan at the commentary desk (emotional) | MMA news articles |
-| IMG-13 | UFC 334 event poster | UFC.com |
-| IMG-14 | Thompson walkout at MSG | UFC.com, MMA news sites |
-
----
-
-## PRIORITY ORDER
-
-If you're collecting in batches, grab these first — they're enough for a strong draft:
-
-1. **#20a** — Radtke kick (video + LET IT PLAY audio)
-2. **#6** — Ellenberger kick (video)
-3. **#24** — Mic speech (video + LET IT PLAY audio)
-4. **#23** — Gloves on the mat (video + LET IT PLAY audio)
-5. **#9** — Woodley Round 4 (video)
-6. **IMG-01** — Thompson portrait photo
-7. **IMG-04** — Radtke kick photo
-8. **IMG-03** — Ellenberger kick photo
-9. **#26** — Walking out (video + LET IT PLAY audio)
-10. **#22** — Celebration (video + LET IT PLAY audio)
+Reminder: long uncut UFC clips (the LET IT PLAY ones) are the most likely to get claimed. Keep them to the lengths listed.
