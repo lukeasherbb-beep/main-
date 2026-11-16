@@ -17,6 +17,9 @@ N = FPS * SECONDS
 GOLD = np.array([196, 142, 22], dtype=np.float32)
 rng = np.random.default_rng(7)
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import fe_logo_intro  # noqa: E402  same scratched board as the logo intro
+
 ASSETS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets")
 
 
@@ -133,7 +136,7 @@ def render(out, band_rgb, accent, grey, band_gain, accent_fn):
     u0 = (xx - W / 2) * ca + (yy - H / 2) * sa
     v = -(xx - W / 2) * sa + (yy - H / 2) * ca
     vi = ((v + 1200) / 2400 * 1024).astype(np.int32) % 1024
-    base = (18 + 44 * tex)[..., None] * np.array([1.0, 1.0, 1.04], dtype=np.float32)
+    base = np.asarray(fe_logo_intro.backdrop(), np.float32)
     grad = 0.82 + 0.3 * (v / 1200)
     cmd = ["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
            "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
@@ -167,7 +170,7 @@ def render(out, band_rgb, accent, grey, band_gain, accent_fn):
 if __name__ == "__main__":
     out = sys.argv[1]
     print("Rendering bg_gold.mp4 (chevrons down)...")
-    render(f"{out}/bg_gold.mp4", GOLD, (196, 142, 22), (120, 120, 126), 1.0, chevrons_down)
+    render(f"{out}/bg_gold.mp4", np.array([214, 214, 210], np.float32), (196, 142, 22), (70, 70, 74), 0.82, chevrons_down)
     print("Rendering bg_dark.mp4 (octagons)...")
-    render(f"{out}/bg_dark.mp4", np.array([74, 54, 12], dtype=np.float32), (150, 110, 20), (84, 84, 90), 0.9, octagons_pattern)
+    render(f"{out}/bg_dark.mp4", np.array([70, 70, 74], np.float32), (196, 142, 22), (70, 70, 74), 0.85, octagons_pattern)
     print("Done.")
