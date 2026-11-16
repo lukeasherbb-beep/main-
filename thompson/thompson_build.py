@@ -24,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "tools"))
 import fe_cards as fc  # noqa: E402
 import numpy as np  # noqa: E402
-from PIL import Image  # noqa: E402
+from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps  # noqa: E402
 
 FPS = 30
 BUILD = os.path.join(HERE, "build")
@@ -63,6 +63,28 @@ MOMENT = {
     29: ("UFC NASHVILLE · JULY 2025", "BONFIM", "Split decision loss"),
     30: ("UFC 334 · ROUND 2", "THE BODY KICK", "The fight turns"),
 }
+IMAGES = os.path.join(HERE, "images")
+INTRO = os.path.join(ASSETS, "fe_logo_intro.mp4")
+GOLD = (196, 142, 22)
+# card backgrounds rotate by chapter; clips use the pairing (wide, square, vertical)
+BG_ORDER = ["torn_split", "brush_chevrons", "gradient_streak", "torn_panels"]
+# FE CARD / FX markers that become photo cards (key found in the marker -> one or more shots)
+PHOTOS = [
+    ('T("WONDERBOY")', [{"layout": "single", "img": "img1_thompson_stance.jpg",
+                         "kicker": "STEPHEN THOMPSON", "title": "WONDERBOY"}]),
+    ("paired-profiles", [{"layout": "pair", "items": [
+        ("img2_weidman.png", "BROTHER TONY'S BROTHER-IN-LAW", "CHRIS WEIDMAN"),
+        ("img3_machado.jpg", "SISTER LINDSAY'S HUSBAND · HIS BJJ COACH", "CARLOS MACHADO")]}]),
+    ("quote-profile", [{"layout": "quote", "img": "img4_thompson_portrait.jpg",
+                        "quote": "I don't see the title anymore.", "attr": "STEPHEN THOMPSON TO ARIEL HELWANI"}]),
+    ('T("THE NMF")', [{"layout": "single", "img": "img5b_nmf_belt_closeup.jpg",
+                       "kicker": "ARIEL HELWANI · 2019", "title": "THE NMF BELT"},
+                      {"layout": "single", "img": "img5_helwani_belt_handoff.jpg",
+                       "kicker": "THE ARIEL HELWANI MMA SHOW", "title": "NICEST MAN IN MMA"}]),
+]
+F_TITLE = "/usr/share/fonts/opentype/inter/InterDisplay-BlackItalic.otf"
+F_KICK = "/usr/share/fonts/opentype/inter/Inter-Bold.otf"
+F_QUOTE = "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf"
 # (unused now) clip number -> stock B-roll file numbers
 FALLBACK = {1: [2], 3: [1, 2], 4: [17], 5: [3], 6: [4], 7: [18], 8: [3], 9: [8, 9], 10: [11], 11: [4],
             13: [19], 14: [13], 15: [1], 16: [6], 17: [17], 18: [5, 16], 22: [14], 26: [14],
@@ -71,7 +93,7 @@ FALLBACK = {1: [2], 3: [1, 2], 4: [17], 5: [3], 6: [4], 7: [18], 8: [3], 9: [8, 
 LABELS = {2: "UFC 334 · Nov 14, 2026", 4: "UFC 143 · Feb 2012", 5: "UFC 170 · Feb 2014",
           6: "TUF 21 Finale · July 2015", 7: "UFC Fight Night · Feb 2016", 8: "UFC Fight Night · June 2016",
           9: "UFC 205 · Nov 2016", 10: "UFC 209 · March 2017", 11: "UFC 217 · Nov 2017",
-          12: "UFC Nashville · March 2019", 13: "UFC 307 · Oct 2024", 16: "UFC 334 · Nov 14, 2026",
+          12: "UFC Nashville · March 2019", 13: "UFC 307 · Oct 2024", 16: "UFC 334 walkout · Nov 14, 2026", 17: "UFC 334 weigh-ins · Nov 2026",
           18: "UFC 334 · Round 1", 20: "UFC 334 · Round 3", 21: "UFC 334 · Round 3",
           22: "UFC 334 · Nov 14, 2026", 23: "UFC 334 · Nov 14, 2026", 24: "UFC 334 · Nov 14, 2026",
           25: "UFC 334 broadcast", 26: "UFC 334 · Nov 14, 2026", 27: "UFC Orlando · Dec 2022",
@@ -193,10 +215,12 @@ def clip_number(marker):
     return int(re.search(r"#(\d+)", marker).group(1))
 
 
-def find_clips(n):
+def find_clips(n, letplay=False):
+    """Files for clip number n. LET IT PLAY slots only take files with "lip" in the name
+    (e.g. 09_r4_lip.mp4); plain files only fill narrated CLIP slots."""
     files = sorted(f for f in glob.glob(os.path.join(CLIPS, "*"))
                    if re.match(rf"^0*{n}(\D|$)", os.path.basename(f)))
-    return files
+    return [f for f in files if ("lip" in os.path.basename(f).lower()) == letplay]
 
 
 def broll_file(num):
@@ -210,6 +234,7 @@ def plan(sents, groups, vo_dur):
     used, broll_used, missing = {}, {}, []
     beats = []  # (time, [breaks], [visuals])
     dark = False
+    chapter = 0
     for idx, markers in groups:
         t = vo_dur if idx >= len(sents) else (0.0 if idx == 0 else q(max(sents[idx]["start"] - 0.12, 0)))
         breaks, visuals = [], []
@@ -218,14 +243,17 @@ def plan(sents, groups, vo_dur):
                 dark = True
             if "WONDERDAD" in mk and "chapter-number" in mk:
                 dark = False
+            if "chapter-number" in mk:
+                chapter += 1
+            bg = BG_ORDER[chapter % len(BG_ORDER)]
             if mk.startswith("[CLIP:") or mk.startswith("[LET IT PLAY:"):
                 n = clip_number(mk)
-                files = find_clips(n)
                 letplay = mk.startswith("[LET IT PLAY:")
+                files = find_clips(n, letplay)
                 if files:
                     f = files[used.get(n, 0) % len(files)]
                     used[n] = used.get(n, 0) + 1
-                    v = {"kind": "clip", "file": f, "label": LABELS.get(n), "n": n, "desc": mk}
+                    v = {"kind": "clip", "file": f, "label": LABELS.get(n), "n": n, "desc": mk, "bg": bg, "dark": dark}
                     if letplay:
                         secs = float(re.search(r"— (\d+)s", mk).group(1))
                         breaks.append((min(secs, probe(f)[0]), v))
@@ -234,16 +262,23 @@ def plan(sents, groups, vo_dur):
                 else:
                     missing.append(mk)
                     if not letplay:
-                        visuals.append({"kind": "card", "moment": n, "marker": "", "dark": dark, "desc": mk})
+                        visuals.append({"kind": "card", "moment": n, "marker": "", "dark": dark, "desc": mk, "bg": bg})
             else:
-                visuals.append({"kind": "card", "marker": mk, "dark": dark, "desc": mk})
+                photos = next((specs for key, specs in PHOTOS if key in mk), None)
+                if photos:
+                    for spec in photos:
+                        visuals.append({"kind": "card", "photo": spec, "marker": mk, "dark": dark, "desc": mk, "bg": bg})
+                else:
+                    visuals.append({"kind": "card", "marker": mk, "dark": dark, "desc": mk, "bg": bg})
         beats.append((t, breaks, visuals))
     items = []
     last_visual = None
     for i, (t, breaks, visuals) in enumerate(beats):
         t_next = beats[i + 1][0] if i + 1 < len(beats) else vo_dur
-        if i == 0 and breaks and visuals and "LOGO" in visuals[0].get("marker", ""):
-            items.append(("tail", LOGO_SECONDS, visuals.pop(0)))  # logo first, then the cold open
+        if i == 0 and visuals and "LOGO" in visuals[0].get("marker", ""):
+            items.append(("intro", LOGO_SECONDS, visuals.pop(0)))  # logo intro with its riser, before any narration
+            if not visuals:
+                visuals = [{"kind": "card", "moment": 0, "marker": "", "dark": False, "desc": "(opening card)", "bg": BG_ORDER[0]}]
         for secs, v in breaks:
             items.append(("brk", q(secs), v))
         if t >= vo_dur:  # markers after the last sentence: end card over a silent tail
@@ -252,13 +287,6 @@ def plan(sents, groups, vo_dur):
             continue
         if not visuals:
             visuals = [last_visual]
-        if i == 0 and visuals[0]["kind"] == "card" and "LOGO" in visuals[0]["marker"]:
-            logo, rest = visuals[0], visuals[1:] or [last_visual]
-            cut = q(min(LOGO_SECONDS, t_next))
-            items.append(("narr", t, cut, logo))
-            t, visuals = cut, rest
-            if not visuals or visuals[0] is None:
-                visuals = [{"kind": "card", "moment": 0, "marker": "", "dark": False, "desc": "(opening card)"}]
         span = (t_next - t) / len(visuals)
         for k, v in enumerate(visuals):
             items.append(("narr", q(t + k * span), q(t + (k + 1) * span) if k + 1 < len(visuals) else t_next, v))
@@ -303,6 +331,124 @@ def render_fx(i, frames, spec, out):
     return out
 
 
+# ---------- boxes, shadows, photo cards ----------
+def bg_path(name):
+    return os.path.join(ASSETS, f"bg_{name}.mp4")
+
+
+def add_shadow(canvas, box, offset=(14, 18), blur=18, alpha=170):
+    """Soft drop shadow under a box (x0, y0, x1, y1) on an RGBA canvas."""
+    sh = Image.new("L", canvas.size)
+    x0, y0, x1, y1 = box
+    ImageDraw.Draw(sh).rectangle([x0 + offset[0], y0 + offset[1], x1 + offset[0], y1 + offset[1]], fill=alpha)
+    sh = sh.filter(ImageFilter.GaussianBlur(blur))
+    layer = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    layer.putalpha(sh)
+    return Image.alpha_composite(layer, canvas)
+
+
+def load_photo(name):
+    im = Image.open(os.path.join(IMAGES, name))
+    if im.mode in ("RGBA", "LA", "P"):
+        im = im.convert("RGBA")
+        white = Image.new("RGBA", im.size, (255, 255, 255, 255))
+        im = Image.alpha_composite(white, im)
+    im = im.convert("RGB")
+    if name.startswith("img2_weidman"):  # trim the rounded cut-outs in the corners
+        im = im.crop((95, 0, 425, im.height))
+    return im
+
+
+def framed_photo(canvas, im, x, y, w, h, centering=(0.5, 0.35)):
+    """Paste a photo, cover-cropped to w x h, with the gold frame and a shadow."""
+    canvas = add_shadow(canvas, (x, y, x + w + 16, y + h + 16))
+    frame = Image.new("RGBA", (w + 16, h + 16), GOLD + (255,))
+    frame.paste(ImageOps.fit(im, (w, h), Image.LANCZOS, centering=centering), (8, 8))
+    canvas.paste(frame, (x, y))
+    return canvas
+
+
+def caption_bar(canvas, x, y, kicker, title, max_w, size=84):
+    """Lower-third style caption: black bar, gold stripe, gold kicker, white italic title."""
+    d = ImageDraw.Draw(canvas)
+    while size > 40 and d.textlength(title, font=ImageFont.truetype(F_TITLE, size)) > max_w - 70:
+        size -= 4
+    ft, fk = ImageFont.truetype(F_TITLE, size), ImageFont.truetype(F_KICK, 30)
+    w = int(max(d.textlength(title, font=ft), d.textlength(kicker, font=fk) + 4 * len(kicker))) + 76
+    h = int(size * 1.15) + (52 if kicker else 18)
+    bar = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    bd = ImageDraw.Draw(bar)
+    bd.rectangle([x, y, x + w, y + h], fill=(10, 10, 12, 240))
+    bd.rectangle([x, y, x + 12, y + h], fill=GOLD + (255,))
+    canvas = add_shadow(canvas, (x, y, x + w, y + h), blur=12, alpha=140)
+    canvas = Image.alpha_composite(canvas, bar)
+    d = ImageDraw.Draw(canvas)
+    if kicker:
+        cx = x + 40
+        for ch in kicker:  # letter-spaced kicker
+            d.text((cx, y + 18), ch, font=fk, fill=GOLD)
+            cx += d.textlength(ch, font=fk) + 4
+    d.text((x + 38, y + (48 if kicker else 8)), title, font=ft, fill=(245, 245, 245))
+    return canvas
+
+
+def photo_overlay(spec):
+    """Full-frame RGBA overlay for a photo card (framed photos + captions); the background shows through."""
+    c = Image.new("RGBA", (1920, 1080), (0, 0, 0, 0))
+    if spec["layout"] == "single":
+        im = load_photo(spec["img"])
+        if im.width / im.height < 1:  # portrait photo: left, caption beside it
+            h = 820
+            w = int(h * im.width / im.height)
+            c = framed_photo(c, im, 300, 100, w, h)
+            c = caption_bar(c, 300 + w - 30, 640, spec["kicker"], spec["title"], 960, 110)
+        else:
+            w = 1280
+            h = int(w * im.height / im.width)
+            c = framed_photo(c, im, (1920 - w - 16) // 2, 70, w, h)
+            c = caption_bar(c, (1920 - w) // 2 - 70, 70 + h - 60, spec["kicker"], spec["title"], 1100)
+    elif spec["layout"] == "pair":
+        for k, (img, kicker, title) in enumerate(spec["items"]):
+            x = (300, 1020)[k]
+            c = framed_photo(c, load_photo(img), x, 110, 600, 600, (0.5, 0.25))
+            c = caption_bar(c, x - 30, 650, kicker, title, 700, 70)
+    elif spec["layout"] == "quote":
+        im = load_photo(spec["img"])
+        c = framed_photo(c, im, 130, 200, 860, int(860 * im.height / im.width))
+        panel = Image.new("RGBA", c.size, (0, 0, 0, 0))
+        pd = ImageDraw.Draw(panel)
+        x0, y0, x1, y1 = 960, 300, 1800, 800
+        c = add_shadow(c, (x0, y0, x1, y1))
+        pd.rectangle([x0, y0, x1, y1], fill=(10, 10, 12, 240), outline=GOLD + (255,), width=6)
+        c = Image.alpha_composite(c, panel)
+        d = ImageDraw.Draw(c)
+        d.text((x0 + 50, y0 - 40), "\u201c", font=ImageFont.truetype(F_TITLE, 220), fill=GOLD)
+        fq = ImageFont.truetype(F_QUOTE, 74)
+        words, lines, cur = spec["quote"].split(), [], ""
+        for wd in words:
+            t = (cur + " " + wd).strip()
+            if d.textlength(t, font=fq) <= x1 - x0 - 140 or not cur:
+                cur = t
+            else:
+                lines.append(cur)
+                cur = wd
+        lines.append(cur)
+        ty = y0 + 170
+        for ln in lines:
+            d.text((x0 + 70, ty), ln, font=fq, fill=(245, 245, 245))
+            ty += 92
+        d.rectangle([x0 + 70, ty + 24, x0 + 170, ty + 30], fill=GOLD)
+        d.text((x0 + 70, ty + 50), spec["attr"], font=ImageFont.truetype(F_KICK, 32), fill=GOLD)
+    return c
+
+
+def whip_overlay(i, frames, bg, png, x0, y0, out, side):
+    """Overlay a still (box or full-frame RGBA) that whips in from the side over a looping background."""
+    fcx = (f"[0:v]fps={FPS},setsar=1[b];[b][1:v]overlay=x='{x0}+{side}*1900*pow(1-min(t/0.35\\,1)\\,3)':y={y0}[o]")
+    run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-ss", f"{(i * 3.7) % 7.5:.2f}", "-i", bg, "-loop", "1",
+         "-i", png, "-filter_complex", fcx, "-map", "[o]", "-frames:v", str(frames)] + ENC + [out])
+
+
 # ---------- render ----------
 def box_scale(v, i):
     """Card box size as a fraction of the frame: data-heavy cards big, titles/quotes/moments smaller."""
@@ -337,13 +483,21 @@ def render_item(args):
     i, kind, frames, v, offset, with_audio = args
     out = os.path.join(SEG, f"{i:03d}.mp4")
     dur = frames / FPS
+    if kind == "intro":
+        run(["ffmpeg", "-y", "-v", "error", "-i", INTRO, "-vf", f"fps={FPS},setsar=1,tpad=stop_mode=clone:stop_duration=1",
+             "-frames:v", str(frames)] + ENC + [out])
+        return out, None
     if v["kind"] == "card":
         spec = fx_spec(v)
         if spec:
             return render_fx(i, frames, spec, out), None
         png = os.path.join(SEG, f"{i:03d}.png")
-        if v.get("marker", "").startswith("[FE LOGO COVER"):
-            return render_logo(i, frames, png, out), None
+        bg = bg_path(v.get("bg", BG_ORDER[0]))
+        side = 1 if i % 2 else -1  # boxes whip in from alternating sides over the moving background
+        if "photo" in v:
+            photo_overlay(v["photo"]).save(png)
+            whip_overlay(i, frames, bg, png, 0, 0, out, side)
+            return out, None
         if "moment" in v:
             k, head, sub = MOMENT[v["moment"]]
             card = fc.T(head, sub=sub, kicker=k, style="dark")
@@ -351,30 +505,42 @@ def render_item(args):
             card = card_image(v["marker"], v["dark"])
         s = box_scale(v, i)
         cw, ch = int(1920 * s) // 2 * 2, int(1080 * s) // 2 * 2
-        panel = Image.new("RGB", (cw + 16, ch + 16), (196, 142, 22))  # gold frame around the card
-        panel.paste(card.resize((cw, ch), Image.LANCZOS), (8, 8))
-        panel.save(png)
-        bg = os.path.join(ASSETS, "bg_dark.mp4" if v["dark"] else "bg_gold.mp4")
-        side = 1 if i % 2 else -1  # panels whip in from alternating sides over the moving background
         x0 = (1920 - cw - 16) // 2
         if s < 0.8:  # smaller boxes sit off-center so the layout doesn't repeat
             x0 += side * 150
         y0 = (1080 - ch - 16) // 2
-        fcx = (f"[0:v]fps={FPS},setsar=1[b];[b][1:v]overlay=x='{x0}+{side}*1900*pow(1-min(t/0.35\\,1)\\,3)':y={y0}[o]")
-        run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-ss", f"{(i * 3.7) % 11:.2f}", "-i", bg, "-i", png,
-             "-filter_complex", fcx, "-map", "[o]", "-frames:v", str(frames)] + ENC + [out])
+        canvas = add_shadow(Image.new("RGBA", (1920, 1080), (0, 0, 0, 0)), (x0, y0, x0 + cw + 16, y0 + ch + 16))
+        panel = Image.new("RGBA", (cw + 16, ch + 16), GOLD + (255,))  # gold frame around the card
+        panel.paste(card.resize((cw, ch), Image.LANCZOS), (8, 8))
+        canvas.paste(panel, (x0, y0))
+        canvas.save(png)
+        whip_overlay(i, frames, bg, png, 0, 0, out, side)
     else:
         ov = os.path.join(SEG, f"{i:03d}_ov.png")
-        fc.overlay(v.get("label") if v["kind"] == "clip" else None).save(ov)
+        fc.overlay(v.get("label") if v["kind"] == "clip" else None, watermark=False).save(ov)  # the background carries the logo badge
         src_dur = probe(v["file"])[0]
         start = offset % max(src_dur - 0.5, 0.1) if src_dur > dur + 0.5 else 0
-        # every clip sits in a white-framed box on the moving background (user's choice, Nov 16)
-        size = f"{(1500, 1300, 1400)[i % 3]}:-2" if aspect(v["file"]) >= 1.5 else f"-2:{(900, 820, 860)[i % 3]}"
-        fcx = (f"[0:v]scale={size},fps={FPS},setsar=1,pad=iw+16:ih+16:8:8:color=0xC48E16[v];"
-               f"[2:v]fps={FPS},setsar=1[b];[b][v]overlay=(W-w)/2:(H-h)/2[bv];[bv][1:v]overlay=0:0[o]")
-        ins = ["-stream_loop", "-1", "-i", os.path.join(ASSETS, "bg_gold.mp4")]
+        # every clip sits in a gold-framed box with a shadow on the moving background
+        a = aspect(v["file"])
+        if a >= 1.5:
+            bw = (1500, 1340, 1420)[i % 3]
+            bh = int(bw / a) // 2 * 2
+            bgname = "torn_split"
+        else:
+            bh = (900, 860, 880)[i % 3] if a < 0.9 else 820
+            bw = int(bh * a) // 2 * 2
+            bgname = "torn_panels" if a < 0.9 else "brush_chevrons"
+        x0, y0 = (1920 - bw - 16) // 2, (1080 - bh - 16) // 2
+        sh = os.path.join(SEG, f"{i:03d}_sh.png")
+        add_shadow(Image.new("RGBA", (1920, 1080), (0, 0, 0, 0)), (x0, y0, x0 + bw + 16, y0 + bh + 16)).save(sh)
+        side = 1 if i % 2 else -1
+        whip = f"{side}*1900*pow(1-min(t/0.35\\,1)\\,3)"
+        fcx = (f"[0:v]scale={bw}:{bh},fps={FPS},setsar=1,pad=iw+16:ih+16:8:8:color=0xC48E16[v];"
+               f"[2:v]fps={FPS},setsar=1[b];[b][3:v]overlay=x='{whip}':y=0[bs];"
+               f"[bs][v]overlay=x='{x0}+{whip}':y={y0}[bv];[bv][1:v]overlay=0:0[o]")
         run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-ss", f"{start:.3f}", "-i", v["file"],
-             "-i", ov] + ins + ["-filter_complex", fcx, "-map", "[o]", "-frames:v", str(frames)] + ENC + [out])
+             "-i", ov, "-stream_loop", "-1", "-i", bg_path(bgname), "-loop", "1", "-i", sh,
+             "-filter_complex", fcx, "-map", "[o]", "-frames:v", str(frames)] + ENC + [out])
     wav = None
     if with_audio:  # LET IT PLAY: keep the clip's own audio
         wav = os.path.join(SEG, f"{i:03d}.wav")
@@ -410,6 +576,35 @@ def mix_sfx(audio_path, events):
     p.communicate(track.tobytes())
 
 
+def fit_clips(items):
+    """A narrated clip slot longer than the footage left in its file plays what's left, then a card
+    covers the rest (no looping). Footage is used in order across a clip's slots."""
+    out, used = [], {}
+    for it in items:
+        if it[0] != "narr" or it[3]["kind"] != "clip":
+            out.append(it)
+            continue
+        _, t0, t1, v = it
+        f = v["file"]
+        left = probe(f)[0] - used.get(f, 0.0) - 0.1
+        slot = t1 - t0
+        card = {"kind": "card", "moment": v["n"], "marker": "", "dark": v.get("dark", False),
+                "desc": v["desc"] + " (card after footage ran out)", "bg": v.get("bg", BG_ORDER[0])}
+        if v["n"] not in MOMENT:
+            card["moment"] = 1
+        if left + 0.4 >= slot:  # a few frames short is fine; the last frames repeat
+            out.append(it)
+            used[f] = used.get(f, 0.0) + slot
+        elif left >= 2.5:
+            cut = round((t0 + left) * FPS) / FPS
+            out.append(("narr", t0, cut, v))
+            out.append(("narr", cut, t1, card))
+            used[f] = used.get(f, 0.0) + left
+        else:
+            out.append(("narr", t0, t1, card))
+    return out
+
+
 def main():
     preview = "--preview" in sys.argv
     os.makedirs(SEG, exist_ok=True)
@@ -418,6 +613,7 @@ def main():
     vo_dur = probe(VO)[0]
     groups = parse_markers(os.path.join(HERE, "thompson_build.md"), sents)
     items, missing = plan(sents, groups, vo_dur)
+    items = fit_clips(items)
     if preview:
         items = [it for it in items if it[0] != "narr" or it[1] < 60]
 
@@ -430,7 +626,7 @@ def main():
         else:
             _, secs, v = it
             frames = round(secs * FPS)
-            audio_parts.append(("clip", i) if it[0] == "brk" else ("silence", secs))
+            audio_parts.append(("clip", i) if it[0] == "brk" else ("intro", secs) if it[0] == "intro" else ("silence", secs))
         if frames <= 0:
             continue
         off = offsets.get(v.get("file"), 0.0)
@@ -471,6 +667,9 @@ def main():
         if p[0] == "vo":
             run(["ffmpeg", "-y", "-v", "error", "-ss", f"{p[1]:.4f}", "-t", f"{p[2] - p[1]:.4f}", "-i", VO,
                  "-ac", "2", "-ar", "44100", w])
+        elif p[0] == "intro":
+            run(["ffmpeg", "-y", "-v", "error", "-i", INTRO, "-vn", "-ac", "2", "-ar", "44100",
+                 "-af", f"apad,atrim=0:{p[1]:.3f}", w])
         elif p[0] == "silence":
             run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo", "-t", f"{p[1]:.3f}", w])
         else:

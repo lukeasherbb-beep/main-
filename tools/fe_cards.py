@@ -280,13 +280,14 @@ def logo_cover():
     return im
 
 
-def overlay(label=None):
-    """Transparent 1920x1080 overlay for full-screen clips: watermark + optional source label."""
+def overlay(label=None, watermark=True):
+    """Transparent 1920x1080 overlay: optional watermark + optional source label."""
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
     f = font(FONT_S, 30)
-    d.text((W - 48 + 2, H - 44 + 2), WATERMARK, font=f, fill=(0, 0, 0, 150), anchor="rm")
-    d.text((W - 48, H - 44), WATERMARK, font=f, fill=(255, 255, 255, 170), anchor="rm")
+    if watermark:
+        d.text((W - 48 + 2, H - 44 + 2), WATERMARK, font=f, fill=(0, 0, 0, 150), anchor="rm")
+        d.text((W - 48, H - 44), WATERMARK, font=f, fill=(255, 255, 255, 170), anchor="rm")
     if label:
         fl = font(FONT_B, 44)  # large enough to read on a phone
         w = d.textlength(label, font=fl)
