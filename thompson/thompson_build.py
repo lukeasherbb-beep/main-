@@ -23,6 +23,7 @@ from concurrent.futures import ThreadPoolExecutor
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "tools"))
 import fe_cards as fc  # noqa: E402
+import numpy as np  # noqa: E402
 from PIL import Image  # noqa: E402
 
 FPS = 30
@@ -303,6 +304,35 @@ def render_fx(i, frames, spec, out):
 
 
 # ---------- render ----------
+def box_scale(v, i):
+    """Card box size as a fraction of the frame: data-heavy cards big, titles/quotes/moments smaller."""
+    if "moment" in v:
+        return (0.70, 0.80, 0.74)[v["moment"] % 3]
+    m = v.get("marker", "")
+    fn = re.match(r"\[(?:FE CARD: ?(\w+)|FX: ([\w-]+))", m)
+    kind = (fn.group(1) or fn.group(2)) if fn else ""
+    if kind in ("S", "TL", "Ls", "bars", "pairs", "stacked"):
+        return 0.80 if kind == "S" and i % 2 else 0.86
+    if kind == "V":
+        return 0.82
+    if kind == "Q":
+        return 0.72
+    return (0.78, 0.68, 0.74)[i % 3]
+
+
+def render_logo(i, frames, png, out):
+    """Real FE logo straight on the octagon background: black keyed out, scales up into place."""
+    logo = Image.open(os.path.join(ASSETS, "logo_square.png")).convert("RGB").resize((760, 760), Image.LANCZOS)
+    a = np.asarray(logo, dtype=np.float32)
+    alpha = np.clip((a.max(axis=2) - 18) * 3.0, 0, 255).astype(np.uint8)
+    Image.fromarray(np.dstack([a.astype(np.uint8), alpha]), "RGBA").save(png)
+    fcx = (f"[1:v]scale=w='760*(0.82+0.18*min(t/0.6\\,1))':h=-1:eval=frame[l];"
+           f"[0:v]fps={FPS},setsar=1[b];[b][l]overlay=x='(W-w)/2':y='(H-h)/2'[o]")
+    run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", os.path.join(ASSETS, "bg_dark.mp4"),
+         "-loop", "1", "-i", png, "-filter_complex", fcx, "-map", "[o]", "-frames:v", str(frames)] + ENC + [out])
+    return out
+
+
 def render_item(args):
     i, kind, frames, v, offset, with_audio = args
     out = os.path.join(SEG, f"{i:03d}.mp4")
@@ -312,17 +342,25 @@ def render_item(args):
         if spec:
             return render_fx(i, frames, spec, out), None
         png = os.path.join(SEG, f"{i:03d}.png")
+        if v.get("marker", "").startswith("[FE LOGO COVER"):
+            return render_logo(i, frames, png, out), None
         if "moment" in v:
             k, head, sub = MOMENT[v["moment"]]
             card = fc.T(head, sub=sub, kicker=k, style="dark")
         else:
             card = card_image(v["marker"], v["dark"])
-        panel = Image.new("RGB", (1456, 826), (245, 245, 245))  # white frame around the card
-        panel.paste(card.resize((1440, 810), Image.LANCZOS), (8, 8))
+        s = box_scale(v, i)
+        cw, ch = int(1920 * s) // 2 * 2, int(1080 * s) // 2 * 2
+        panel = Image.new("RGB", (cw + 16, ch + 16), (245, 245, 245))  # white frame around the card
+        panel.paste(card.resize((cw, ch), Image.LANCZOS), (8, 8))
         panel.save(png)
         bg = os.path.join(ASSETS, "bg_dark.mp4" if v["dark"] else "bg_gold.mp4")
         side = 1 if i % 2 else -1  # panels whip in from alternating sides over the moving background
-        fcx = (f"[0:v]fps={FPS},setsar=1[b];[b][1:v]overlay=x='232+{side}*1900*pow(1-min(t/0.35\\,1)\\,3)':y=127[o]")
+        x0 = (1920 - cw - 16) // 2
+        if s < 0.8:  # smaller boxes sit off-center so the layout doesn't repeat
+            x0 += side * 150
+        y0 = (1080 - ch - 16) // 2
+        fcx = (f"[0:v]fps={FPS},setsar=1[b];[b][1:v]overlay=x='{x0}+{side}*1900*pow(1-min(t/0.35\\,1)\\,3)':y={y0}[o]")
         run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-ss", f"{(i * 3.7) % 11:.2f}", "-i", bg, "-i", png,
              "-filter_complex", fcx, "-map", "[o]", "-frames:v", str(frames)] + ENC + [out])
     else:
@@ -331,7 +369,7 @@ def render_item(args):
         src_dur = probe(v["file"])[0]
         start = offset % max(src_dur - 0.5, 0.1) if src_dur > dur + 0.5 else 0
         # every clip sits in a white-framed box on the moving background (user's choice, Nov 16)
-        size = "1500:-2" if aspect(v["file"]) >= 1.5 else "-2:900"
+        size = f"{(1500, 1300, 1400)[i % 3]}:-2" if aspect(v["file"]) >= 1.5 else f"-2:{(900, 820, 860)[i % 3]}"
         fcx = (f"[0:v]scale={size},fps={FPS},setsar=1,pad=iw+16:ih+16:8:8:color=0xF5F5F5[v];"
                f"[2:v]fps={FPS},setsar=1[b];[b][v]overlay=(W-w)/2:(H-h)/2[bv];[bv][1:v]overlay=0:0[o]")
         ins = ["-stream_loop", "-1", "-i", os.path.join(ASSETS, "bg_gold.mp4")]
