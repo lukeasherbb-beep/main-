@@ -1,0 +1,82 @@
+{
+ "id": "territory-date",
+ "name": "A place in time",
+ "family": "map",
+ "purpose": "Link a territory, location pin and historical date",
+ "duration": {
+  "default": 8,
+  "min": 4,
+  "max": 24
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "12 June 1900"
+  },
+  "subtitle": {
+   "type": "text",
+   "maxLength": 160,
+   "default": "Where it happened"
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#b51f27"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  },
+  "enter": {
+   "type": "number",
+   "min": 0.03,
+   "max": 0.45,
+   "default": 0.22
+  },
+  "country": {
+   "type": "country",
+   "required": true,
+   "default": "United States of America"
+  },
+  "points": {
+   "type": "point_list",
+   "required": true,
+   "format": "[longitude, latitude] pairs, longitude first",
+   "minItems": 1,
+   "maxItems": 8,
+   "default": [
+    [
+     -98,
+     37
+    ]
+   ]
+  },
+  "pointLabels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 8,
+   "item": {
+    "maxLength": 40
+   },
+   "sameLengthAs": "points",
+   "required": true,
+   "default": [
+    "Sample place"
+   ]
+  }
+ }
+}

@@ -1,0 +1,76 @@
+{
+ "id": "value-table",
+ "name": "Brand value table",
+ "family": "chart",
+ "purpose": "Build rows of editable icons and values",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 4,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "images": {
+   "type": "image_list",
+   "maxItems": 4,
+   "slots": 4,
+   "required": true,
+   "default": [
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png"
+   ]
+  },
+  "backgroundImage": {
+   "type": "image",
+   "required": true,
+   "default": "assets/original-highland.png"
+  },
+  "prefix": {
+   "type": "text",
+   "maxLength": 8,
+   "default": "$"
+  },
+  "data": {
+   "type": "series_list",
+   "mode": "value",
+   "required": true,
+   "minItems": 1,
+   "maxItems": 4,
+   "needLabel": false,
+   "label": {
+    "maxLength": 40
+   },
+   "number": {
+    "min": 0,
+    "max": 1000000000000
+   },
+   "note": "each entry is {label, value}; replaces the sample data entirely",
+   "default": [
+    {
+     "label": "",
+     "value": 108
+    },
+    {
+     "label": "",
+     "value": 58
+    },
+    {
+     "label": "",
+     "value": 8.58
+    },
+    {
+     "label": "",
+     "value": 78
+    }
+   ]
+  }
+ }
+}

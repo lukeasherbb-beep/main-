@@ -1,0 +1,42 @@
+{
+ "id": "virtuous-cycle",
+ "name": "Cycle of ideas",
+ "family": "diagram",
+ "purpose": "Reveal connected stages around a circular process",
+ "duration": {
+  "default": 10,
+  "min": 5,
+  "max": 30
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 4,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "A VIRTUOUS CYCLE"
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 6,
+   "slots": 4,
+   "required": true,
+   "default": [
+    "assets/globe.png",
+    "assets/crowd.png",
+    "assets/rocket-dark.png",
+    "assets/heart.png"
+   ]
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  }
+ }
+}

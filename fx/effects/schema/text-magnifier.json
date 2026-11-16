@@ -1,0 +1,31 @@
+{
+ "id": "text-magnifier",
+ "name": "Text magnifier",
+ "family": "title",
+ "purpose": "Enlarge editable text only underneath a moving lens",
+ "duration": {
+  "default": 8,
+  "min": 4,
+  "max": 24
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "WELCOME TO OUR STORY"
+  },
+  "zoom": {
+   "type": "number",
+   "min": 0.5,
+   "max": 6,
+   "default": 2.4
+  }
+ }
+}

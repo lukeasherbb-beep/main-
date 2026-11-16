@@ -1,0 +1,10 @@
+{
+  "name": "member-effects",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portable renderer for the 108-effect motion library (silent 1920x1080 H.264 clips)",
+  "type": "module",
+  "scripts": { "test": "node --test test/contract.test.mjs test/effects.test.mjs" },
+  "dependencies": { "@napi-rs/canvas": "1.1.0" },
+  "engines": { "node": ">=20" }
+}

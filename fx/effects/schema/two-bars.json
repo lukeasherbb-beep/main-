@@ -1,0 +1,76 @@
+{
+ "id": "two-bars",
+ "name": "Two-value comparison",
+ "family": "chart",
+ "purpose": "Contrast two quantities clearly",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "School funding comparison"
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#d864b0"
+  },
+  "secondary": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#111111"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#161616"
+  },
+  "prefix": {
+   "type": "text",
+   "maxLength": 8,
+   "default": "$"
+  },
+  "suffix": {
+   "type": "text",
+   "maxLength": 12,
+   "default": "M"
+  },
+  "data": {
+   "type": "series_list",
+   "mode": "value",
+   "required": true,
+   "minItems": 1,
+   "maxItems": 2,
+   "needLabel": true,
+   "label": {
+    "maxLength": 40
+   },
+   "number": {
+    "min": 0,
+    "max": 1000000000000
+   },
+   "note": "each entry is {label, value}; replaces the sample data entirely",
+   "default": [
+    {
+     "label": "2019",
+     "value": 119
+    },
+    {
+     "label": "2024",
+     "value": 275
+    }
+   ]
+  }
+ }
+}

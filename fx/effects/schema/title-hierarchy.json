@@ -1,0 +1,40 @@
+{
+ "id": "title-hierarchy",
+ "name": "Statement hierarchy",
+ "family": "title",
+ "purpose": "Build a small setup phrase and large concluding word",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "EVERYTHING"
+  },
+  "subtitle": {
+   "type": "text",
+   "maxLength": 160,
+   "default": "The Beginning of"
+  },
+  "backgroundImage": {
+   "type": "image",
+   "required": true,
+   "default": "assets/original-highland.png"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  }
+ }
+}

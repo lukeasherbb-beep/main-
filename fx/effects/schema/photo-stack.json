@@ -1,0 +1,38 @@
+{
+ "id": "photo-stack",
+ "name": "Photo stack sequence",
+ "family": "gallery",
+ "purpose": "Reveal successive pictures as a growing stack",
+ "duration": {
+  "default": 10,
+  "min": 5,
+  "max": 30
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 5,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "images": {
+   "type": "image_list",
+   "maxItems": 6,
+   "slots": 5,
+   "required": true,
+   "default": [
+    "assets/original-highland.png",
+    "assets/landscape-2.png",
+    "assets/landscape-3.png",
+    "assets/original-highland.png",
+    "assets/landscape-2.png"
+   ]
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  }
+ }
+}

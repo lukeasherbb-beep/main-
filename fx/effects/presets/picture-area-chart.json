@@ -1,0 +1,91 @@
+{
+ "template": "picture-area-chart",
+ "title": "Big increase in sample prices",
+ "subtitle": "",
+ "body": "Every detail contributes to the bigger picture. Follow the evidence, compare the possibilities, and discover what changes next.",
+ "label": "",
+ "labels": [],
+ "images": [
+  "assets/original-highland.png"
+ ],
+ "backgroundImage": "",
+ "accent": "#00cc79",
+ "secondary": "#d95765",
+ "background": "#eeeeeb",
+ "foreground": "#161616",
+ "theme": "dark",
+ "font": "Anton",
+ "duration": 10,
+ "enter": 0.22,
+ "exit": 0,
+ "motion": 1,
+ "transparent": false,
+ "number": 73,
+ "prefix": "",
+ "suffix": "",
+ "yearStart": 1995,
+ "yearEnd": 2026,
+ "chapter": "01",
+ "highlight": "bigger picture",
+ "country": "United States of America",
+ "countries": [
+  "France",
+  "Germany",
+  "Italy"
+ ],
+ "mapBounds": [
+  -135,
+  15,
+  45,
+  65
+ ],
+ "points": [
+  [
+   -122.4,
+   37.8
+  ],
+  [
+   -74,
+   40.7
+  ],
+  [
+   2.35,
+   48.86
+  ]
+ ],
+ "pointLabels": [
+  "San Francisco",
+  "New York",
+  "Paris"
+ ],
+ "focusX": 0.5,
+ "focusY": 0.45,
+ "zoom": 1.7,
+ "fit": "cover",
+ "data": [
+  {
+   "label": "Sample prices",
+   "values": [
+    18,
+    40,
+    34,
+    49,
+    41,
+    74
+   ]
+  }
+ ],
+ "axisLabels": [
+  "2003",
+  "",
+  "",
+  "",
+  "",
+  "2026"
+ ],
+ "unit": "",
+ "mediaStart": 0,
+ "crops": [],
+ "backdrop": "white",
+ "autoFit": true
+}

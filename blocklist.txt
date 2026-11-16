@@ -1,0 +1,81 @@
+# FE script blocklist: none of these may appear in any script.
+# One phrase per line. [X], [Y] and [skill] mean "any words". Lines starting with # are ignored.
+
+## Transitional & connecting phrases
+In conclusion
+It is important to note that
+Furthermore
+Moreover
+Consequently
+In summary
+To wrap things up
+Let's dive in
+Let's dive into
+Without further ado
+It is worth noting
+Conversely
+Notably
+Additionally
+Subsequently
+
+## Hyperbolic & metaphorical phrases
+Unlocking the secrets
+Embark on a journey
+Game-changer
+The ultimate guide
+Master the art of
+In the vast landscape of
+In the realm of
+A rich tapestry
+A testament to
+Beacon of hope
+Unleash the power of
+Elevate your [skill]
+Navigating the complex world of
+
+## Hedges & balancing
+While [X] is true, [Y] is also important
+It depends on various factors
+On one hand
+On the other hand
+It remains to be seen
+Ideally
+Typically
+Generally speaking
+While it may seem
+
+## Moralizing & didactic
+Remember to always
+It is crucial to ensure
+By following these steps
+Foster a sense of
+It is paramount that
+
+## Generic hooks & openers
+Have you ever wondered
+In today's fast-paced world
+In this digital age
+In the modern world
+Welcome back to the channel
+
+## AI fingerprint vocabulary (single words, all word forms)
+Delve
+Landscape
+Testament
+Tapestry
+Realm
+Foster
+Underscore
+Nuanced
+Crucial
+Paramount
+Unlock
+Unleash
+Elevate
+Optimization
+Leverage
+Holistic
+Synergy
+Robust
+Streamline
+Revolutionize

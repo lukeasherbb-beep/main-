@@ -1,0 +1,69 @@
+{
+ "id": "org-chart",
+ "name": "People hierarchy",
+ "family": "diagram",
+ "purpose": "Reveal a leader and connected team members",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 5,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "ORGANIZATION"
+  },
+  "subtitle": {
+   "type": "text",
+   "maxLength": 160,
+   "default": "Leadership structure"
+  },
+  "labels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 5,
+   "pad": 5,
+   "item": {
+    "maxLength": 100
+   },
+   "default": [
+    "Team Leader",
+    "Person One",
+    "Person Two",
+    "Person Three",
+    "Person Four"
+   ]
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 6,
+   "slots": 5,
+   "required": true,
+   "default": [
+    "assets/original-person-a.png",
+    "assets/original-person-b.png",
+    "assets/original-person-b.png",
+    "assets/original-person-b.png",
+    "assets/original-person-b.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#d90b35"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  }
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "id": "article-highlights",
+ "name": "Sequential article highlights",
+ "family": "article",
+ "purpose": "Guide attention through several editable highlighted phrases",
+ "duration": {
+  "default": 8,
+  "min": 4,
+  "max": 24
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "Why highlighting|still beats bold"
+  },
+  "body": {
+   "type": "text",
+   "maxLength": 600,
+   "default": "This animation highlights specific text within paragraphs. You can use it to draw attention to important phrases or concepts. The animation moves sequentially through all paragraphs, highlighting each marked phrase. You can customize text styling and effects via themes."
+  },
+  "label": {
+   "type": "text",
+   "maxLength": 80,
+   "default": "FEATURE"
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#e7d866"
+  },
+  "highlight": {
+   "type": "text",
+   "maxLength": 160,
+   "default": "highlights specific text|sequentially through all paragraphs"
+  }
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "id": "spoken-phrases",
+ "name": "Changing phrases",
+ "family": "title",
+ "purpose": "Swap short statements at controlled times",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "labels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 2,
+   "pad": 2,
+   "item": {
+    "maxLength": 100
+   },
+   "default": [
+    "HELLO, I AM A SAMPLE.",
+    "I AM STILL LEARNING."
+   ]
+  },
+  "backgroundImage": {
+   "type": "image",
+   "required": true,
+   "default": "assets/original-highland.png"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  }
+ }
+}

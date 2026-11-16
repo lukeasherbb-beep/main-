@@ -1,0 +1,57 @@
+{
+ "id": "border-story",
+ "name": "Borders in focus",
+ "family": "map",
+ "purpose": "Explain neighboring territories with progressive boundary emphasis",
+ "duration": {
+  "default": 8,
+  "min": 4,
+  "max": 24
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#e62938"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  },
+  "countries": {
+   "type": "country_list",
+   "required": true,
+   "minItems": 1,
+   "maxItems": 8,
+   "default": [
+    "Poland",
+    "Belarus",
+    "Ukraine"
+   ]
+  },
+  "mapBounds": {
+   "type": "bounds",
+   "required": true,
+   "format": "[west, south, east, north] in degrees",
+   "default": [
+    6,
+    40,
+    44,
+    61
+   ]
+  }
+ }
+}

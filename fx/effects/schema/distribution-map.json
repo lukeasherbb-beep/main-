@@ -1,0 +1,42 @@
+{
+ "id": "distribution-map",
+ "name": "Distribution dots",
+ "family": "map",
+ "purpose": "Show many locations inside a region",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#359bd4"
+  },
+  "secondary": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#dd697b"
+  },
+  "number": {
+   "type": "number",
+   "min": 0,
+   "max": 1000000000000000,
+   "required": true,
+   "default": 22
+  },
+  "country": {
+   "type": "country",
+   "required": true,
+   "default": "United States of America"
+  }
+ }
+}

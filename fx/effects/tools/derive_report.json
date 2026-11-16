@@ -1,0 +1,1137 @@
+{
+ "evidence-wall": {
+  "used": 1,
+  "keys": [
+   "images"
+  ],
+  "failed": []
+ },
+ "border-story": {
+  "used": 5,
+  "keys": [
+   "accent",
+   "background",
+   "foreground",
+   "countries",
+   "mapBounds"
+  ],
+  "failed": []
+ },
+ "regional-profile": {
+  "used": 5,
+  "keys": [
+   "subtitle",
+   "images",
+   "accent",
+   "enter",
+   "country"
+  ],
+  "failed": []
+ },
+ "territory-date": {
+  "used": 9,
+  "keys": [
+   "title",
+   "subtitle",
+   "accent",
+   "background",
+   "foreground",
+   "enter",
+   "country",
+   "points",
+   "pointLabels"
+  ],
+  "failed": []
+ },
+ "distribution-map": {
+  "used": 4,
+  "keys": [
+   "accent",
+   "secondary",
+   "number",
+   "country"
+  ],
+  "failed": []
+ },
+ "regional-share": {
+  "used": 5,
+  "keys": [
+   "accent",
+   "background",
+   "foreground",
+   "number",
+   "mapBounds"
+  ],
+  "failed": []
+ },
+ "country-trace": {
+  "used": 3,
+  "keys": [
+   "title",
+   "accent",
+   "country"
+  ],
+  "failed": []
+ },
+ "clock-badge": {
+  "used": 4,
+  "keys": [
+   "title",
+   "subtitle",
+   "backgroundImage",
+   "accent"
+  ],
+  "failed": []
+ },
+ "date-center": {
+  "used": 4,
+  "keys": [
+   "title",
+   "subtitle",
+   "backgroundImage",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "date-slide": {
+  "used": 4,
+  "keys": [
+   "title",
+   "subtitle",
+   "backgroundImage",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "case-board": {
+  "used": 1,
+  "keys": [
+   "images"
+  ],
+  "failed": []
+ },
+ "paired-images": {
+  "used": 3,
+  "keys": [
+   "labels",
+   "images",
+   "accent"
+  ],
+  "failed": []
+ },
+ "paired-profiles": {
+  "used": 5,
+  "keys": [
+   "labels",
+   "images",
+   "backgroundImage",
+   "foreground",
+   "fit"
+  ],
+  "failed": []
+ },
+ "archive-profiles": {
+  "used": 5,
+  "keys": [
+   "labels",
+   "images",
+   "background",
+   "foreground",
+   "fit"
+  ],
+  "failed": []
+ },
+ "route-line": {
+  "used": 5,
+  "keys": [
+   "accent",
+   "secondary",
+   "mapBounds",
+   "points",
+   "pointLabels"
+  ],
+  "failed": []
+ },
+ "film-window": {
+  "used": 2,
+  "keys": [
+   "images",
+   "background"
+  ],
+  "failed": []
+ },
+ "film-reel": {
+  "used": 2,
+  "keys": [
+   "images",
+   "background"
+  ],
+  "failed": []
+ },
+ "photo-timeline": {
+  "used": 4,
+  "keys": [
+   "labels",
+   "images",
+   "accent",
+   "background"
+  ],
+  "failed": []
+ },
+ "flag-lineup": {
+  "used": 3,
+  "keys": [
+   "title",
+   "images",
+   "backgroundImage"
+  ],
+  "failed": []
+ },
+ "feature-card": {
+  "used": 4,
+  "keys": [
+   "title",
+   "images",
+   "backgroundImage",
+   "background"
+  ],
+  "failed": []
+ },
+ "subject-headline": {
+  "used": 6,
+  "keys": [
+   "title",
+   "subtitle",
+   "images",
+   "backgroundImage",
+   "foreground",
+   "enter"
+  ],
+  "failed": []
+ },
+ "question-focus": {
+  "used": 3,
+  "keys": [
+   "title",
+   "backgroundImage",
+   "accent"
+  ],
+  "failed": []
+ },
+ "year-slider": {
+  "used": 4,
+  "keys": [
+   "backgroundImage",
+   "foreground",
+   "yearStart",
+   "yearEnd"
+  ],
+  "failed": []
+ },
+ "world-alert": {
+  "used": 5,
+  "keys": [
+   "subtitle",
+   "secondary",
+   "background",
+   "mapBounds",
+   "points"
+  ],
+  "failed": []
+ },
+ "scribble-title": {
+  "used": 4,
+  "keys": [
+   "title",
+   "subtitle",
+   "label",
+   "accent"
+  ],
+  "failed": []
+ },
+ "money-counter": {
+  "used": 7,
+  "keys": [
+   "subtitle",
+   "backgroundImage",
+   "foreground",
+   "number",
+   "prefix",
+   "suffix",
+   "decimals"
+  ],
+  "failed": []
+ },
+ "headline-build": {
+  "used": 3,
+  "keys": [
+   "title",
+   "backgroundImage",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "paragraph-marker": {
+  "used": 3,
+  "keys": [
+   "body",
+   "backgroundImage",
+   "highlight"
+  ],
+  "failed": []
+ },
+ "stacked-highlight": {
+  "used": 3,
+  "keys": [
+   "title",
+   "backgroundImage",
+   "accent"
+  ],
+  "failed": []
+ },
+ "ranked-bars": {
+  "used": 2,
+  "keys": [
+   "title",
+   "data"
+  ],
+  "failed": []
+ },
+ "split-reveal": {
+  "used": 3,
+  "keys": [
+   "labels",
+   "images",
+   "accent"
+  ],
+  "failed": []
+ },
+ "icon-bullets": {
+  "used": 2,
+  "keys": [
+   "labels",
+   "accent"
+  ],
+  "failed": []
+ },
+ "process-steps": {
+  "used": 4,
+  "keys": [
+   "labels",
+   "images",
+   "accent",
+   "background"
+  ],
+  "failed": []
+ },
+ "population-count": {
+  "used": 3,
+  "keys": [
+   "backgroundImage",
+   "accent",
+   "number"
+  ],
+  "failed": []
+ },
+ "article-zoom": {
+  "used": 4,
+  "keys": [
+   "body",
+   "images",
+   "accent",
+   "highlight"
+  ],
+  "failed": []
+ },
+ "portrait-bars": {
+  "used": 4,
+  "keys": [
+   "images",
+   "background",
+   "prefix",
+   "data"
+  ],
+  "failed": []
+ },
+ "image-callouts": {
+  "used": 4,
+  "keys": [
+   "labels",
+   "images",
+   "accent",
+   "background"
+  ],
+  "failed": []
+ },
+ "photo-collage": {
+  "used": 2,
+  "keys": [
+   "images",
+   "backgroundImage"
+  ],
+  "failed": []
+ },
+ "photo-stack": {
+  "used": 2,
+  "keys": [
+   "images",
+   "background"
+  ],
+  "failed": []
+ },
+ "focus-window": {
+  "used": 5,
+  "keys": [
+   "title",
+   "images",
+   "backgroundImage",
+   "focusX",
+   "focusY"
+  ],
+  "failed": []
+ },
+ "image-magnifier": {
+  "used": 3,
+  "keys": [
+   "images",
+   "background",
+   "zoom"
+  ],
+  "failed": []
+ },
+ "diagonal-cards": {
+  "used": 1,
+  "keys": [
+   "images"
+  ],
+  "failed": []
+ },
+ "photo-flip": {
+  "used": 2,
+  "keys": [
+   "images",
+   "background"
+  ],
+  "failed": []
+ },
+ "vertical-panels": {
+  "used": 2,
+  "keys": [
+   "images",
+   "background"
+  ],
+  "failed": []
+ },
+ "flight-route": {
+  "used": 6,
+  "keys": [
+   "accent",
+   "secondary",
+   "foreground",
+   "mapBounds",
+   "points",
+   "pointLabels"
+  ],
+  "failed": []
+ },
+ "milestone-path": {
+  "used": 7,
+  "keys": [
+   "title",
+   "labels",
+   "accent",
+   "secondary",
+   "background",
+   "foreground",
+   "motion"
+  ],
+  "failed": []
+ },
+ "connected-comparison": {
+  "used": 2,
+  "keys": [
+   "labels",
+   "backgroundImage"
+  ],
+  "failed": []
+ },
+ "clean-dissolve": {
+  "used": 1,
+  "keys": [
+   "images"
+  ],
+  "failed": []
+ },
+ "narration-caption": {
+  "used": 3,
+  "keys": [
+   "body",
+   "backgroundImage",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "news-column": {
+  "used": 2,
+  "keys": [
+   "title",
+   "body"
+  ],
+  "failed": []
+ },
+ "caption-stage": {
+  "used": 3,
+  "keys": [
+   "body",
+   "background",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "news-image": {
+  "used": 6,
+  "keys": [
+   "title",
+   "subtitle",
+   "label",
+   "images",
+   "accent",
+   "background"
+  ],
+  "failed": []
+ },
+ "org-chart": {
+  "used": 6,
+  "keys": [
+   "title",
+   "subtitle",
+   "labels",
+   "images",
+   "accent",
+   "background"
+  ],
+  "failed": []
+ },
+ "article-highlights": {
+  "used": 5,
+  "keys": [
+   "title",
+   "body",
+   "label",
+   "accent",
+   "highlight"
+  ],
+  "failed": []
+ },
+ "chapter-number": {
+  "used": 5,
+  "keys": [
+   "title",
+   "subtitle",
+   "background",
+   "foreground",
+   "chapter"
+  ],
+  "failed": []
+ },
+ "map-callout": {
+  "used": 3,
+  "keys": [
+   "title",
+   "images",
+   "accent"
+  ],
+  "failed": []
+ },
+ "age-comparison": {
+  "used": 5,
+  "keys": [
+   "labels",
+   "images",
+   "accent",
+   "background",
+   "fit"
+  ],
+  "failed": []
+ },
+ "aerial-push": {
+  "used": 3,
+  "keys": [
+   "title",
+   "images",
+   "motion"
+  ],
+  "failed": []
+ },
+ "news-lower-third": {
+  "used": 4,
+  "keys": [
+   "title",
+   "label",
+   "backgroundImage",
+   "accent"
+  ],
+  "failed": []
+ },
+ "checklist-panel": {
+  "used": 5,
+  "keys": [
+   "title",
+   "labels",
+   "backgroundImage",
+   "accent",
+   "enter"
+  ],
+  "failed": []
+ },
+ "life-dates": {
+  "used": 4,
+  "keys": [
+   "title",
+   "subtitle",
+   "backgroundImage",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "chapter-opening": {
+  "used": 3,
+  "keys": [
+   "title",
+   "subtitle",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "spoken-phrases": {
+  "used": 3,
+  "keys": [
+   "labels",
+   "backgroundImage",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "radial-network": {
+  "used": 6,
+  "keys": [
+   "labels",
+   "images",
+   "accent",
+   "background",
+   "foreground",
+   "enter"
+  ],
+  "failed": []
+ },
+ "chapter-type": {
+  "used": 3,
+  "keys": [
+   "title",
+   "background",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "paper-typewriter": {
+  "used": 1,
+  "keys": [
+   "title"
+  ],
+  "failed": []
+ },
+ "falling-subjects": {
+  "used": 6,
+  "keys": [
+   "title",
+   "subtitle",
+   "images",
+   "background",
+   "foreground",
+   "motion"
+  ],
+  "failed": []
+ },
+ "subject-pointer": {
+  "used": 8,
+  "keys": [
+   "title",
+   "subtitle",
+   "label",
+   "images",
+   "backgroundImage",
+   "accent",
+   "foreground",
+   "enter"
+  ],
+  "failed": []
+ },
+ "legacy-title": {
+  "used": 6,
+  "keys": [
+   "title",
+   "subtitle",
+   "images",
+   "accent",
+   "background",
+   "enter"
+  ],
+  "failed": []
+ },
+ "ribbon-profile": {
+  "used": 4,
+  "keys": [
+   "title",
+   "label",
+   "images",
+   "background"
+  ],
+  "failed": []
+ },
+ "torn-profile": {
+  "used": 7,
+  "keys": [
+   "title",
+   "subtitle",
+   "label",
+   "images",
+   "accent",
+   "background",
+   "enter"
+  ],
+  "failed": []
+ },
+ "sovereign-profile": {
+  "used": 7,
+  "keys": [
+   "subtitle",
+   "images",
+   "accent",
+   "background",
+   "foreground",
+   "enter",
+   "country"
+  ],
+  "failed": []
+ },
+ "quote-profile": {
+  "used": 7,
+  "keys": [
+   "title",
+   "subtitle",
+   "body",
+   "images",
+   "accent",
+   "foreground",
+   "enter"
+  ],
+  "failed": []
+ },
+ "scatter-trend": {
+  "used": 7,
+  "keys": [
+   "title",
+   "accent",
+   "foreground",
+   "prefix",
+   "suffix",
+   "data",
+   "axisLabels"
+  ],
+  "failed": []
+ },
+ "two-trends": {
+  "used": 9,
+  "keys": [
+   "title",
+   "accent",
+   "secondary",
+   "background",
+   "foreground",
+   "prefix",
+   "suffix",
+   "data",
+   "axisLabels"
+  ],
+  "failed": []
+ },
+ "percentage-ring": {
+  "used": 4,
+  "keys": [
+   "subtitle",
+   "accent",
+   "background",
+   "number"
+  ],
+  "failed": []
+ },
+ "virtuous-cycle": {
+  "used": 3,
+  "keys": [
+   "title",
+   "images",
+   "background"
+  ],
+  "failed": []
+ },
+ "city-marker": {
+  "used": 3,
+  "keys": [
+   "title",
+   "subtitle",
+   "images"
+  ],
+  "failed": []
+ },
+ "value-table": {
+  "used": 4,
+  "keys": [
+   "images",
+   "backgroundImage",
+   "prefix",
+   "data"
+  ],
+  "failed": []
+ },
+ "specimen-pair": {
+  "used": 5,
+  "keys": [
+   "title",
+   "subtitle",
+   "labels",
+   "images",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "two-bars": {
+  "used": 7,
+  "keys": [
+   "title",
+   "accent",
+   "secondary",
+   "foreground",
+   "prefix",
+   "suffix",
+   "data"
+  ],
+  "failed": []
+ },
+ "chart-overlay": {
+  "used": 9,
+  "keys": [
+   "title",
+   "backgroundImage",
+   "accent",
+   "secondary",
+   "foreground",
+   "prefix",
+   "suffix",
+   "data",
+   "axisLabels"
+  ],
+  "failed": []
+ },
+ "territory-symbols": {
+  "used": 6,
+  "keys": [
+   "subtitle",
+   "images",
+   "accent",
+   "foreground",
+   "enter",
+   "country"
+  ],
+  "failed": []
+ },
+ "brand-hub": {
+  "used": 6,
+  "keys": [
+   "labels",
+   "images",
+   "accent",
+   "background",
+   "foreground",
+   "enter"
+  ],
+  "failed": []
+ },
+ "single-trend": {
+  "used": 8,
+  "keys": [
+   "title",
+   "accent",
+   "background",
+   "foreground",
+   "prefix",
+   "suffix",
+   "data",
+   "axisLabels"
+  ],
+  "failed": []
+ },
+ "logo-on-trend": {
+  "used": 9,
+  "keys": [
+   "title",
+   "images",
+   "accent",
+   "background",
+   "foreground",
+   "prefix",
+   "suffix",
+   "data",
+   "axisLabels"
+  ],
+  "failed": []
+ },
+ "logo-token": {
+  "used": 5,
+  "keys": [
+   "title",
+   "subtitle",
+   "images",
+   "background",
+   "enter"
+  ],
+  "failed": []
+ },
+ "logo-echo": {
+  "used": 5,
+  "keys": [
+   "title",
+   "subtitle",
+   "images",
+   "background",
+   "enter"
+  ],
+  "failed": []
+ },
+ "brand-stat": {
+  "used": 6,
+  "keys": [
+   "images",
+   "backgroundImage",
+   "accent",
+   "number",
+   "prefix",
+   "suffix"
+  ],
+  "failed": []
+ },
+ "brand-row": {
+  "used": 3,
+  "keys": [
+   "title",
+   "images",
+   "background"
+  ],
+  "failed": []
+ },
+ "text-magnifier": {
+  "used": 2,
+  "keys": [
+   "title",
+   "zoom"
+  ],
+  "failed": []
+ },
+ "place-and-image": {
+  "used": 4,
+  "keys": [
+   "images",
+   "accent",
+   "enter",
+   "country"
+  ],
+  "failed": []
+ },
+ "image-to-crowd": {
+  "used": 8,
+  "keys": [
+   "images",
+   "accent",
+   "background",
+   "foreground",
+   "number",
+   "prefix",
+   "suffix",
+   "fit"
+  ],
+  "failed": []
+ },
+ "picture-area-chart": {
+  "used": 8,
+  "keys": [
+   "title",
+   "images",
+   "accent",
+   "foreground",
+   "prefix",
+   "suffix",
+   "data",
+   "axisLabels"
+  ],
+  "failed": []
+ },
+ "title-push": {
+  "used": 3,
+  "keys": [
+   "title",
+   "backgroundImage",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "cost-arrow": {
+  "used": 6,
+  "keys": [
+   "title",
+   "images",
+   "accent",
+   "number",
+   "prefix",
+   "decimals"
+  ],
+  "failed": []
+ },
+ "country-labels": {
+  "used": 9,
+  "keys": [
+   "accent",
+   "secondary",
+   "background",
+   "foreground",
+   "prefix",
+   "suffix",
+   "countries",
+   "mapBounds",
+   "data"
+  ],
+  "failed": []
+ },
+ "country-outlines": {
+  "used": 4,
+  "keys": [
+   "accent",
+   "secondary",
+   "countries",
+   "mapBounds"
+  ],
+  "failed": []
+ },
+ "title-hierarchy": {
+  "used": 4,
+  "keys": [
+   "title",
+   "subtitle",
+   "backgroundImage",
+   "foreground"
+  ],
+  "failed": []
+ },
+ "crowd-callouts": {
+  "used": 4,
+  "keys": [
+   "labels",
+   "accent",
+   "background",
+   "number"
+  ],
+  "failed": []
+ },
+ "annotated-collage": {
+  "used": 3,
+  "keys": [
+   "labels",
+   "images",
+   "background"
+  ],
+  "failed": []
+ },
+ "three-trends": {
+  "used": 8,
+  "keys": [
+   "title",
+   "accent",
+   "secondary",
+   "foreground",
+   "prefix",
+   "suffix",
+   "data",
+   "axisLabels"
+  ],
+  "failed": []
+ },
+ "map-to-city": {
+  "used": 12,
+  "keys": [
+   "title",
+   "images",
+   "accent",
+   "background",
+   "foreground",
+   "enter",
+   "motion",
+   "country",
+   "mapBounds",
+   "pointLabels",
+   "focusX",
+   "focusY"
+  ],
+  "failed": []
+ },
+ "paired-pies": {
+  "used": 4,
+  "keys": [
+   "accent",
+   "secondary",
+   "background",
+   "data"
+  ],
+  "failed": []
+ },
+ "press-stack": {
+  "used": 4,
+  "keys": [
+   "title",
+   "body",
+   "label",
+   "labels"
+  ],
+  "failed": []
+ },
+ "circled-caption": {
+  "used": 4,
+  "keys": [
+   "title",
+   "backgroundImage",
+   "accent",
+   "backgroundFocusY"
+  ],
+  "failed": []
+ },
+ "map-circle": {
+  "used": 3,
+  "keys": [
+   "title",
+   "images",
+   "accent"
+  ],
+  "failed": []
+ },
+ "wealth-network": {
+  "used": 8,
+  "keys": [
+   "labels",
+   "images",
+   "accent",
+   "foreground",
+   "enter",
+   "number",
+   "prefix",
+   "suffix"
+  ],
+  "failed": []
+ }
+}

@@ -1,0 +1,4860 @@
+[
+ {
+  "id": "evidence-wall",
+  "name": "Threaded evidence wall",
+  "family": "board",
+  "variant": "wall",
+  "purpose": "Connect seemingly separate evidence through a moving camera",
+  "duration": 6,
+  "slots": 6,
+  "number": 1,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "proof",
+   "reveal"
+  ],
+  "needs": [
+   "photos:6"
+  ],
+  "fits": [
+   "true_crime",
+   "history",
+   "celebrity_news",
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 5,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark grey felt wall with tilted white-bordered photos pinned in; a red string runs between pins and the camera drifts across the wall.",
+  "use_when": [
+   "'Six separate pieces of evidence, a receipt, a burner phone, a security tape, a letter, a ledger and a key, all pointed at one man.' -> photos:6",
+   "'Individually, the leaks looked harmless. Put together, they described a cover-up.' -> photos:6",
+   "'Every contract, email and bank transfer led back to the same shell company.' -> photos:6"
+  ],
+  "avoid_when": [
+   "A sentence about one person or one photo; beats under 5 s (the camera needs time to move).",
+   "With a central person and photos around them use case-board; this one has no centre, only a connected wall."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "border-story",
+  "name": "Borders in focus",
+  "family": "map",
+  "variant": "border",
+  "purpose": "Explain neighboring territories with progressive boundary emphasis",
+  "duration": 6,
+  "slots": 3,
+  "number": 2,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "country",
+   "versus",
+   "list"
+  ],
+  "needs": [
+   "country",
+   "data"
+  ],
+  "fits": [
+   "history",
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark map of Europe with Poland, Belarus and Ukraine outlined in red and each tagged with a small black name label.",
+  "use_when": [
+   "'Poland, Belarus and Ukraine all share a border, and all three felt the shockwave.' -> country (2-4 countries named) + data",
+   "'Germany sits between France, Poland and Austria, and it has fought all three.' -> country list + data",
+   "'The new tariffs hit Canada and Mexico first, the two countries that touch the American border.' -> country list + data"
+  ],
+  "avoid_when": [
+   "Only one country (use country-trace); no countries named.",
+   "Needs map data (data); a plan without --allow-data skips it. Use country-outlines when the countries are not neighbours."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "regional-profile",
+  "name": "Person and place",
+  "family": "map",
+  "variant": "person",
+  "purpose": "Associate a person with a highlighted region",
+  "duration": 6,
+  "slots": 3,
+  "number": 3,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "place",
+   "country"
+  ],
+  "needs": [
+   "country",
+   "photo",
+   "one_name"
+  ],
+  "fits": [
+   "history",
+   "sports_news",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark map (Arabian peninsula) with one country filled red and a portrait on the left of it.",
+  "use_when": [
+   "'Sultan Qaboos ruled Oman for fifty years.' -> one_name + country + photo:1",
+   "'Born in Brazil, Pele became the face of the sport.' -> one_name + country + photo:1",
+   "'The founder, Elon Musk, grew up in South Africa.' -> one_name + country + photo:1"
+  ],
+  "avoid_when": [
+   "A sentence with no country; a group of people; a country without a person. For rulers specifically use sovereign-profile.",
+   "Use this when the person is tied to a place (born there, from there, ran it); not for a general bio."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "territory-date",
+  "name": "A place in time",
+  "family": "map",
+  "variant": "date",
+  "purpose": "Link a territory, location pin and historical date",
+  "duration": 6,
+  "slots": 3,
+  "number": 4,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "country",
+   "date",
+   "year",
+   "reveal"
+  ],
+  "needs": [
+   "country",
+   "date",
+   "data"
+  ],
+  "fits": [
+   "history",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Dark map with the USA filled red, a big white condensed date '12 June 1900' at the top and a small black pin label with the same date on the map, 'Where it happened' at the bottom.",
+  "use_when": [
+   "'On 12 June 1900, in the United States, the first of the raids began.' -> country + date + data (pin)",
+   "'In 1066, England was invaded.' -> country + date",
+   "'On the fourth of July, 1776, America declared independence.' -> country + date"
+  ],
+  "avoid_when": [
+   "A sentence with a date and no country, or a country and no date (use date-center or country-trace); several dates.",
+   "Needs data (pin location); skipped without --allow-data."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "distribution-map",
+  "name": "Distribution dots",
+  "family": "map",
+  "variant": "dots",
+  "purpose": "Show many locations inside a region",
+  "duration": 6,
+  "slots": 3,
+  "number": 5,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "country",
+   "number",
+   "stat"
+  ],
+  "needs": [
+   "country",
+   "number"
+  ],
+  "fits": [
+   "business_tech",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark world map zoomed on North America with the USA filled blue and about 25 red dots scattered over it.",
+  "use_when": [
+   "'The chain now has 1,400 stores spread across all fifty states.' -> country + number",
+   "'The gang had cells in more than twenty American cities.' -> country + number",
+   "'Fans watch the team in 38 countries.' -> country + number"
+  ],
+  "avoid_when": [
+   "No country, or a number that is money or a percent; one single location (use city-marker).",
+   "The dots are generic and carry no labels: do not use when the sentence names specific cities (use route-line or map-callout)."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "regional-share",
+  "name": "Regional share",
+  "family": "map",
+  "variant": "pie",
+  "purpose": "Place an animated percentage in geographic context",
+  "duration": 6,
+  "slots": 3,
+  "number": 6,
+  "kind": "effect",
+  "beats": [
+   "percent",
+   "place",
+   "stat"
+  ],
+  "needs": [
+   "percent",
+   "place",
+   "data"
+  ],
+  "fits": [
+   "business_tech",
+   "history"
+  ],
+  "anchor": "word",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark Europe map with a black circle and a red ring about 37% full showing '37%' sitting over Germany.",
+  "use_when": [
+   "'Germany alone accounts for thirty-seven percent of the continent's exports.' -> percent + place + data",
+   "'Forty percent of the world's cocoa comes from Ivory Coast.' -> percent + place + data",
+   "'California makes up 12 percent of all US sales.' -> percent + place + data"
+  ],
+  "avoid_when": [
+   "A percent with no place; money or counts; several places.",
+   "Needs map bounds data; skipped without --allow-data."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "country-trace",
+  "name": "Outline to territory",
+  "family": "map",
+  "variant": "trace",
+  "purpose": "Draw a country's outline then reveal its fill and name",
+  "duration": 6,
+  "slots": 3,
+  "number": 7,
+  "kind": "effect",
+  "beats": [
+   "country",
+   "place",
+   "reveal"
+  ],
+  "needs": [
+   "country"
+  ],
+  "fits": [
+   "history",
+   "lists",
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Navy screen: a country silhouette (the USA, filled blue with white edge) with big white condensed title 'COUNTRY NAME' above.",
+  "use_when": [
+   "'It started in the United States.' -> country",
+   "'Japan had never lost a war on its own soil, until 1945.' -> country",
+   "'The scandal swept across Brazil within a week.' -> country"
+  ],
+  "avoid_when": [
+   "No country in the sentence; a city or a region (use city-marker).",
+   "Several countries (use country-outlines or border-story); a beat under 3 s."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "clock-badge",
+  "name": "Time stamp",
+  "family": "title",
+  "variant": "clock",
+  "purpose": "Establish a specific clock time over footage",
+  "duration": 6,
+  "slots": 3,
+  "number": 8,
+  "kind": "effect",
+  "beats": [
+   "date",
+   "proof",
+   "reveal"
+  ],
+  "needs": [
+   "date",
+   "photo"
+  ],
+  "fits": [
+   "true_crime",
+   "celebrity_news",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Landscape photo with a small yellow rounded badge at the top reading '07:11' and a black date strip 'JUNE 5, 1980' under it.",
+  "use_when": [
+   "'At 7:11 on the morning of June fifth, the first call came in.' -> date (+ time) + photo:1 (footage)",
+   "'The market opened at 9:30 and by 9:45 the stock was down twelve percent.' -> date/time + photo:1",
+   "'At 2:14 a.m. the lights in the studio went out.' -> date/time + photo:1"
+  ],
+  "avoid_when": [
+   "A date with no clock time in the sentence (use date-center or date-slide).",
+   "A photo where the top centre matters (the badge sits at the top, over the sky)."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "date-center",
+  "name": "Date in space",
+  "family": "title",
+  "variant": "date",
+  "purpose": "Anchor footage to a large date and year",
+  "duration": 6,
+  "slots": 3,
+  "number": 9,
+  "kind": "effect",
+  "beats": [
+   "date",
+   "year",
+   "headline"
+  ],
+  "needs": [
+   "date",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo with a centred white condensed day line '20TH OF JULY' and a smaller year '1980' below it.",
+  "use_when": [
+   "'On the 20th of July, 1980, the band played their last show together.' -> date + photo:1",
+   "'It was March fourth, 2021, when the first lawsuit landed.' -> date + photo:1",
+   "'On the 14th of April, 1912, the ship hit the iceberg.' -> date + photo:1"
+  ],
+  "avoid_when": [
+   "A year with no day and month (use year-slider); several dates in one sentence (use timeline_track).",
+   "date-slide does the same job with lighter, slower type; use date-center for the punchier condensed look."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "date-slide",
+  "name": "Date arrival",
+  "family": "title",
+  "variant": "date-slide",
+  "purpose": "Introduce an event with staged date typography",
+  "duration": 6,
+  "slots": 3,
+  "number": 10,
+  "kind": "effect",
+  "beats": [
+   "date",
+   "year",
+   "chapter",
+   "headline"
+  ],
+  "needs": [
+   "date",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo with a big light sans date '02 July' and a bold condensed year '1975' under it, centred.",
+  "use_when": [
+   "'On the second of July, 1975, the studio finally signed him.' -> date + photo:1",
+   "'It was 9 November 1989 when the wall came down.' -> date + photo:1",
+   "'By 17 June 2015 the fund was already gone.' -> date + photo:1"
+  ],
+  "avoid_when": [
+   "A year only; several dates in one sentence (use timeline_track).",
+   "Versus date-center: slower, lighter, numeral-based (02 July); pick it for calmer documentary beats and chapter-like openings."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "case-board",
+  "name": "Case file board",
+  "family": "board",
+  "variant": "case",
+  "purpose": "Reveal a central subject surrounded by evidence and notes",
+  "duration": 6,
+  "slots": 6,
+  "number": 11,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "proof",
+   "reveal",
+   "list"
+  ],
+  "needs": [
+   "photos:6"
+  ],
+  "fits": [
+   "true_crime",
+   "celebrity_news",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Cork-beige corkboard with a woman's portrait in the middle, red pins and red string to five surrounding photos (landscapes, an older portrait), white-bordered Polaroid look.",
+  "use_when": [
+   "'Detectives pinned the victim's face to the centre of the wall and strung every lead around her.' -> photos:6 (centre person first)",
+   "'At the centre of the scandal was one woman, surrounded by five people who all knew what she knew.' -> photos:6",
+   "'To investigators the suspect was the hub: his brother, his lawyer, his ex-wife, his business partner and the dealer.' -> photos:6"
+  ],
+  "avoid_when": [
+   "Sentence about a single person with no connected people or evidence; beats under 4 s.",
+   "When there is no central subject and the photos are just separate pieces of evidence use evidence-wall; case-board needs a main person to pin first."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "paired-images",
+  "name": "Two perspectives",
+  "family": "gallery",
+  "variant": "pair",
+  "purpose": "Compare two labelled images on equal terms",
+  "duration": 6,
+  "slots": 6,
+  "number": 12,
+  "kind": "effect",
+  "beats": [
+   "versus",
+   "proof"
+  ],
+  "needs": [
+   "photos:2"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark grid screen with two white-bordered images side by side, each with an orange label underneath ('LUNAR ECLIPSE', 'LUNAR PHASES').",
+  "use_when": [
+   "'The old stadium and the new one, same city, forty years apart.' -> photos:2 + list_items (two labels)",
+   "'The Instagram photo and the court exhibit do not match.' -> photos:2 + labels",
+   "'The original logo versus the redesign.' -> photos:2 + labels"
+  ],
+  "avoid_when": [
+   "Two people with names (use paired-profiles); no contrast in the sentence; beats under 3 s.",
+   "Pick this over diagonal-cards when the two things need a one-line name each."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "paired-profiles",
+  "name": "People compared",
+  "family": "profile",
+  "variant": "pair",
+  "purpose": "Introduce two people with editable portraits and names",
+  "duration": 6,
+  "slots": 3,
+  "number": 13,
+  "kind": "effect",
+  "beats": [
+   "versus",
+   "person"
+  ],
+  "needs": [
+   "two_names",
+   "photos:2"
+  ],
+  "fits": [
+   "celebrity_news",
+   "sports_news",
+   "history",
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo background with two square portraits side by side, white capital names under each (SAMPLE PERSON A / B).",
+  "use_when": [
+   "'Taylor and Travis were seen together at the game.' -> photos:2 + two_names",
+   "'The two founders, Jobs and Wozniak, could not have been more different.' -> photos:2 + two_names",
+   "'Hamilton and Verstappen went into the last lap level on points.' -> photos:2 + two_names"
+  ],
+  "avoid_when": [
+   "More than two people; photos that are not portraits; a sentence naming only one person.",
+   "For black-and-white historical portraits use archive-profiles; for the same person then/now use age-comparison."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "archive-profiles",
+  "name": "Archive portraits",
+  "family": "profile",
+  "variant": "archive",
+  "purpose": "Present historical identities with angled name strips",
+  "duration": 6,
+  "slots": 3,
+  "number": 14,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "versus"
+  ],
+  "needs": [
+   "two_names",
+   "photos:2"
+  ],
+  "fits": [
+   "history",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Pale grey gradient with two square black-and-white portraits side by side, each with a black angled name strip in italic serif capitals underneath.",
+  "use_when": [
+   "'The two men who built the railroad, Collis Huntington and Leland Stanford, hated each other.' -> photos:2 + two_names",
+   "'Two detectives worked the case in 1974, Frank Hamer and Maney Gault.' -> photos:2 + two_names (old B&W photos)",
+   "'On one side, Churchill. On the other, Stalin.' -> photos:2 + two_names"
+  ],
+  "avoid_when": [
+   "Modern colour photos of living celebrities (use paired-profiles, same layout with a dark background).",
+   "Only one person named; sentence without two named people."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "route-line",
+  "name": "Trace a route",
+  "family": "map",
+  "variant": "route",
+  "purpose": "Explain movement between editable locations",
+  "duration": 6,
+  "slots": 3,
+  "number": 15,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "timeline",
+   "reveal",
+   "list"
+  ],
+  "needs": [
+   "place",
+   "data"
+  ],
+  "fits": [
+   "history",
+   "true_crime",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark map of North America with a red arc running from Los Angeles through a middle stop to New York, three dots.",
+  "use_when": [
+   "'He drove from Los Angeles to Las Vegas to New York, never staying more than a night.' -> place (2-4) + data",
+   "'The tour went from LA through Chicago to New York.' -> place + data",
+   "'The cargo travelled from Miami to Houston to Seattle.' -> place + data"
+  ],
+  "avoid_when": [
+   "Only one place; places not on one map; a sentence without a journey.",
+   "Needs route points; skipped without --allow-data. For a single flight use flight-route."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "film-window",
+  "name": "Archive film window",
+  "family": "gallery",
+  "variant": "film",
+  "purpose": "Place footage in a restrained archival frame",
+  "duration": 6,
+  "slots": 6,
+  "number": 16,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "mood",
+   "year"
+  ],
+  "needs": [
+   "photo"
+  ],
+  "fits": [
+   "history",
+   "true_crime",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark grid stage with one widescreen photo in a rounded window edged with small KODAK 400 film markings in the corners.",
+  "use_when": [
+   "'This is the last known photograph of the ship before it left port.' -> photo:1",
+   "'In the old family footage, you can see her laughing next to her father.' -> photo:1",
+   "'The only picture of the two of them together was taken in 1987.' -> photo:1"
+  ],
+  "avoid_when": [
+   "A modern phone photo or screenshot (the film frame reads as old stock); a graphic, chart or logo.",
+   "It is a frame, not a proof card: no text appears, so do not use it when a name or date must be read."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "film-reel",
+  "name": "Vertical film reel",
+  "family": "gallery",
+  "variant": "reel",
+  "purpose": "Sequence multiple moving image panels",
+  "duration": 6,
+  "slots": 6,
+  "number": 17,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "mood",
+   "list",
+   "timeline"
+  ],
+  "needs": [
+   "photos:6"
+  ],
+  "fits": [
+   "history",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Dark screen with columns of rounded image panels (landscape photos and illustrations) sliding vertically like a film strip.",
+  "use_when": [
+   "'Her career in pictures: the sitcom, the first film, the Oscar, the divorce, the comeback and the book.' -> photos:6",
+   "'Over the years the city changed, and the postcards tell the story.' -> photos:6",
+   "'Scene after scene, the footage showed the same car.' -> photos:6"
+  ],
+  "avoid_when": [
+   "A sentence about one picture; beats under 4 s.",
+   "Pictures must work small (about a quarter of the frame each); if the pictures need to be read, use photo-collage or photo-stack. No text appears."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "photo-timeline",
+  "name": "Travelling photo timeline",
+  "family": "gallery",
+  "variant": "timeline",
+  "purpose": "Move through successive illustrated milestones",
+  "duration": 6,
+  "slots": 6,
+  "number": 18,
+  "kind": "effect",
+  "beats": [
+   "timeline",
+   "list",
+   "date"
+  ],
+  "needs": [
+   "photos:6",
+   "list_items"
+  ],
+  "fits": [
+   "history",
+   "celebrity_news",
+   "sports_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Dark screen with a row of four photos on a red progress line with white dots, a label under each ('FOURTH TEXT', 'FIFTH TEXT', 'NEXT'), the row sliding past.",
+  "use_when": [
+   "'In 2008 she got her break, in 2012 her first Emmy, in 2016 the marriage and in 2020 the split.' -> photos:6 + list_items (labels with years)",
+   "'Founded in a garage in 1976, listed in 1980, nearly bankrupt in 1997, back on top in 2001.' -> photos:6 + list_items",
+   "'The driver won his first race in 1998, his first title in 2001 and his tenth in 2010.' -> photos:6 + list_items"
+  ],
+  "avoid_when": [
+   "Fewer than three milestones; milestones with no photos (use timeline_track or milestone-path).",
+   "Prefer timeline_track when dates are the point; this one is better when the photos are the point."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "flag-lineup",
+  "name": "Symbol lineup",
+  "family": "gallery",
+  "variant": "symbols",
+  "purpose": "Introduce several editable flags or logos in sequence",
+  "duration": 6,
+  "slots": 6,
+  "number": 19,
+  "kind": "effect",
+  "beats": [
+   "country",
+   "list",
+   "place"
+  ],
+  "needs": [
+   "photos:4"
+  ],
+  "fits": [
+   "history",
+   "sports_news",
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo background with a small condensed title at the top and four flags in a row (UK, France, Russia, Italy).",
+  "use_when": [
+   "'Four countries sent teams: Britain, France, Russia and Italy.' -> photos:4 (flags) + country + headline",
+   "'The deal needed signatures from Germany, Japan, Brazil and India.' -> photos:4 (flags) + country",
+   "'Sponsors from four nations backed the league.' -> photos:4 (logos or flags)"
+  ],
+  "avoid_when": [
+   "Fewer than three countries or brands; countries with no flag image available.",
+   "To compare logos on a plain background use brand-row; this one needs the photo behind it to look finished."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "feature-card",
+  "name": "Featured image card",
+  "family": "gallery",
+  "variant": "feature",
+  "purpose": "Lift a labelled image from its background",
+  "duration": 6,
+  "slots": 6,
+  "number": 20,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "headline",
+   "reveal"
+  ],
+  "needs": [
+   "photo",
+   "headline"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo blurred and washed out as a backdrop, with the sharp copy of the same photo lifted forward as a card in the centre and a white label strip under it ('Product Name').",
+  "use_when": [
+   "'The product at the centre of the lawsuit was a seventy-dollar blender.' -> headline + photo:1",
+   "'The painting, titled Salvator Mundi, sold for 450 million dollars.' -> headline + photo:1",
+   "'Meet the Model Y, the car that saved the company.' -> headline + photo:1"
+  ],
+  "avoid_when": [
+   "A person photo with a long caption; label text over about 25 characters.",
+   "For a person with a title use subject-headline or subject-pointer; feature-card suits an object, product or artwork."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "subject-headline",
+  "name": "Subject with headline",
+  "family": "profile",
+  "variant": "headline",
+  "purpose": "Put a foreground subject in front of a large editable title",
+  "duration": 6,
+  "slots": 3,
+  "number": 21,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "person",
+   "reveal"
+  ],
+  "needs": [
+   "photo",
+   "headline"
+  ],
+  "fits": [
+   "celebrity_news",
+   "sports_news",
+   "business_tech",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo with a huge white condensed headline at the top ('FIRST FIRES') and a cut-out portrait standing in front of the lower half of the title.",
+  "use_when": [
+   "'Justin Baldoni: the director who sued everyone.' -> headline + photo:1 (cut-out person)",
+   "'Steve Jobs returns to Apple.' -> headline + photo:1",
+   "'The rookie who rewrote the record books.' -> headline + photo:1"
+  ],
+  "avoid_when": [
+   "A photo with a busy background (needs a clean cut-out); a long title; no person in the sentence.",
+   "Versus legacy-title (one word behind) and subject-pointer (label to the side): this is the magazine-cover look."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "question-focus",
+  "name": "Question spotlight",
+  "family": "title",
+  "variant": "question",
+  "purpose": "Focus the viewer on a short question",
+  "duration": 6,
+  "slots": 3,
+  "number": 22,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "reveal"
+  ],
+  "needs": [
+   "headline",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo dimmed, with one short question ('What happened?') in a yellow highlight box in the middle.",
+  "use_when": [
+   "'So what really happened that night?' -> headline (short question) + photo:1",
+   "'Why did the board say nothing?' -> headline + photo:1",
+   "'Who was the mystery buyer?' -> headline + photo:1"
+  ],
+  "avoid_when": [
+   "Statements; questions longer than about 8 words; any sentence with figures.",
+   "Hold it for the question beat only, not the answer; works best at 3 to 5 s."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "year-slider",
+  "name": "Year slider",
+  "family": "title",
+  "variant": "year",
+  "purpose": "Move along a time axis and resolve to a year",
+  "duration": 6,
+  "slots": 3,
+  "number": 23,
+  "kind": "effect",
+  "beats": [
+   "year",
+   "timeline",
+   "date"
+  ],
+  "needs": [
+   "year",
+   "photo"
+  ],
+  "fits": [
+   "history",
+   "celebrity_news",
+   "true_crime",
+   "business_tech"
+  ],
+  "anchor": "word",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo darkened with a thin horizontal timeline and a white dot sliding to a bold year ('2025').",
+  "use_when": [
+   "'By 2025, nothing was left of the company.' -> year + photo:1",
+   "'It was 1998 when the first trailer dropped.' -> year + photo:1",
+   "'Then came 2016.' -> year + photo:1"
+  ],
+  "avoid_when": [
+   "A full date (use date-center or date-slide); several years in a sentence (use timeline_track); a year that is just a number in the sentence (a count, a price).",
+   "The slide takes about 2 s: put it at the start of the sentence."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "world-alert",
+  "name": "World alert",
+  "family": "map",
+  "variant": "alert",
+  "purpose": "Show a spreading issue across locations",
+  "duration": 6,
+  "slots": 3,
+  "number": 24,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "country",
+   "reveal",
+   "proof",
+   "stat"
+  ],
+  "needs": [
+   "place",
+   "data"
+  ],
+  "fits": [
+   "true_crime",
+   "business_tech",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Dark screen with a white world map, four red pulsing dots (US, Europe, Asia, Australia) and a red banner 'GLOBAL SPREAD'.",
+  "use_when": [
+   "'The virus was in forty countries within a month.' -> place (several) + data (points)",
+   "'The outbreak spread from Wuhan to Italy to New York.' -> place + data",
+   "'Hackers hit banks on four continents in one night.' -> place + data"
+  ],
+  "avoid_when": [
+   "A story set in one place; any sentence without a spread or a count of places.",
+   "Needs data (points); skipped without --allow-data. The red banner suits alarms and outbreaks; not for celebrity news."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "scribble-title",
+  "name": "Drawn emphasis",
+  "family": "title",
+  "variant": "scribble",
+  "purpose": "Animate a hand-drawn loop around a key phrase",
+  "duration": 6,
+  "slots": 3,
+  "number": 25,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "reveal"
+  ],
+  "needs": [
+   "text"
+  ],
+  "fits": [
+   "celebrity_news",
+   "sports_news",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Grey vignette screen with a yellow 'HELLO' label and small caption under it, a dark hand-drawn loop being scribbled around it.",
+  "use_when": [
+   "'And then the word everybody was waiting for: sorry.' -> text (one key word or short phrase)",
+   "'The one thing she never said was no.' -> text",
+   "'Nobody could explain why the deal was so cheap.' -> text (the key phrase)"
+  ],
+  "avoid_when": [
+   "Anything with a figure, name or list; text over about 4 words; serious sentences about victims.",
+   "Playful look: fits entertainment and sports commentary better than somber true crime."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "money-counter",
+  "name": "Money and meaning",
+  "family": "title",
+  "variant": "money",
+  "purpose": "Count to an amount then explain its significance",
+  "duration": 6,
+  "slots": 3,
+  "number": 26,
+  "kind": "effect",
+  "beats": [
+   "money",
+   "number",
+   "stat"
+  ],
+  "needs": [
+   "money",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "word",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo darkened, with a huge white condensed '$5.50' that counts up, and a condensed caption 'PER DAY ON AVERAGE' under it.",
+  "use_when": [
+   "'Judge Liman handed her four hundred and seven thousand dollars.' -> money + photo:1",
+   "'The company was fined 400 million dollars.' -> money + photo:1",
+   "'Fans spend five dollars fifty a day at the track on average.' -> money + photo:1"
+  ],
+  "avoid_when": [
+   "Anything that is not money (use number_glow for plain numbers, percentage-ring for percents); two figures in one sentence (use two-bars or value-table).",
+   "In the Windows test it printed '$400.0M' for 400 million; pass a number that displays cleanly. number_glow lands full-frame on the exact word; money-counter keeps the photo behind and counts."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "headline-build",
+  "name": "Headline build",
+  "family": "title",
+  "variant": "headline",
+  "purpose": "Reveal a compact multiline statement",
+  "duration": 6,
+  "slots": 3,
+  "number": 27,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "reveal"
+  ],
+  "needs": [
+   "headline",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo with a white sans headline built line by line, left of centre ('Sample Co. Reports $2.5 Million In New Sales').",
+  "use_when": [
+   "'Sample Co. reports 2.5 million dollars in new sales, and every analyst was wrong.' -> headline (3 short lines) + photo:1",
+   "'The studio pulls the film from theatres after one weekend.' -> headline + photo:1",
+   "'Judge rejects the offer.' -> headline + photo:1"
+  ],
+  "avoid_when": [
+   "A headline over about 12 words; a sentence with nothing to state as a claim.",
+   "Versus title-push (bigger, one phrase) and stacked-highlight (marker on key lines): headline-build is the plain statement of a fact."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "paragraph-marker",
+  "name": "Moving text marker",
+  "family": "article",
+  "variant": "paragraph",
+  "purpose": "Highlight an editable phrase inside explanatory prose",
+  "duration": 6,
+  "slots": 3,
+  "number": 28,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "headline"
+  ],
+  "needs": [
+   "text",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo darkened, with a block of white sans text and yellow highlighter marker over the first phrase ('A spokesperson says').",
+  "use_when": [
+   "'A spokesperson says the team has found and logged a collection of fourteen thousand items.' -> text (sentence) + photo:1",
+   "'The contract states that she must not discuss the film.' -> text + photo:1",
+   "'The email read: we need to move the date.' -> text + photo:1"
+  ],
+  "avoid_when": [
+   "A sentence that is not a document claim; text over about 25 words.",
+   "Versus article-highlights (several highlights, paper look) and article-zoom (picture on top): this is the light overlay over footage."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "stacked-highlight",
+  "name": "Stacked highlight title",
+  "family": "title",
+  "variant": "highlight",
+  "purpose": "Build a phrase in separately highlighted lines",
+  "duration": 6,
+  "slots": 3,
+  "number": 29,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "reveal"
+  ],
+  "needs": [
+   "text",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo with a two-line condensed black text on yellow highlight blocks stacked in the middle ('THE TRAGEDY / OF THE COMMONS').",
+  "use_when": [
+   "'This is what economists call the tragedy of the commons.' -> text (2 lines)",
+   "'It was, in the judge's words, a blunderbuss approach.' -> text",
+   "'The press called it the trial of the century.' -> text"
+  ],
+  "avoid_when": [
+   "Sentences with figures or names to show; text over about 6 words.",
+   "Loud look; versus headline-build (plain statement) and title-hierarchy (small setup + big last word)."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "ranked-bars",
+  "name": "Ranked bars",
+  "family": "chart",
+  "variant": "horizontal",
+  "purpose": "Compare ordered values with labelled bars",
+  "duration": 6,
+  "slots": 3,
+  "number": 30,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "number",
+   "versus",
+   "stat",
+   "place"
+  ],
+  "needs": [
+   "list_items",
+   "number",
+   "data"
+  ],
+  "fits": [
+   "sports_news",
+   "business_tech",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Light grey screen with a title ('Top Countries by Sample Score') and five horizontal bars in different colours ranked from longest to shortest, country names on the left, a percent axis below.",
+  "use_when": [
+   "'The United States led with 90, then Britain, Germany, France and Japan.' -> list_items (3-6 labels) + number + data",
+   "'Of the five biggest studios, Disney made far more than anyone else.' -> list_items + number + data",
+   "'Top scorers this season: Haaland, Kane, Salah, Mbappe and Lewandowski.' -> list_items + number + data"
+  ],
+  "avoid_when": [
+   "Only two values (use two-bars); items with no measurable value; a sentence with nothing ranked.",
+   "Needs data; skipped without --allow-data. For people with photos use portrait-bars."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "split-reveal",
+  "name": "Before and after wipe",
+  "family": "transition",
+  "variant": "split",
+  "purpose": "Reveal incoming media across outgoing media with labels",
+  "duration": 2,
+  "slots": 3,
+  "number": 31,
+  "kind": "effect",
+  "beats": [
+   "transition",
+   "reveal",
+   "versus",
+   "timeline"
+  ],
+  "needs": [
+   "photos:2"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 4,
+  "weight": 2,
+  "looks_like": "Landscape photo on the top half with a yellow 'BEFORE' tag, a second illustration sliding up over the lower half with 'AFTER', separated by a thin yellow line.",
+  "use_when": [
+   "'Before the scandal she was America's sweetheart. After it, nobody would hire her.' -> photos:2 + two_names (labels)",
+   "'The stadium in 1990 and the stadium today.' -> photos:2 + labels",
+   "'Then, a sleepy village. Now, a city of two million.' -> photos:2 + labels"
+  ],
+  "avoid_when": [
+   "Two people to introduce (use paired-profiles); no change over time; always 2 to 4 s, rare, once or twice per video.",
+   "Do not use as a chapter break: the labels will show."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "icon-bullets",
+  "name": "Icon and three points",
+  "family": "diagram",
+  "variant": "bullets",
+  "purpose": "Explain a topic through an icon and sequential points",
+  "duration": 6,
+  "slots": 6,
+  "number": 32,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "headline"
+  ],
+  "needs": [
+   "list_items"
+  ],
+  "fits": [
+   "business_tech",
+   "lists",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with a big yellow rocket icon in a ring on the left and three yellow bulleted lines in condensed type on the right.",
+  "use_when": [
+   "'The startup grew three ways: faster shipping, lower prices and a loyalty app.' -> list_items (3)",
+   "'There were three reasons the show was cancelled: ratings, cost and a lawsuit.' -> list_items",
+   "'The plan was simple: buy the land, change the zoning, sell to the developer.' -> list_items"
+  ],
+  "avoid_when": [
+   "Lists of one or two items; items that are whole sentences.",
+   "With a photo behind it use checklist-panel; with numbered stages use process-steps; this one is best for upbeat business or tech lists."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "process-steps",
+  "name": "Process steps",
+  "family": "diagram",
+  "variant": "steps",
+  "purpose": "Show a sequence of stages with editable icons and labels",
+  "duration": 6,
+  "slots": 6,
+  "number": 33,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "chapter",
+   "number"
+  ],
+  "needs": [
+   "list_items",
+   "photo"
+  ],
+  "fits": [
+   "business_tech",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark teal screen with three white icons in thin circles (fuel pump, truck, rocket) in a row, each with a green label tag under it (FUEL, TRANSPORT, LAUNCH).",
+  "use_when": [
+   "'The scheme worked in three stages: buy cheap fuel, move it by truck, sell it at launch prices.' -> list_items (3 stages)",
+   "'Step one is the audition, step two the screen test, step three the contract.' -> list_items",
+   "'The money went from the donors to the shell company to the offshore account.' -> list_items"
+  ],
+  "avoid_when": [
+   "A list of unrelated facts (use icon-bullets); fewer than 2 or more than 5 stages.",
+   "Pick this over milestone-path when each stage has a clear object or icon."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "population-count",
+  "name": "Population counter",
+  "family": "diagram",
+  "variant": "population",
+  "purpose": "Build a crowd of symbols while counting to an amount",
+  "duration": 6,
+  "slots": 6,
+  "number": 34,
+  "kind": "effect",
+  "beats": [
+   "stat"
+  ],
+  "needs": [
+   "number",
+   "photo"
+  ],
+  "fits": [
+   "business_tech",
+   "history",
+   "true_crime"
+  ],
+  "anchor": "word",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "avoid_tags": [
+   "money",
+   "percent"
+  ],
+  "looks_like": "Landscape photo with a dense field of about 350 small teal person icons over it and a yellow box in the centre counting up '350'.",
+  "use_when": [
+   "'Three hundred and fifty people were in the room when the verdict came in.' -> number + photo:1",
+   "'The town had a population of only 350.' -> number + photo:1",
+   "'More than 350 employees lost their jobs that day.' -> number + photo:1"
+  ],
+  "avoid_when": [
+   "Money or percent (the catalog forbids them); numbers over about 1,000 or under 20.",
+   "A figure that is not people. image-to-crowd is the same idea with a photo beside the crowd."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "article-zoom",
+  "name": "Article focus",
+  "family": "article",
+  "variant": "zoom",
+  "purpose": "Push into a source-style image and highlighted paragraph",
+  "duration": 6,
+  "slots": 3,
+  "number": 35,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "headline",
+   "quote"
+  ],
+  "needs": [
+   "photo",
+   "text"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Grey background: large source photo on top with tiny 'EDITABLE SOURCE IMAGE' caption, below it an all-caps black headline with the first words highlighted yellow; the camera pushes into it.",
+  "use_when": [
+   "'A spokesperson says the team has found and logged a collection of 14,000 sample items worth close to 2.5 million dollars.' -> photo:1 + text (the sentence as headline)",
+   "'Court filings show the company shipped the faulty part to eleven thousand customers.' -> photo:1 (document or product) + text",
+   "'The magazine's cover story read: The Fall of the House of Windsor.' -> photo:1 + text (quote or headline)"
+  ],
+  "avoid_when": [
+   "A headline with no picture to show above it; very short phrases (it is a sentence-length card).",
+   "news-image gives the same proof with a source label and is the first choice when a source name is spoken; pick article-zoom when the sentence is long and the picture is the evidence."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "portrait-bars",
+  "name": "Portrait value bars",
+  "family": "chart",
+  "variant": "portraits",
+  "purpose": "Compare values associated with people or brands",
+  "duration": 6,
+  "slots": 3,
+  "number": 36,
+  "kind": "effect",
+  "beats": [
+   "versus",
+   "list",
+   "number",
+   "person",
+   "stat"
+  ],
+  "needs": [
+   "photos:3",
+   "list_items",
+   "number",
+   "data"
+  ],
+  "fits": [
+   "sports_news",
+   "business_tech",
+   "celebrity_news",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark grid screen with three vertical bars (small, red, tall purple) each standing on a square portrait and topped with a dollar figure.",
+  "use_when": [
+   "'The top earners were three actors: one made 974 thousand, one 64 million and one 156 million.' -> photos:3 + list_items + number + data",
+   "'Of the three drivers, Hamilton earned the most by far.' -> photos:3 + list_items + number + data",
+   "'The three CEOs took home very different pay packages.' -> photos:3 + list_items + number + data"
+  ],
+  "avoid_when": [
+   "Fewer than three people; values with no data; things that are not people or brands (use ranked-bars).",
+   "Needs data. The sample's first label is hidden behind the portrait because the bar is too short, so pick it when the values are reasonably different."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "image-callouts",
+  "name": "Image annotations",
+  "family": "gallery",
+  "variant": "callouts",
+  "purpose": "Connect an editable image to explanatory labels",
+  "duration": 6,
+  "slots": 6,
+  "number": 37,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "list",
+   "reveal"
+  ],
+  "needs": [
+   "photo",
+   "list_items"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 5,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with one photo in the centre and three thin yellow leader lines to short labels ('Key Evidence', 'Timeline Details', 'The Truth').",
+  "use_when": [
+   "'In this one photo you can spot three clues: the watch, the shadow and the open door.' -> photo:1 + list_items (3 labels)",
+   "'The blueprint shows the vault, the vent and the guard room.' -> photo:1 + list_items",
+   "'Here is what to notice in the contract: the date, the signature and the clause.' -> photo:1 + list_items"
+  ],
+  "avoid_when": [
+   "No single photo with parts worth labelling; labels longer than about 3 words.",
+   "Beat under 5 s (the lines draw in)."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "photo-collage",
+  "name": "Photo collage arrival",
+  "family": "gallery",
+  "variant": "collage",
+  "purpose": "Assemble several overlapping photographs",
+  "duration": 6,
+  "slots": 6,
+  "number": 38,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "mood",
+   "proof"
+  ],
+  "needs": [
+   "photos:4"
+  ],
+  "fits": [
+   "celebrity_news",
+   "history",
+   "true_crime",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Full-frame stack of four white-bordered tilted photos overlapping, some cut off at the edges.",
+  "use_when": [
+   "'Fans left flowers, candles and photographs outside the gates for days.' -> photos:4",
+   "'Her Instagram that summer was a blur of yachts, beaches, dinners and red carpets.' -> photos:4",
+   "'Soldiers sent home letters, snapshots and drawings from the front.' -> photos:4"
+  ],
+  "avoid_when": [
+   "A sentence about one photo or one fact; beats under 3 s.",
+   "No text appears: use annotated-collage if labels are needed, photo-stack when pictures arrive one by one."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "photo-stack",
+  "name": "Photo stack sequence",
+  "family": "gallery",
+  "variant": "stack",
+  "purpose": "Reveal successive pictures as a growing stack",
+  "duration": 6,
+  "slots": 6,
+  "number": 39,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "proof"
+  ],
+  "needs": [
+   "photos:5"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 5,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with white-bordered photos dropping one by one onto a tilted stack in the centre.",
+  "use_when": [
+   "'Photo after photo surfaced: the beach, the yacht, the dinner, the hotel lobby, the car.' -> photos:5",
+   "'The police pulled five pictures out of the camera roll.' -> photos:5",
+   "'Fans kept sending in their photos of that night.' -> photos:5"
+  ],
+  "avoid_when": [
+   "A sentence about one picture; no text can be shown.",
+   "Min 5 s: pictures arrive one at a time. For overlapping spread-out photos use photo-collage."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "focus-window",
+  "name": "Focus window",
+  "family": "gallery",
+  "variant": "focus",
+  "purpose": "Keep a chosen subject sharp while de-emphasizing its surroundings",
+  "duration": 6,
+  "slots": 6,
+  "number": 40,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "reveal",
+   "person"
+  ],
+  "needs": [
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo heavily blurred except a sharp circular window in the centre, with a white label 'FOCUS' at the bottom.",
+  "use_when": [
+   "'Look closely at the man standing behind the driver.' -> photo:1 + title word",
+   "'This is the exact spot where the money changed hands.' -> photo:1",
+   "'Zoom in on the logo on the jacket and you can see the problem.' -> photo:1"
+  ],
+  "avoid_when": [
+   "A photo with no one detail to look at; when a lens must enlarge the pixels use image-magnifier.",
+   "It sets the focus point with focusX/focusY: only use when you know where in the picture the subject is."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "image-magnifier",
+  "name": "Moving image loupe",
+  "family": "gallery",
+  "variant": "magnifier",
+  "purpose": "Enlarge the actual pixels underneath a travelling lens",
+  "duration": 6,
+  "slots": 6,
+  "number": 41,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "reveal",
+   "list"
+  ],
+  "needs": [
+   "photo"
+  ],
+  "fits": [
+   "true_crime",
+   "history",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with one photo in a white frame and a magnifying glass sweeping over it, showing the area under the lens enlarged.",
+  "use_when": [
+   "'Zoom in on the corner of the receipt and you can read the date.' -> photo:1",
+   "'Blow the photo up and you can make out the number plate.' -> photo:1",
+   "'Under a magnifying glass, the signature did not match.' -> photo:1"
+  ],
+  "avoid_when": [
+   "A sentence with no detail to find in the picture; photos with too little resolution.",
+   "Picks proof over decoration; text-only 'magnifier' use is text-magnifier."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "diagonal-cards",
+  "name": "Diagonal image entrance",
+  "family": "gallery",
+  "variant": "diagonal",
+  "purpose": "Bring two image cards into a diagonal comparison",
+  "duration": 6,
+  "slots": 6,
+  "number": 42,
+  "kind": "effect",
+  "beats": [
+   "versus"
+  ],
+  "needs": [
+   "photos:2"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Light grid background with two rounded image cards on a diagonal, a wide landscape photo lower left and a flat mountain illustration upper right.",
+  "use_when": [
+   "'On one side, the old studio system. On the other, the streaming giants.' -> photos:2",
+   "'The home kit and the away kit, side by side, could not look more different.' -> photos:2",
+   "'The pitch deck looked nothing like the product that shipped.' -> photos:2"
+  ],
+  "avoid_when": [
+   "No contrast in the sentence; more than two things.",
+   "Pick paired-images for labelled equal images; diagonal-cards has no labels and is quieter. Beat under 3 s looks rushed."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "photo-flip",
+  "name": "Photo flip transition",
+  "family": "transition",
+  "variant": "flip",
+  "purpose": "Turn from outgoing image to incoming image",
+  "duration": 2,
+  "slots": 3,
+  "number": 43,
+  "kind": "effect",
+  "beats": [
+   "transition",
+   "reveal"
+  ],
+  "needs": [
+   "photos:2"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 4,
+  "weight": 2,
+  "looks_like": "Dark screen: a white-bordered tilted photo turns over with a see-through card sweep to reveal a second picture (a mountain illustration) in the sample.",
+  "use_when": [
+   "'That was the old house. This is what stands there today.' -> photos:2",
+   "'Then the picture changed.' -> photos:2",
+   "'She looked like this in 1999, and like this last year.' -> photos:2"
+  ],
+  "avoid_when": [
+   "Any beat that needs a caption or label (none appears); more than two pictures; always 4 s long, so do not squeeze it into a shorter beat.",
+   "One or two per video; for a plain scene change use clean-dissolve."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "vertical-panels",
+  "name": "Expanding portrait panels",
+  "family": "gallery",
+  "variant": "vertical",
+  "purpose": "Grow a portrait card into a row of editable panels",
+  "duration": 6,
+  "slots": 6,
+  "number": 44,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "person",
+   "reveal"
+  ],
+  "needs": [
+   "photos:3"
+  ],
+  "fits": [
+   "celebrity_news",
+   "sports_news",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with three tall photo panels side by side with thin gaps, growing out from one portrait.",
+  "use_when": [
+   "'Three women told the same story: Maria, Jane and Kate.' -> photos:3 (portraits)",
+   "'The family had three sons, and all three ended up in prison.' -> photos:3",
+   "'Three witnesses saw the car that night.' -> photos:3"
+  ],
+  "avoid_when": [
+   "Fewer than three photos; more than three; no names appear on screen, so do not use when the names must be read (use org-chart).",
+   "Min 2 s; best at 3 to 6 s with three portraits."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "flight-route",
+  "name": "Moving route marker",
+  "family": "map",
+  "variant": "flight",
+  "purpose": "Animate an editable vehicle or subject along a path",
+  "duration": 6,
+  "slots": 3,
+  "number": 45,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "timeline",
+   "reveal",
+   "country"
+  ],
+  "needs": [
+   "place",
+   "data"
+  ],
+  "fits": [
+   "history",
+   "true_crime",
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Dark map (Middle East in the sample) with a red curved line drawn from a pin labelled 'City A' to an arrowhead at the destination.",
+  "use_when": [
+   "'He boarded a flight in Tehran and landed in Dubai six hours later.' -> place (2) + data (route points)",
+   "'The jet flew from Miami to Havana without ever filing a flight plan.' -> place (2) + data",
+   "'The shipment went from Shenzhen to Rotterdam.' -> place (2) + data"
+  ],
+  "avoid_when": [
+   "Only one place; the journey is not the point.",
+   "Needs route points (data); skipped without --allow-data. For several stops use route-line."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "milestone-path",
+  "name": "Milestone journey",
+  "family": "diagram",
+  "variant": "journey",
+  "purpose": "Travel along a curved path of labelled milestones",
+  "duration": 6,
+  "slots": 6,
+  "number": 46,
+  "kind": "effect",
+  "beats": [
+   "timeline",
+   "list",
+   "chapter"
+  ],
+  "needs": [
+   "list_items"
+  ],
+  "fits": [
+   "history",
+   "business_tech",
+   "celebrity_news",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with a curved yellow-to-grey line wave carrying numbered dots (04, 05, 06) each with a white label (Success, Next Stage, Complete).",
+  "use_when": [
+   "'First the pilot, then the funding round, then the launch, then the first million users.' -> list_items (3-5 stages)",
+   "'Her path: the audition, the breakout role, the Oscar nomination, the fall.' -> list_items",
+   "'The case moved from arrest to indictment to trial to a surprise plea.' -> list_items"
+  ],
+  "avoid_when": [
+   "Stages with dates (use timeline_track or photo-timeline); fewer than three steps.",
+   "No pictures here: use process-steps when icons help, milestone-path when the sentence is about a journey."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "connected-comparison",
+  "name": "Connected before and after",
+  "family": "gallery",
+  "variant": "connected",
+  "purpose": "Relate two stages with a connector and editable media",
+  "duration": 6,
+  "slots": 6,
+  "number": 47,
+  "kind": "effect",
+  "beats": [
+   "versus",
+   "timeline"
+  ],
+  "needs": [
+   "two_names",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo with two dark framed boxes labelled 'BEFORE' and 'AFTER' linked by a dashed line.",
+  "use_when": [
+   "'Before the fame she lived with her mum. After the movie she owned three houses.' -> two_names (before/after labels) + photo:1",
+   "'Before the merger the firm had 4,000 staff; after it, just 900.' -> two_names + photo:1",
+   "'Before the crash, the car was a showpiece. After, it was scrap.' -> two_names + photo:1"
+  ],
+  "avoid_when": [
+   "Two people to compare (use paired-profiles); sentences with no clear first-then-second contrast.",
+   "The boxes are label slots over one photo; with two photos use paired-images or split-reveal."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "clean-dissolve",
+  "name": "Clean subject change",
+  "family": "transition",
+  "variant": "dissolve",
+  "purpose": "Replace a scene smoothly with a second scene",
+  "duration": 2,
+  "slots": 3,
+  "number": 48,
+  "kind": "effect",
+  "beats": [
+   "transition"
+  ],
+  "needs": [
+   "photos:2"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 4,
+  "weight": 2,
+  "looks_like": "Two-image transition: a flat illustrated mountain-and-sun scene fills the frame (this is the incoming scene).",
+  "use_when": [
+   "Between two chapters of a documentary: 'And that was only the beginning.' -> photos:2",
+   "Hand-off from the setup to the story: 'But to understand why, you have to go back to 1998.' -> photos:2",
+   "Move from the courtroom to the aftermath: 'Six months later, nothing had changed.' -> photos:2"
+  ],
+  "avoid_when": [
+   "Any sentence that carries content; it shows nothing but the two pictures. Max one or two per video.",
+   "Not on a beat under 2 s; prefer split-reveal when there are labels and a harder cut."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "narration-caption",
+  "name": "Narration-paced caption",
+  "family": "title",
+  "variant": "caption",
+  "purpose": "Reveal words in sequence over footage",
+  "duration": 6,
+  "slots": 3,
+  "number": 49,
+  "kind": "effect",
+  "beats": [
+   "quote",
+   "headline"
+  ],
+  "needs": [
+   "text",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo with one line of all-caps condensed white captions at the lower third, revealed word by word.",
+  "use_when": [
+   "'You have to understand what they were up against.' -> text + photo:1 (footage or photo behind)",
+   "'The tape runs for forty seconds, and nobody speaks.' -> text + photo:1",
+   "'He never saw it coming.' -> text + photo:1"
+  ],
+  "avoid_when": [
+   "Any sentence with a figure, name, place or list in it: use the piece for that. Caption on every beat reads as filler.",
+   "When the sentence is a verbatim quote use quote_card; it adds no information beyond the spoken words."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "news-column",
+  "name": "Editorial headline and column",
+  "family": "article",
+  "variant": "column",
+  "purpose": "Build a source-like headline and paragraph layout",
+  "duration": 6,
+  "slots": 3,
+  "number": 50,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "proof"
+  ],
+  "needs": [
+   "headline",
+   "text"
+  ],
+  "fits": [
+   "celebrity_news",
+   "sports_news",
+   "business_tech",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Light grey screen with a black rule on top, a headline in white serif caps on black bars, and a serif newspaper paragraph underneath.",
+  "use_when": [
+   "'The Times wrote that residents were angry at the plan but forgiving of the mayor.' -> headline + text (the paragraph)",
+   "'The Wall Street Journal reported the board knew about the losses in March.' -> headline + text",
+   "'In its report the Guardian said the club had paid the agent twelve million pounds.' -> headline + text"
+  ],
+  "avoid_when": [
+   "No outlet or report is cited and there is no wording to show; a photo is the proof (use news-image).",
+   "Beat under 3 s; no picture appears here, so use news-image or press-stack if the sentence names a source and has a photo."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "caption-stage",
+  "name": "Caption on grid",
+  "family": "title",
+  "variant": "caption-grid",
+  "purpose": "Present timed words on a clean graphic stage",
+  "duration": 6,
+  "slots": 3,
+  "number": 51,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "quote"
+  ],
+  "needs": [
+   "text"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 6,
+  "weight": 2,
+  "max_beat_s": 9,
+  "notes": "A dark grid whose words build over the piece: keep it to about 6 s and never on a beat longer than 9 s (the stage sits mostly empty).",
+  "looks_like": "Dark grid stage with a single line of all-caps condensed white narration text built word by word in the middle.",
+  "use_when": [
+   "'And that is where the number appeared.' -> text (the spoken words)",
+   "'Nobody saw it coming, not the fans, not the owners, not even the driver.' -> text",
+   "'Then the phone rang.' -> text"
+  ],
+  "avoid_when": [
+   "Any beat over 9 s: the stage sits mostly empty; do not use as default filler, it carries no information beyond the words.",
+   "A sentence that has a person, place, number or list in it; use that piece instead."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "news-image",
+  "name": "News image bulletin",
+  "family": "article",
+  "variant": "news",
+  "purpose": "Pair an editable source label and headline with an image",
+  "duration": 6,
+  "slots": 3,
+  "number": 52,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "proof"
+  ],
+  "needs": [
+   "photo",
+   "headline"
+  ],
+  "fits": [
+   "celebrity_news",
+   "sports_news",
+   "business_tech",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 5,
+  "looks_like": "Dark grid screen with a red 'NEWS' tag, a yellow condensed headline 'LOCAL BAKERY OPENS THIRD SHOP AS LINES GROW', a date line and one photo underneath.",
+  "use_when": [
+   "'According to Variety, Lively received nothing for her claims.' -> photo:1 + headline (source label)",
+   "'TMZ published the video on Monday morning.' -> photo:1 + headline",
+   "'The Associated Press reported that the driver had been drinking.' -> photo:1 + headline"
+  ],
+  "avoid_when": [
+   "A claim with no outlet cited and no picture to show; a headline over about 10 words.",
+   "Use press-stack when several outlets are named; article-zoom when the sentence itself is the headline. This is the default for 'X reported that...' sentences."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "org-chart",
+  "name": "People hierarchy",
+  "family": "diagram",
+  "variant": "org",
+  "purpose": "Reveal a leader and connected team members",
+  "duration": 6,
+  "slots": 6,
+  "number": 53,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "list",
+   "reveal",
+   "versus"
+  ],
+  "needs": [
+   "photos:5",
+   "one_name",
+   "list_items"
+  ],
+  "fits": [
+   "business_tech",
+   "celebrity_news",
+   "history",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark grid screen with a title and subtitle at the top, a round portrait of a leader in the middle and four round portraits below connected by lines, each with a name.",
+  "use_when": [
+   "'Under the CEO sat four executives: the CFO, the head of sales, the general counsel and the product chief.' -> photos:5 + one_name + list_items (4 names)",
+   "'The family ran the whole operation, with four sons each in charge of a territory.' -> photos:5 + one_name + list_items",
+   "'The team around her was four people: her agent, publicist, lawyer and manager.' -> photos:5 + one_name + list_items"
+  ],
+  "avoid_when": [
+   "Fewer than three people; a person with no connected group; photos missing for the team.",
+   "With a brand at the centre use brand-hub; with money attached use wealth-network."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "article-highlights",
+  "name": "Sequential article highlights",
+  "family": "article",
+  "variant": "highlights",
+  "purpose": "Guide attention through several editable highlighted phrases",
+  "duration": 6,
+  "slots": 3,
+  "number": 54,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "headline",
+   "quote"
+  ],
+  "needs": [
+   "headline",
+   "text"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Cream paper sheet on grey gradient: small 'FEATURE' label, big serif headline, a paragraph with several phrases marked in yellow highlighter one after another.",
+  "use_when": [
+   "'The filing says the studio knowingly misrepresented the budget and concealed the overruns from investors.' -> headline + text (2-3 phrases to highlight)",
+   "'The report calls the policy reckless and without precedent in modern banking.' -> headline + text",
+   "'The statement admits the team failed to report the injury for three weeks.' -> headline + text"
+  ],
+  "avoid_when": [
+   "Sentence has no quotable wording from a document; a photo is the proof (use news-image or article-zoom).",
+   "Beat under 4 s (highlights are sequential); when only one phrase matters use paragraph-marker."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "chapter-number",
+  "name": "Numbered chapter",
+  "family": "title",
+  "variant": "chapter",
+  "purpose": "Introduce a section with a large outline numeral",
+  "duration": 6,
+  "slots": 3,
+  "number": 55,
+  "kind": "effect",
+  "beats": [
+   "chapter",
+   "list",
+   "number"
+  ],
+  "needs": [
+   "number",
+   "headline"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "buildable": false,
+  "looks_like": "Dark screen with a huge faint outline numeral behind a bold white word 'Number', a thin underline and a one-line white subtitle.",
+  "use_when": [
+   "'Chapter 3. The Deal.' -> number + headline",
+   "'Part two: The Cover-Up.' -> number + headline",
+   "'Number five on our list: the fastest lap in history.' -> number + headline"
+  ],
+  "avoid_when": [
+   "The catalog marks it buildable:false (the builder has no text for its chapter key); the planner skips it. Use chapter-opening or chapter-type.",
+   "Not for a sentence that is not a section heading."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "map-callout",
+  "name": "Place callout",
+  "family": "map",
+  "variant": "callout",
+  "purpose": "Pin and label a specific position on a map or aerial image",
+  "duration": 6,
+  "slots": 3,
+  "number": 56,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "proof"
+  ],
+  "needs": [
+   "place",
+   "photo"
+  ],
+  "fits": [
+   "history",
+   "true_crime",
+   "business_tech",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Full-frame aerial city map with a yellow ring pin on one spot and a big white condensed label 'RIVERSIDE DISTRICT' with an underline beside it.",
+  "use_when": [
+   "'The shooting took place in the Riverside District, a block from the courthouse.' -> place + photo:1 (aerial/map)",
+   "'The company's first factory was in the old port quarter of Genoa.' -> place + photo:1",
+   "'The stadium sits in the middle of Midtown.' -> place + photo:1"
+  ],
+  "avoid_when": [
+   "A sentence with no named place; a photo that is not a map or aerial.",
+   "Versus map-circle (rings an area, label bottom-left) and city-marker (title, darker): use map-callout for a single point, map-circle for a neighbourhood."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "age-comparison",
+  "name": "Then and now",
+  "family": "profile",
+  "variant": "age",
+  "purpose": "Explain a change between two replaceable subjects",
+  "duration": 6,
+  "slots": 3,
+  "number": 57,
+  "kind": "effect",
+  "beats": [
+   "versus",
+   "person",
+   "timeline",
+   "reveal"
+  ],
+  "needs": [
+   "two_names",
+   "photos:2"
+  ],
+  "fits": [
+   "celebrity_news",
+   "sports_news",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with two square portraits side by side (young woman left, older woman right) and a yellow arrow between them; names/labels go under the pictures.",
+  "use_when": [
+   "'Ten years ago she was an unknown waitress. Today she is the most photographed woman in Hollywood.' -> photos:2 + two_names (same person, then and now)",
+   "'In 1962 the young senator looked like a fresh start; by 1974 he looked like a man carrying a country.' -> photos:2 + two_names (labels with the years)",
+   "'Before the transformation she was 280 pounds. This is her now.' -> photos:2 + two_names (before / after labels)"
+  ],
+  "avoid_when": [
+   "Two different people who are not a before/after of one subject (use paired-profiles); a single photo.",
+   "A sentence with no change over time; when the contrast is two rivals, not two ages, use paired-profiles."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "aerial-push",
+  "name": "Aerial camera move",
+  "family": "map",
+  "variant": "aerial",
+  "purpose": "Move across a replaceable map or aerial background",
+  "duration": 6,
+  "slots": 3,
+  "number": 58,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "mood",
+   "reveal",
+   "proof"
+  ],
+  "needs": [
+   "place",
+   "photo"
+  ],
+  "fits": [
+   "history",
+   "true_crime",
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Full-frame top-down aerial map of a coastal city (rivers, bridges, harbour, rooftops) with a slow push/pan across it; title text can appear over it.",
+  "use_when": [
+   "'The raid happened in a quiet harbour district on the edge of the city.' -> photo:1 (aerial or map image) + place",
+   "'Rome in its prime sprawled across seven hills and both banks of the Tiber.' -> photo:1 (aerial/map image) + place",
+   "'The company built its first data centre on an empty industrial lot outside Dublin.' -> photo:1 (aerial image) + place"
+  ],
+  "avoid_when": [
+   "Any sentence with no place in it; the picture must be a real aerial or map image, a portrait or logo looks wrong.",
+   "Beat under 3 s (the push is slow); when you need a pin or a circle on one spot use city-marker, map-callout or map-circle instead."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "news-lower-third",
+  "name": "News lower third",
+  "family": "title",
+  "variant": "lower",
+  "purpose": "Reveal a topic banner at the bottom of footage",
+  "duration": 6,
+  "slots": 3,
+  "number": 59,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "person",
+   "proof"
+  ],
+  "needs": [
+   "headline",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo with a white banner across the bottom holding a big black condensed headline ('MIND OVER MUSCLE') and a small red 'BREAKING NEWS' tag above it.",
+  "use_when": [
+   "'Breaking: the judge has ruled.' -> headline + photo:1 (footage)",
+   "'The studio calls it a misunderstanding.' -> headline (3-4 words) + photo:1",
+   "'Here is the topic: the Blunderbuss Approach.' -> headline + photo:1"
+  ],
+  "avoid_when": [
+   "A name tag for a person (use circled-caption or subject-pointer); headlines over about 6 words.",
+   "Keeps the footage fully visible, so it is the best choice over real footage when you only want a topic title."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "checklist-panel",
+  "name": "Checklist panel",
+  "family": "diagram",
+  "variant": "checklist",
+  "purpose": "Bring a checklist into footage and tick items in sequence",
+  "duration": 6,
+  "slots": 6,
+  "number": 60,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "proof"
+  ],
+  "needs": [
+   "list_items",
+   "photo"
+  ],
+  "fits": [
+   "business_tech",
+   "lists",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo with a cream card on the right: green tag 'BULLET POINT OVERLAY' and three ticked items ('Key takeaway one/two/three').",
+  "use_when": [
+   "'Three things every investor should check: the cash flow, the debt and the founder's track record.' -> list_items (3) + photo:1",
+   "'Prosecutors said the plan had three steps: steal the code, sell it, vanish.' -> list_items + photo:1",
+   "'Here is what you need to do: sign up, upload your script and hit render.' -> list_items + photo:1"
+  ],
+  "avoid_when": [
+   "A list of one or two items; list items that are long sentences (labels must be short).",
+   "When the list should appear as numbered stages with icons use process-steps; icon-bullets is the full-frame version without a photo."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "life-dates",
+  "name": "Name and life dates",
+  "family": "title",
+  "variant": "life",
+  "purpose": "Identify a subject with name and date range",
+  "duration": 6,
+  "slots": 3,
+  "number": 61,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "date",
+   "year",
+   "timeline",
+   "headline"
+  ],
+  "needs": [
+   "one_name",
+   "year",
+   "photo"
+  ],
+  "fits": [
+   "history",
+   "celebrity_news",
+   "sports_news",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo with a centred condensed name ('SAMPLE NAME') and a smaller dates line ('1900-1980') beneath it.",
+  "use_when": [
+   "'Elvis Presley, 1935 to 1977, never gave an interview about that night.' -> one_name + year + photo:1",
+   "'Dale Earnhardt, 1951 to 2001, drove the black number three.' -> one_name + year + photo:1",
+   "'Ted Bundy, born 1946, executed 1989.' -> one_name + year + photo:1"
+  ],
+  "avoid_when": [
+   "A living person with no end year; a person whose years are not spoken.",
+   "No birth/death or career range in the sentence; use circled-caption or ribbon-profile to name a person without dates."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "chapter-opening",
+  "name": "Opening chapter",
+  "family": "title",
+  "variant": "opening",
+  "purpose": "Introduce a chapter with layered title and subtitle",
+  "duration": 6,
+  "slots": 3,
+  "number": 62,
+  "kind": "effect",
+  "beats": [
+   "chapter",
+   "headline"
+  ],
+  "needs": [
+   "headline"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 5,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Pale grey vignette screen with a large dark sans title ('The Beginning') and a smaller serif subtitle under it, no photo.",
+  "use_when": [
+   "'Chapter one: how a small-town waitress became a pop star.' -> headline (+ subtitle)",
+   "'Part three. The collapse.' -> headline",
+   "'Round two: the leaked emails.' -> headline"
+  ],
+  "avoid_when": [
+   "Mid-section sentences; it is a section opener only, and only when the script has a heading.",
+   "Light, calm look and min 5 s; for a dark video or a title with no subtitle use chapter-type."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "spoken-phrases",
+  "name": "Changing phrases",
+  "family": "title",
+  "variant": "phrases",
+  "purpose": "Swap short statements at controlled times",
+  "duration": 6,
+  "slots": 3,
+  "number": 63,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "list"
+  ],
+  "needs": [
+   "list_items",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Landscape photo with one short line of all-caps white condensed text ('I AM STILL LEARNING.') in the centre, swapping to the next phrase at timed moments.",
+  "use_when": [
+   "'No lawyers. No publicists. No script.' -> list_items (2-4 short phrases)",
+   "'He said three things in the interview: sorry, never again, and I'm still learning.' -> list_items",
+   "'Nothing in the contract. Nothing in the email. Nothing in the deal.' -> list_items"
+  ],
+  "avoid_when": [
+   "Sentences with only one phrase; phrases over about 6 words; lists that need icons.",
+   "Plain and low in energy; use it for short rhythmic phrases, not for facts. Used once in the Windows test for 'nothing' x3."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "radial-network",
+  "name": "Radial tool network",
+  "family": "diagram",
+  "variant": "network",
+  "purpose": "Connect a central concept to surrounding editable icons",
+  "duration": 6,
+  "slots": 6,
+  "number": 64,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "reveal",
+   "proof",
+   "stat"
+  ],
+  "needs": [
+   "photos:6",
+   "one_name"
+  ],
+  "fits": [
+   "business_tech",
+   "celebrity_news",
+   "history",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Dark grid screen with a teal logo hub in the centre and seven teal icon nodes around it joined by yellow lines, each node named (Writing, Research, Images, Editing, Voice, Video, Design, Planning).",
+  "use_when": [
+   "'The platform does everything: writing, research, images, editing, voice and video.' -> photos:6 + one_name + list_items (6-8 labels)",
+   "'The cartel's reach went into transport, banking, retail, politics and the police.' -> photos:6 + one_name + list_items",
+   "'Her brand spans perfume, skincare, clothing, a restaurant and a podcast.' -> photos:6 + one_name + list_items"
+  ],
+  "avoid_when": [
+   "Fewer than four spokes; spokes that are people (use org-chart).",
+   "Icons are generic; when a leader and portraits matter use org-chart or wealth-network."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "chapter-type",
+  "name": "Typed chapter heading",
+  "family": "title",
+  "variant": "type",
+  "purpose": "Type a chapter title onto a graphic background",
+  "duration": 6,
+  "slots": 3,
+  "number": 65,
+  "kind": "effect",
+  "beats": [
+   "chapter",
+   "headline"
+  ],
+  "needs": [
+   "headline"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark grid stage with one large white title ('Chapter Title') that types on, no other elements.",
+  "use_when": [
+   "'Chapter four: the verdict.' -> headline",
+   "'Section two, the money trail.' -> headline",
+   "'The aftermath.' -> headline (one to four words)"
+  ],
+  "avoid_when": [
+   "Mid-section sentences; titles longer than about five words.",
+   "Pick it over chapter-opening when the video's look is dark and the section has no subtitle."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "paper-typewriter",
+  "name": "Paper typewriter",
+  "family": "article",
+  "variant": "typewriter",
+  "purpose": "Reveal editable type on a moving sheet of paper",
+  "duration": 6,
+  "slots": 3,
+  "number": 66,
+  "kind": "effect",
+  "beats": [
+   "quote",
+   "proof",
+   "mood",
+   "headline"
+  ],
+  "needs": [
+   "text"
+  ],
+  "fits": [
+   "true_crime",
+   "history",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Cream paper filling the screen with a very large dark serif title typing out ('Book Histor...'), typewriter keys fanned along the bottom.",
+  "use_when": [
+   "'The note, typed on a single sheet, read: I did it.' -> text (the typed words)",
+   "'In his diary he wrote: Today I decided to leave.' -> text",
+   "'The headline of her first book was The Girl Who Waited.' -> text"
+  ],
+  "avoid_when": [
+   "Long text (it is a big title, keep to about six words); a modern tech or data sentence; sentences not about something written.",
+   "It is a title card with no photo: do not use for a figure or a person's name."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "falling-subjects",
+  "name": "Falling subjects title",
+  "family": "profile",
+  "variant": "falling",
+  "purpose": "Move replaceable objects through depth behind a title",
+  "duration": 6,
+  "slots": 3,
+  "number": 67,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "mood",
+   "list",
+   "reveal"
+  ],
+  "needs": [
+   "photos:3",
+   "headline"
+  ],
+  "fits": [
+   "celebrity_news",
+   "sports_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Dark screen with a huge serif white title ('SUBJECTS') while small dark cut-out objects (bombs in the sample) tumble through depth behind it.",
+  "use_when": [
+   "'The bombs started falling on the night of the fourth.' -> headline + photos:3 (cut-out objects)",
+   "'Money rained down on the crowd: hundred dollar bills, gold chains, champagne.' -> headline + photos:3",
+   "'Everything went wrong at once: the cars, the crew, the weather.' -> headline + photos:3"
+  ],
+  "avoid_when": [
+   "Objects must be cut-out images with transparent background; ordinary photos look wrong.",
+   "Beats where the title is long (one to three words only); serious sentences about real victims."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "subject-pointer",
+  "name": "Subject callout",
+  "family": "profile",
+  "variant": "callout",
+  "purpose": "Point from a label to a replaceable foreground subject",
+  "duration": 6,
+  "slots": 3,
+  "number": 68,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "proof"
+  ],
+  "needs": [
+   "photo",
+   "one_name"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo background with a portrait on the left, a big white condensed line ('AN INNOCENT') on the right and a yellow curved pointer line from the person to a small job-title text.",
+  "use_when": [
+   "'This is the witness, a bookkeeper who saw everything.' -> one_name + photo:1 (cut-out person) + title words",
+   "'Meet the CFO, the man who signed off on the numbers.' -> one_name + photo:1",
+   "'The goalkeeper, the only man who could have stopped it.' -> one_name + photo:1"
+  ],
+  "avoid_when": [
+   "No portrait; two people in the sentence; long text.",
+   "Pick subject-pointer when you want a role under a name; ribbon-profile when you only have a name; circled-caption over a full-frame photo."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "legacy-title",
+  "name": "Portrait behind title",
+  "family": "profile",
+  "variant": "legacy",
+  "purpose": "Reveal a portrait against oversized background typography",
+  "duration": 6,
+  "slots": 3,
+  "number": 69,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "headline",
+   "reveal"
+  ],
+  "needs": [
+   "photo",
+   "one_name"
+  ],
+  "fits": [
+   "history",
+   "celebrity_news",
+   "sports_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with a huge dark-green serif word ('LEGACY') behind and above a standing cut-out portrait that rises under it.",
+  "use_when": [
+   "'Her legacy is complicated.' -> one_name + photo:1 + headline word",
+   "'He called it his masterpiece. History called it a fraud.' -> one_name + photo:1",
+   "'The King of Pop, 15 years after his death.' -> one_name + photo:1"
+  ],
+  "avoid_when": [
+   "A group photo or a face photo that is not cut out (the portrait needs a clean subject); sentences that give no title word.",
+   "Title word is one short word; when the sentence has a full headline use subject-headline."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "ribbon-profile",
+  "name": "Ribbon profile",
+  "family": "profile",
+  "variant": "ribbon",
+  "purpose": "Introduce a person with a colored graphic ribbon and name",
+  "duration": 6,
+  "slots": 3,
+  "number": 70,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "headline"
+  ],
+  "needs": [
+   "photo",
+   "one_name"
+  ],
+  "fits": [
+   "celebrity_news",
+   "sports_news",
+   "business_tech",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Dark screen with a square portrait on the left, a small grey 'PROFILE' tag and a crimson ribbon on the right holding the name 'ALEX MORGAN' in big white caps.",
+  "use_when": [
+   "'Meet Justin Baldoni, the director at the centre of the case.' -> one_name + photo:1",
+   "'Her name was Jane Doe, and she was last seen leaving the club.' -> one_name + photo:1",
+   "'Next up on the grid: Max Verstappen.' -> one_name + photo:1"
+  ],
+  "avoid_when": [
+   "A second person in the sentence; no usable portrait; a long title or role (the ribbon holds two lines of name).",
+   "Similar to subject-pointer, torn-profile and circled-caption: ribbon-profile is the clean TV-style intro; use it the first time a main character appears."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "torn-profile",
+  "name": "Paper-cut profile",
+  "family": "profile",
+  "variant": "torn",
+  "purpose": "Reveal a subject with a torn-paper name treatment",
+  "duration": 6,
+  "slots": 3,
+  "number": 71,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "reveal",
+   "mood"
+  ],
+  "needs": [
+   "photo",
+   "one_name"
+  ],
+  "fits": [
+   "celebrity_news",
+   "true_crime",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with a portrait on the left and a cream torn-paper label on the right holding a small red role tag ('The Antagonist') and a serif name 'SAMPLE NAME'.",
+  "use_when": [
+   "'Enter the antagonist of the story, studio boss Jeffrey Katzenberg.' -> one_name + photo:1 + role tag",
+   "'The suspect, a quiet neighbour named Gary Ridgway.' -> one_name + photo:1",
+   "'Her rival for the title: Serena Williams.' -> one_name + photo:1"
+  ],
+  "avoid_when": [
+   "A positive or neutral profile of a living celebrity; a role that needs more than two lines.",
+   "Its torn-paper look suits villains, suspects and rivals; ribbon-profile suits neutral intros."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "sovereign-profile",
+  "name": "Portrait and territory",
+  "family": "map",
+  "variant": "sovereign",
+  "purpose": "Associate a portrait and role with an emphasized territory",
+  "duration": 6,
+  "slots": 3,
+  "number": 72,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "country",
+   "place"
+  ],
+  "needs": [
+   "photo",
+   "one_name",
+   "country"
+  ],
+  "fits": [
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark map with a country (the UK) filled red and a portrait at lower left with a small 'Name and role' tag.",
+  "use_when": [
+   "'Queen Victoria ruled Britain for sixty-three years.' -> one_name + country + photo:1",
+   "'President Lincoln led the Union through the Civil War.' -> one_name + country + photo:1",
+   "'Prime minister Churchill refused to surrender.' -> one_name + country + photo:1"
+  ],
+  "avoid_when": [
+   "Any person who does not lead a country; no country in the sentence.",
+   "Versus regional-profile (any person tied to a region): use this one for a head of state or ruler."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "quote-profile",
+  "name": "Portrait quotation",
+  "family": "profile",
+  "variant": "quote",
+  "purpose": "Attribute an editable quote to a visible subject",
+  "duration": 6,
+  "slots": 3,
+  "number": 73,
+  "kind": "effect",
+  "beats": [
+   "quote",
+   "person"
+  ],
+  "needs": [
+   "photo",
+   "quote",
+   "one_name"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Warm beige split screen: left side a large serif quotation with a yellow opening quote mark and a yellow attribution line, right side a portrait of the speaker.",
+  "use_when": [
+   "'In an interview he said, I never wanted to be famous, I wanted to be left alone.' -> quote + one_name + photo:1",
+   "'The CEO told investors, We will not raise prices this year.' -> quote + one_name + photo:1",
+   "'She wrote on Instagram: This is not the end.' -> quote + one_name + photo:1"
+  ],
+  "avoid_when": [
+   "Paraphrase, not a verbatim quote; no portrait of the speaker; a speaker who is a group.",
+   "Versus quote_card (the narrator reads a verbatim quote word by word, no portrait): use quote-profile when you have a clean portrait and a 2-3 line quote; it is a full-frame layout."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "scatter-trend",
+  "name": "Points to trend",
+  "family": "chart",
+  "variant": "scatter",
+  "purpose": "Build data points and a connecting trend",
+  "duration": 6,
+  "slots": 3,
+  "number": 74,
+  "kind": "effect",
+  "beats": [
+   "stat",
+   "timeline",
+   "number"
+  ],
+  "needs": [
+   "list_items",
+   "number",
+   "data"
+  ],
+  "fits": [
+   "business_tech",
+   "sports_news",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Light grey screen titled 'Generated Chart' with a thin black line connecting six dots rising steadily across 2000-2025.",
+  "use_when": [
+   "'Every five years since 2000 the number has gone up, from 4 to 70.' -> list_items (years) + number + data",
+   "'Subscribers grew steadily, from the early days to the present.' -> list_items + number + data",
+   "'Rents rose in a straight line for twenty-five years.' -> list_items + number + data"
+  ],
+  "avoid_when": [
+   "A trend with a dip, spike or two series (use single-trend or two-trends); no values.",
+   "Needs data. Lower weight than single-trend, which has a more finished look."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "two-trends",
+  "name": "Two animated trends",
+  "family": "chart",
+  "variant": "lines",
+  "purpose": "Compare two labelled lines over time",
+  "duration": 6,
+  "slots": 3,
+  "number": 75,
+  "kind": "effect",
+  "beats": [
+   "versus",
+   "timeline",
+   "stat"
+  ],
+  "needs": [
+   "list_items",
+   "number",
+   "data"
+  ],
+  "fits": [
+   "business_tech",
+   "sports_news",
+   "celebrity_news",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark grid screen with two zig-zag rising lines (blue USA, pink China) over 2021-2025, series names under the axis.",
+  "use_when": [
+   "'Chinese spending rose, but American spending rose twice as fast between 2021 and 2025.' -> list_items (years + two names) + number + data",
+   "'Her views climbed while his flat-lined all year.' -> list_items + number + data",
+   "'Ticket sales and streaming numbers moved in opposite directions.' -> list_items + number + data"
+  ],
+  "avoid_when": [
+   "One series (use single-trend); three series (use three-trends); no values.",
+   "Needs data; skipped without --allow-data."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "percentage-ring",
+  "name": "Percentage ring",
+  "family": "chart",
+  "variant": "donut",
+  "purpose": "Count a proportion with an animated circular arc",
+  "duration": 6,
+  "slots": 3,
+  "number": 76,
+  "kind": "effect",
+  "beats": [
+   "percent",
+   "stat",
+   "number"
+  ],
+  "needs": [
+   "percent"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "word",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Dark grid screen with a blue ring about 72% full, '72%' in condensed white in the middle and a white caption tag below ('OF SAMPLE ITEMS').",
+  "use_when": [
+   "'That is five cents on every dollar she asked for.' -> percent (5) + caption",
+   "'Seventy-two percent of voters said they were undecided.' -> percent + caption",
+   "'Nine out of ten startups fail.' -> percent (90) + caption"
+  ],
+  "avoid_when": [
+   "Anything that is not a proportion of a whole; two percentages (use paired-pies).",
+   "number_glow also works for percent: use ring when the share of 100 is the point."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "virtuous-cycle",
+  "name": "Cycle of ideas",
+  "family": "diagram",
+  "variant": "cycle",
+  "purpose": "Reveal connected stages around a circular process",
+  "duration": 6,
+  "slots": 6,
+  "number": 77,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "reveal"
+  ],
+  "needs": [
+   "photos:4",
+   "list_items"
+  ],
+  "fits": [
+   "business_tech",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 5,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Dark screen with a thin white circle carrying four white round icons (globe, people, rocket, heart) at the compass points.",
+  "use_when": [
+   "'Success feeds itself: more users bring more data, more data brings a better product, a better product brings more users.' -> photos:4 + list_items (4 stages)",
+   "'The scandal fed on itself: every article led to a new leak, and every leak to a new article.' -> photos:4 + list_items",
+   "'It was a cycle: hype, funding, hype, funding.' -> photos:4 + list_items"
+  ],
+  "avoid_when": [
+   "A one-way sequence (use process-steps); fewer than 3 or more than 5 steps.",
+   "Min 5 s. The icons carry no labels in the still: do not use when each stage must be read."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "city-marker",
+  "name": "City locator",
+  "family": "map",
+  "variant": "city",
+  "purpose": "Reveal a place pin and location title",
+  "duration": 6,
+  "slots": 3,
+  "number": 78,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "reveal",
+   "proof"
+  ],
+  "needs": [
+   "place",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Darkened aerial map of a coastal city with a white map-pin and a small place label next to it; a big title ('Sample coastal c...') sits at the bottom.",
+  "use_when": [
+   "'It happened in Dallas, Texas, on a Friday afternoon in November.' -> place + photo:1 (aerial/map image)",
+   "'The company moved its headquarters to Austin.' -> place + photo:1",
+   "'He was last seen in Phoenix.' -> place + photo:1"
+  ],
+  "avoid_when": [
+   "No place name in the sentence; a place that is a country (use country-trace) or a whole region; place names longer than about 20 characters (the sample title is cut off).",
+   "Pick this over map-callout/map-circle when the sentence names one city and wants a title; the others mark a spot or an area on the picture."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "value-table",
+  "name": "Brand value table",
+  "family": "chart",
+  "variant": "table",
+  "purpose": "Build rows of editable icons and values",
+  "duration": 6,
+  "slots": 3,
+  "number": 79,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "money",
+   "number",
+   "stat"
+  ],
+  "needs": [
+   "list_items",
+   "number",
+   "data",
+   "photo"
+  ],
+  "fits": [
+   "business_tech",
+   "lists",
+   "sports_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Landscape photo with a thin-bordered translucent table of four rows, each with a teal logo and a price on the right ($108, $58, $8.58, $78).",
+  "use_when": [
+   "'A burger costs 8 dollars at one chain, 58 at another, and 108 in a stadium.' -> list_items (3-5 rows) + number + photo:1 + data",
+   "'The three streaming plans cost 8, 15 and 22 a month.' -> list_items + number + data",
+   "'Compare the contracts: 12 million, 30 million, 45 million.' -> list_items + number + data"
+  ],
+  "avoid_when": [
+   "Only one or two rows; no brand or icon per row; values with no data. Min 3 s.",
+   "Needs data; skipped without --allow-data. Use ranked-bars when the length of the bars is the point."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "specimen-pair",
+  "name": "Specimen comparison",
+  "family": "profile",
+  "variant": "specimens",
+  "purpose": "Compare two cutout subjects with shared explanatory text",
+  "duration": 6,
+  "slots": 3,
+  "number": 80,
+  "kind": "effect",
+  "beats": [
+   "versus"
+  ],
+  "needs": [
+   "two_names",
+   "photos:2"
+  ],
+  "fits": [
+   "history",
+   "lists",
+   "sports_news",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Pale grey screen with two cut-out pictures side by side (a green frog and a brown toad), a serif title ('Frogs') and a grey subtitle under them.",
+  "use_when": [
+   "'The Ford Mustang and the Chevy Camaro look alike but are built very differently.' -> two_names + photos:2 (cut-out objects)",
+   "'Bitcoin and gold: two stores of value that behave nothing alike.' -> two_names + photos:2",
+   "'Two breeds, one gene: the greyhound and the whippet.' -> two_names + photos:2"
+  ],
+  "avoid_when": [
+   "People (use paired-profiles); photos with busy backgrounds; no comparison in the sentence.",
+   "Fits all niches for objects, products, animals; the catalog's fits (history, lists, sports) is narrow."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "two-bars",
+  "name": "Two-value comparison",
+  "family": "chart",
+  "variant": "bars",
+  "purpose": "Contrast two quantities clearly",
+  "duration": 6,
+  "slots": 3,
+  "number": 81,
+  "kind": "effect",
+  "beats": [
+   "versus",
+   "number",
+   "stat",
+   "money",
+   "percent"
+  ],
+  "needs": [
+   "two_names",
+   "number",
+   "data"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Light grey screen titled 'School funding comparison' with two bars (pink $117M, black $271M) labelled 2019 and 2024.",
+  "use_when": [
+   "'In 2019 the district spent 117 million dollars on schools; by 2024 it was 271 million.' -> two_names (labels) + number + data",
+   "'Her salary was 2 million in the first season and 20 million in the next.' -> two_names + number + data",
+   "'Women's team revenue was 5 percent of the men's.' -> two_names + number + data"
+  ],
+  "avoid_when": [
+   "More than two values (use ranked-bars); only one figure; two people with photos (use portrait-bars).",
+   "Needs data; skipped without --allow-data. Always check the labels are short (2019 / 2024)."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "chart-overlay",
+  "name": "Chart over footage",
+  "family": "chart",
+  "variant": "panel",
+  "purpose": "Place a two-series chart over an editable background",
+  "duration": 6,
+  "slots": 3,
+  "number": 82,
+  "kind": "effect",
+  "beats": [
+   "stat",
+   "timeline",
+   "number",
+   "versus"
+  ],
+  "needs": [
+   "list_items",
+   "number",
+   "data",
+   "photo"
+  ],
+  "fits": [
+   "business_tech",
+   "sports_news",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo background with a dark rounded chart panel: title 'Data Comparison Over Time', two lines (blue falling, red rising) crossing on a 2020-2026 axis.",
+  "use_when": [
+   "'Cable subscribers fell every year since 2020 while streaming climbed past them in 2023.' -> list_items (years) + number + data (two series) + photo:1",
+   "'Her follower count doubled while his halved over the same six years.' -> list_items + number + data + photo:1",
+   "'Sales of electric cars overtook petrol cars in Norway in 2023.' -> list_items + number + data + photo:1"
+  ],
+  "avoid_when": [
+   "Only one series (use single-trend) or only two numbers (use two-bars); the script gives no values for the series.",
+   "Needs data; skipped without --allow-data."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "territory-symbols",
+  "name": "Territory and symbols",
+  "family": "map",
+  "variant": "flags",
+  "purpose": "Show organizations or flags associated with a region",
+  "duration": 6,
+  "slots": 3,
+  "number": 83,
+  "kind": "effect",
+  "beats": [
+   "country",
+   "list",
+   "place"
+  ],
+  "needs": [
+   "country",
+   "photos:3"
+  ],
+  "fits": [
+   "history",
+   "sports_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Dark map with one region (Iran) filled red and three flags (UK, Russia, UK) laid on it in a row, 'Sample region, 1900' at the bottom.",
+  "use_when": [
+   "'In 1907, Britain and Russia carved up Persia between them.' -> country + photos:3 (flags) + text",
+   "'Three powers had claims on the island: France, Spain and England.' -> country + photos:3 (flags)",
+   "'Foreign companies from four countries owned the oil fields.' -> country + photos:3 (flags/logos)"
+  ],
+  "avoid_when": [
+   "No country; a story about one power; flags you cannot source.",
+   "A history/geopolitics piece; the catalog fits are right."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "brand-hub",
+  "name": "Connected brand hub",
+  "family": "diagram",
+  "variant": "hub",
+  "purpose": "Connect a central brand to supporting images",
+  "duration": 6,
+  "slots": 6,
+  "number": 84,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "proof",
+   "reveal"
+  ],
+  "needs": [
+   "logo",
+   "photos:5"
+  ],
+  "fits": [
+   "business_tech",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark grid background: a teal app logo in a circle at the centre joined by yellow lines to four small circular photos above, below, left and right, each captioned 'Connection'.",
+  "use_when": [
+   "'Disney at the centre of it all: Marvel, Pixar, Lucasfilm and ESPN.' -> logo + photos:5 + list_items",
+   "'Every deal ran through one company, and it touched four other firms.' -> logo + photos:4 + list_items",
+   "'Her brand sits at the middle of a web of partners: a perfume line, a clothing label, a streaming deal and a charity.' -> logo + photos:5 + list_items"
+  ],
+  "avoid_when": [
+   "Sentence names no central brand or the brand has no logo available.",
+   "Sentence with a list but no hub (use icon-bullets); person-centred webs are better as radial-network or wealth-network."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "single-trend",
+  "name": "Single growth trend",
+  "family": "chart",
+  "variant": "single",
+  "purpose": "Draw a time series progressively across axes",
+  "duration": 6,
+  "slots": 3,
+  "number": 85,
+  "kind": "effect",
+  "beats": [
+   "stat",
+   "timeline",
+   "number"
+  ],
+  "needs": [
+   "list_items",
+   "number",
+   "data"
+  ],
+  "fits": [
+   "business_tech",
+   "sports_news",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Dark navy screen with a clean white line drawing left to right over axes 2000-2010, y axis 0-700, '$ Billions' label at the bottom.",
+  "use_when": [
+   "'The company's revenue went from 80 billion in 2000 to over 600 billion by 2010.' -> list_items (years) + number + data",
+   "'Her followers climbed steadily every single year.' -> list_items + number + data",
+   "'Home prices rose year after year until the crash.' -> list_items + number + data"
+  ],
+  "avoid_when": [
+   "A trend with two or three series (use two-trends or three-trends); no real values; one number only (use number_glow).",
+   "Needs data; skipped without --allow-data. The most finished one-line chart; prefer it over scatter-trend."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "logo-on-trend",
+  "name": "Logo follows a trend",
+  "family": "chart",
+  "variant": "logo-line",
+  "purpose": "Move a replaceable brand mark along a data line",
+  "duration": 6,
+  "slots": 3,
+  "number": 86,
+  "kind": "effect",
+  "beats": [
+   "stat",
+   "timeline",
+   "number"
+  ],
+  "needs": [
+   "logo",
+   "list_items",
+   "number",
+   "data"
+  ],
+  "fits": [
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with a green line chart over 2021-2026 and a small teal logo riding the end of the line.",
+  "use_when": [
+   "'Tesla stock climbed from 2021, dipped in 2023 and ended the period up 40 percent.' -> logo + list_items (years) + number + data",
+   "'Her streaming numbers rose every year since 2021 and the label cannot explain it.' -> logo + list_items + number + data",
+   "'Revenue for the app doubled between 2021 and 2026.' -> logo + list_items + number + data"
+  ],
+  "avoid_when": [
+   "A trend for a person (use single-trend); no logo; no values for the series (needs data).",
+   "Only for brands; skipped without --allow-data."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "logo-token",
+  "name": "Logo token reveal",
+  "family": "profile",
+  "variant": "token",
+  "purpose": "Reveal a replaceable mark with dimensional scaling",
+  "duration": 6,
+  "slots": 3,
+  "number": 87,
+  "kind": "effect",
+  "beats": [
+   "reveal",
+   "headline"
+  ],
+  "needs": [
+   "logo"
+  ],
+  "fits": [
+   "business_tech",
+   "sports_news",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with a single teal app logo sitting in a dark round disc in the centre, scaling up; no text.",
+  "use_when": [
+   "'Then Apple walked in.' -> logo",
+   "'The league's new sponsor is Emirates.' -> logo",
+   "'The company everyone was talking about was Theranos.' -> logo"
+  ],
+  "avoid_when": [
+   "No logo image; a beat that needs any words read; beats under 3 s.",
+   "logo-echo is the moodier version with a blurred copy behind; logo-token is the clean punch for a name drop."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "logo-echo",
+  "name": "Logo echo",
+  "family": "profile",
+  "variant": "echo",
+  "purpose": "Place a sharp mark over a large soft moving echo",
+  "duration": 6,
+  "slots": 3,
+  "number": 88,
+  "kind": "effect",
+  "beats": [
+   "reveal",
+   "mood"
+  ],
+  "needs": [
+   "logo"
+  ],
+  "fits": [
+   "business_tech",
+   "sports_news",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Dark screen with a sharp teal app logo in the centre over a very large soft blurred copy of itself.",
+  "use_when": [
+   "'And then Tesla made its announcement.' -> logo",
+   "'Netflix had one job: not to lose the audience.' -> logo",
+   "'Her new label is called Rhode.' -> logo"
+  ],
+  "avoid_when": [
+   "No logo image; a beat where something must be read (it has no text); beats under 3 s.",
+   "Pick logo-token for a crisper punch; logo-echo is the moodier reveal."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "brand-stat",
+  "name": "Brand and statistic",
+  "family": "profile",
+  "variant": "stat",
+  "purpose": "Pair a brand image with a numeric headline",
+  "duration": 6,
+  "slots": 3,
+  "number": 89,
+  "kind": "effect",
+  "beats": [
+   "stat",
+   "number",
+   "money",
+   "percent"
+  ],
+  "needs": [
+   "logo",
+   "number",
+   "photo"
+  ],
+  "fits": [
+   "business_tech",
+   "sports_news",
+   "celebrity_news"
+  ],
+  "anchor": "word",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Full-frame landscape photo with a square teal logo on an orange tile at the top and a big orange banner reading '$42 MILLION IN SALES' below.",
+  "use_when": [
+   "'Peloton did forty-two million dollars in sales in the first quarter alone.' -> logo + number (+ money) + photo:1 (background)",
+   "'Her beauty brand pulled in ten percent of the whole category in its first year.' -> logo + number (+ percent) + photo:1",
+   "'The team sold 18,000 jerseys in a single weekend.' -> logo + number + photo:1"
+  ],
+  "avoid_when": [
+   "No brand or logo available; a figure with no brand attached (use number_glow or money-counter).",
+   "It does not anchor on the spoken number (anchor is sentence), so it suits a sentence where the brand is the subject and the figure is the supporting fact."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "brand-row",
+  "name": "Brand lineup",
+  "family": "gallery",
+  "variant": "logos",
+  "purpose": "Introduce several editable logos on a common baseline",
+  "duration": 6,
+  "slots": 6,
+  "number": 90,
+  "kind": "effect",
+  "beats": [
+   "list",
+   "versus"
+  ],
+  "needs": [
+   "logo",
+   "photos:3"
+  ],
+  "fits": [
+   "business_tech",
+   "sports_news",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark grid background with three teal square logos in a row on one baseline, nothing else.",
+  "use_when": [
+   "'Netflix, Amazon and Disney all passed on the script.' -> logo + photos:3",
+   "'Ford, GM and Chrysler each lost market share that year.' -> logo + photos:3",
+   "'Nike, Adidas and Puma all pulled their sponsorship in the same week.' -> logo + photos:3"
+  ],
+  "avoid_when": [
+   "Fewer than three brands, or no logos to show; the brand names are not the point of the sentence.",
+   "When one brand has a number attached use brand-stat; when brands are ranked by value use ranked-bars."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "text-magnifier",
+  "name": "Text magnifier",
+  "family": "title",
+  "variant": "magnify",
+  "purpose": "Enlarge editable text only underneath a moving lens",
+  "duration": 6,
+  "slots": 3,
+  "number": 91,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "reveal",
+   "headline"
+  ],
+  "needs": [
+   "text"
+  ],
+  "fits": [
+   "true_crime",
+   "celebrity_news",
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Grey screen with a huge black word 'WELCOME TO OUR STORY' only legible inside a moving magnifying glass that sweeps across it.",
+  "use_when": [
+   "'Read the fine print: the clause says, in writing, we are not responsible.' -> text (a phrase)",
+   "'Hidden in the lease was one line: no refunds.' -> text",
+   "'The key word in the memo was reckless.' -> text"
+  ],
+  "avoid_when": [
+   "Anything that needs an image; text over about 5 words; a sentence that is not about reading something closely.",
+   "A reveal piece with no photo; use sparingly (weight 2). For text with a source page use article-highlights."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "place-and-image",
+  "name": "Place and image split",
+  "family": "map",
+  "variant": "split",
+  "purpose": "Connect geography to a picture of an event or object",
+  "duration": 6,
+  "slots": 3,
+  "number": 92,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "country",
+   "proof",
+   "reveal"
+  ],
+  "needs": [
+   "country",
+   "photo"
+  ],
+  "fits": [
+   "history",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark map with one country region filled red on the left and a photo of an event or object sliding in on the right with a thin red edge.",
+  "use_when": [
+   "'In Oman, a single photograph changed everything.' -> country + photo:1",
+   "'The painting hung in a museum in Vienna.' -> country + photo:1",
+   "'This is the aftermath of the blast in Lebanon.' -> country + photo:1"
+  ],
+  "avoid_when": [
+   "A sentence with no country; a photo unrelated to the place.",
+   "For a country alone use country-trace; for a city on an aerial image use city-marker."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "image-to-crowd",
+  "name": "Image to population",
+  "family": "diagram",
+  "variant": "image-crowd",
+  "purpose": "Explain an image through a connected crowd of symbols",
+  "duration": 6,
+  "slots": 6,
+  "number": 93,
+  "kind": "effect",
+  "beats": [
+   "number",
+   "stat",
+   "reveal"
+  ],
+  "needs": [
+   "photo",
+   "number"
+  ],
+  "fits": [
+   "business_tech",
+   "history",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Dark screen: an aerial photo on the left, an arrow to a grid of 39 grey person icons on the right with a counter below, one icon dimmed.",
+  "use_when": [
+   "'In that one building worked 39 people, and every one of them lost their job.' -> photo:1 + number",
+   "'This single village is home to 4,000 people.' -> photo:1 + number",
+   "'The raid on that house arrested 39.' -> photo:1 + number"
+  ],
+  "avoid_when": [
+   "Money or percent figures; a number over a few thousand reads poorly as icons.",
+   "A figure that is not about people; one photo is required."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "picture-area-chart",
+  "name": "Picture-filled area chart",
+  "family": "chart",
+  "variant": "area",
+  "purpose": "Reveal a data area filled with an editable relevant image",
+  "duration": 6,
+  "slots": 3,
+  "number": 94,
+  "kind": "effect",
+  "beats": [
+   "stat",
+   "timeline",
+   "number"
+  ],
+  "needs": [
+   "photo",
+   "list_items",
+   "number",
+   "data"
+  ],
+  "fits": [
+   "business_tech",
+   "sports_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 5,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Light grey screen with a title ('Big increase in sample prices') and a green area chart whose filled area shows a landscape photo, a rising line 2003-2026.",
+  "use_when": [
+   "'House prices in the city nearly tripled between 2003 and today.' -> list_items (years) + number + data + photo:1",
+   "'Ticket prices have climbed year after year since 2003.' -> list_items + number + data + photo:1",
+   "'The studio's box office rose steadily from 2003 and then spiked.' -> list_items + number + data + photo:1"
+  ],
+  "avoid_when": [
+   "A trend with no real values; a photo unrelated to the topic. Only one series.",
+   "Needs data; skipped without --allow-data. Min 5 s."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "title-push",
+  "name": "Title camera push",
+  "family": "title",
+  "variant": "push",
+  "purpose": "Grow a short statement with controlled camera-like motion",
+  "duration": 6,
+  "slots": 3,
+  "number": 95,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "reveal"
+  ],
+  "needs": [
+   "headline",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Landscape photo dimmed with one large white sans title ('Type your title here') centred, pushing in slowly.",
+  "use_when": [
+   "'This is the story of a man who stole a billion dollars.' -> headline (one short phrase)",
+   "'The trial of the decade begins.' -> headline",
+   "'Six days that shook the league.' -> headline"
+  ],
+  "avoid_when": [
+   "Sentences with figures to land (use number_glow), people to introduce, or lists; titles over about 8 words.",
+   "Plainest of the title cards: only when nothing more specific fits. Keep out of the video's first 5 s if a hook piece fits."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "cost-arrow",
+  "name": "Price and direction",
+  "family": "profile",
+  "variant": "cost",
+  "purpose": "Link a price, replaceable object and directional arrow",
+  "duration": 6,
+  "slots": 3,
+  "number": 96,
+  "kind": "effect",
+  "beats": [
+   "money",
+   "number",
+   "stat",
+   "reveal",
+   "proof"
+  ],
+  "needs": [
+   "money",
+   "photo"
+  ],
+  "fits": [
+   "business_tech",
+   "celebrity_news",
+   "sports_news"
+  ],
+  "anchor": "word",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Light grey screen: lime tag '$0.50' with 'PER KWH' under it at top left, a big black arrow pointing down-left, and a stack of banknotes on the right.",
+  "use_when": [
+   "'Electricity there costs fifty cents a kilowatt hour, and the arrow points the wrong way for everyone.' -> money + photo:1 (object)",
+   "'A single ticket to the game cost 400 dollars.' -> money + photo:1 (ticket image)",
+   "'The painting sold for 90 dollars and is now worth forty million.' -> money + photo:1"
+  ],
+  "avoid_when": [
+   "A figure that is not a price per something; a percent; huge totals like 400M (use money-counter or number_glow).",
+   "The arrow points down: a price falling or the cost being pinned on something; avoid for a rising price."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "country-labels",
+  "name": "Regional comparison labels",
+  "family": "map",
+  "variant": "labels",
+  "purpose": "Reveal several countries with independent editable value labels",
+  "duration": 6,
+  "slots": 3,
+  "number": 97,
+  "kind": "effect",
+  "beats": [
+   "country",
+   "number",
+   "list",
+   "stat"
+  ],
+  "needs": [
+   "country",
+   "list_items",
+   "number",
+   "data"
+  ],
+  "fits": [
+   "business_tech",
+   "history",
+   "sports_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Dark Europe map with the UK, Germany and Portugal filled red/purple, each labelled with a country name and a value (1.3%, 0.6%, 2.9%).",
+  "use_when": [
+   "'Unemployment ran at 2.9 percent in Portugal, 1.3 in Britain and just 0.6 in Germany.' -> country + list_items + number + data",
+   "'Of the shipments, Germany took 40, France took 25 and Spain took 10.' -> country + list_items + number + data",
+   "'Fans from Brazil, Argentina and Mexico bought the most tickets.' -> country + list_items + number + data"
+  ],
+  "avoid_when": [
+   "Only one country, or countries without a value; needs data.",
+   "When values are the story and not the geography, use ranked-bars; for plain outlines without values use country-outlines."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "country-outlines",
+  "name": "Colored territory outlines",
+  "family": "map",
+  "variant": "outlines",
+  "purpose": "Trace selected territories in different colors",
+  "duration": 6,
+  "slots": 3,
+  "number": 98,
+  "kind": "effect",
+  "beats": [
+   "country",
+   "place",
+   "versus",
+   "list"
+  ],
+  "needs": [
+   "country",
+   "data"
+  ],
+  "fits": [
+   "history",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark Europe map where only the UK (yellow), Germany (pink) and Portugal (blue) are traced as thin coloured outlines.",
+  "use_when": [
+   "'Three nations signed the treaty: Britain, Germany and Portugal.' -> country + data",
+   "'The cartel stretched over Colombia, Mexico and Spain.' -> country + data",
+   "'These are the three countries that refused to play.' -> country + data"
+  ],
+  "avoid_when": [
+   "A single country (use country-trace) or a sentence with values per country (country-labels).",
+   "Needs data; skipped without --allow-data."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "title-hierarchy",
+  "name": "Statement hierarchy",
+  "family": "title",
+  "variant": "hierarchy",
+  "purpose": "Build a small setup phrase and large concluding word",
+  "duration": 6,
+  "slots": 3,
+  "number": 99,
+  "kind": "effect",
+  "beats": [
+   "headline",
+   "reveal"
+  ],
+  "needs": [
+   "headline",
+   "photo"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Landscape photo with a small serif setup line ('The Beginning of') over a huge white condensed word ('EVERYTHING').",
+  "use_when": [
+   "'This was the beginning of the end.' -> headline (setup + one big word)",
+   "'It was the biggest fraud in American history, bar none.' -> headline",
+   "'Welcome to the world of Formula One.' -> headline"
+  ],
+  "avoid_when": [
+   "Statements with no punch word; text over about 6 words; sentences with figures.",
+   "Use it when the last word carries the sentence; use headline-build for plain statements."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "crowd-callouts",
+  "name": "Population and callouts",
+  "family": "diagram",
+  "variant": "crowd-callouts",
+  "purpose": "Build a group of people and connect explanatory totals",
+  "duration": 6,
+  "slots": 6,
+  "number": 100,
+  "kind": "effect",
+  "beats": [
+   "number",
+   "stat",
+   "list",
+   "versus"
+  ],
+  "needs": [
+   "number",
+   "list_items"
+  ],
+  "fits": [
+   "business_tech",
+   "history",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 2,
+  "avoid_tags": [
+   "money",
+   "percent"
+  ],
+  "looks_like": "Dark screen with a 10x5 grid of orange person icons and two thin circled callouts either side, '65,000' left and '140,000' right.",
+  "use_when": [
+   "'The stadium held 65,000 people, but 140,000 turned up outside.' -> number + list_items (two or more totals)",
+   "'Attendance was 65,000 on Friday and 140,000 by Sunday.' -> number + list_items",
+   "'Of the 50 staff, 20 were laid off the same morning.' -> number + list_items"
+  ],
+  "avoid_when": [
+   "Money or percentage figures (catalog forbids them): a crowd drawn for dollars is wrong.",
+   "Beat under 4 s; a single total with no comparison (use population-count)."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "annotated-collage",
+  "name": "Annotated gallery",
+  "family": "gallery",
+  "variant": "annotated",
+  "purpose": "Arrange four photos and circle selected editable labels",
+  "duration": 6,
+  "slots": 6,
+  "number": 101,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "list",
+   "person"
+  ],
+  "needs": [
+   "photos:4",
+   "list_items"
+  ],
+  "fits": [
+   "true_crime",
+   "celebrity_news",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Black background with four tilted overlapping photos fanned out; two thin white hand-drawn ellipses circle text labels on the lower photos.",
+  "use_when": [
+   "'Investigators pieced it together from four things: a receipt, a parking ticket, a text message and a photo.' -> photos:4 + list_items (two circled labels)",
+   "'The trail of evidence ran through his yacht, his office, his mansion and his private jet.' -> photos:4 + list_items",
+   "'Her whole look came together from four influences: Audrey Hepburn, Twiggy, Bardot and Kate Moss.' -> photos:4 + list_items"
+  ],
+  "avoid_when": [
+   "Only one or two items in the sentence; a sentence with nothing to circle or label.",
+   "Beat under 5 s; if the photos are the point and need no labels use photo-collage, if six use evidence-wall."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "three-trends",
+  "name": "Three growth curves",
+  "family": "chart",
+  "variant": "three-lines",
+  "purpose": "Compare three editable data series",
+  "duration": 6,
+  "slots": 3,
+  "number": 102,
+  "kind": "effect",
+  "beats": [
+   "versus",
+   "timeline",
+   "stat"
+  ],
+  "needs": [
+   "list_items",
+   "number",
+   "data"
+  ],
+  "fits": [
+   "business_tech",
+   "sports_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 2,
+  "looks_like": "Light grey screen titled 'CHART TITLE HERE' with three rising curves (red, orange, blue) 1990-2025 labelled FIRST, SECOND, THIRD.",
+  "use_when": [
+   "'Netflix, Disney and Amazon all grew from 1990 to today, but Netflix grew fastest.' -> list_items (years + three labels) + number + data",
+   "'Rents, wages and house prices all rose, but only one outran the others.' -> list_items + number + data",
+   "'The three drivers' points totals climbed in step for twenty years.' -> list_items + number + data"
+  ],
+  "avoid_when": [
+   "Fewer than three series (use two-trends); series with no values.",
+   "Needs data; skipped without --allow-data; the labels sit at the bottom and are small."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "map-to-city",
+  "name": "Country to city zoom",
+  "family": "map",
+  "variant": "zoom",
+  "purpose": "Move from broad geography into a specific map image and label",
+  "duration": 6,
+  "slots": 3,
+  "number": 103,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "country",
+   "reveal",
+   "proof"
+  ],
+  "needs": [
+   "country",
+   "place",
+   "photo",
+   "data"
+  ],
+  "fits": [
+   "history",
+   "true_crime",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Aerial city map with a yellow pin ring and a black label 'Harbor district' joined by a yellow leader line (the start of the shot is a wider country map the camera moves in from).",
+  "use_when": [
+   "'From Italy to Genoa to one dock in the harbour, that is where the shipment vanished.' -> country + place + photo:1 (map/aerial) + data",
+   "'Across America, then down to Detroit, then to one factory floor.' -> country + place + photo:1 + data",
+   "'The trail runs from Mexico to a single warehouse in El Paso.' -> country + place + photo:1 + data"
+  ],
+  "avoid_when": [
+   "A sentence that names only a city (use city-marker or map-callout); map data is required, so it is skipped without --allow-data.",
+   "Do not use as a quick pin: it is a zoom-in move, 3 s at minimum."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "paired-pies",
+  "name": "Two proportions",
+  "family": "chart",
+  "variant": "pies",
+  "purpose": "Compare two animated percentages",
+  "duration": 6,
+  "slots": 3,
+  "number": 104,
+  "kind": "effect",
+  "beats": [
+   "versus",
+   "percent",
+   "stat"
+  ],
+  "needs": [
+   "percent",
+   "two_names",
+   "data"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Dark screen with two pie charts side by side (30% yellow and 43% red) and a big percentage with a small caption under each.",
+  "use_when": [
+   "'Thirty percent of jobs are automated, and forty-three percent of workers have already been replaced.' -> percent (2) + two_names (captions) + data",
+   "'Forty percent of fans were over fifty, but only twelve percent were under thirty.' -> percent (2) + two_names + data",
+   "'Sixty percent of the jury believed her, sixty percent of the public did not.' -> percent (2) + two_names + data"
+  ],
+  "avoid_when": [
+   "One percentage (use percentage-ring); percentages with no caption; non-percent values.",
+   "Needs data; skipped without --allow-data."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "press-stack",
+  "name": "Stack of press clippings",
+  "family": "article",
+  "variant": "stack",
+  "purpose": "Build a stack of editable source articles and highlight a headline",
+  "duration": 6,
+  "slots": 3,
+  "number": 105,
+  "kind": "effect",
+  "beats": [
+   "proof",
+   "headline",
+   "list"
+  ],
+  "needs": [
+   "headline",
+   "text"
+  ],
+  "fits": [
+   "celebrity_news",
+   "sports_news",
+   "business_tech",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 5,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Grey screen with a pile of cream newspaper sheets, the top one tilted, with 'NEWS WIRE' and a big serif headline plus a paragraph.",
+  "use_when": [
+   "'Newspapers from the Times to the Post all ran the same story on Monday.' -> headline + text + list_items (outlet names)",
+   "'Within a day it was in every paper: the headline read Why Fears of a Market Bubble Are Growing.' -> headline + text",
+   "'Reports piled up from the BBC, CNN and Reuters.' -> headline + text + list_items"
+  ],
+  "avoid_when": [
+   "No report or outlet is named; a photo is the proof (use news-image).",
+   "Min 5 s. Prefer it over news-column when more than one outlet or report is cited."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "circled-caption",
+  "name": "Circled identity label",
+  "family": "title",
+  "variant": "circled",
+  "purpose": "Identify a visible subject with an animated circled name",
+  "duration": 6,
+  "slots": 3,
+  "number": 106,
+  "kind": "effect",
+  "beats": [
+   "person",
+   "proof",
+   "reveal"
+  ],
+  "needs": [
+   "one_name",
+   "photo"
+  ],
+  "fits": [
+   "celebrity_news",
+   "true_crime",
+   "sports_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 2,
+  "max_s": 12,
+  "weight": 4,
+  "looks_like": "Full-frame B&W portrait of an older woman with a white name label at the bottom ringed by a lime-green hand-drawn ellipse.",
+  "use_when": [
+   "'The woman in the photo, Edith Whitfield, was the only person in the building that night.' -> one_name + photo:1",
+   "'That man, Frank Abagnale, would go on to be the most famous con artist in America.' -> one_name + photo:1",
+   "'This is Bryan Freedman, the lawyer who has been on the other side from the start.' -> one_name + photo:1"
+  ],
+  "avoid_when": [
+   "Photo of a different person than the name, or a group photo; in the Windows test it circled a sentence chunk instead of the name, so pass the name only.",
+   "A name already shown by a lower third; when you want a larger portrait treatment use subject-pointer or ribbon-profile."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "map-circle",
+  "name": "Area of interest",
+  "family": "map",
+  "variant": "circle",
+  "purpose": "Circle and label a chosen region on a replaceable map image",
+  "duration": 6,
+  "slots": 3,
+  "number": 107,
+  "kind": "effect",
+  "beats": [
+   "place",
+   "proof"
+  ],
+  "needs": [
+   "place",
+   "photo"
+  ],
+  "fits": [
+   "history",
+   "true_crime",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Full-frame aerial city map with a big thin yellow circle drawn around one district and a white condensed label 'DOWNTOWN DISTRICT' bottom left.",
+  "use_when": [
+   "'Police sealed off the whole downtown district.' -> place + photo:1 (aerial/map)",
+   "'The fire spread across the entire old quarter of the city.' -> place + photo:1",
+   "'Investors bought up everything inside that circle of Brooklyn.' -> place + photo:1"
+  ],
+  "avoid_when": [
+   "A single address or building (use map-callout); no place named; photos that are not maps or aerials.",
+   "The circle is large: do not use for a point location."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "wealth-network",
+  "name": "Subject and brand orbit",
+  "family": "diagram",
+  "variant": "wealth",
+  "purpose": "Connect a portrait to brands and an editable total",
+  "duration": 6,
+  "slots": 6,
+  "number": 108,
+  "kind": "effect",
+  "beats": [
+   "money",
+   "person",
+   "stat",
+   "list",
+   "number"
+  ],
+  "needs": [
+   "photos:5",
+   "money",
+   "one_name"
+  ],
+  "fits": [
+   "celebrity_news",
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 5,
+  "max_s": 12,
+  "weight": 3,
+  "looks_like": "Pale green screen with a portrait in the middle, four circled brand logos around it joined by green lines (Brand A-D), a faint '$1,100,000,000,000' total in the corner.",
+  "use_when": [
+   "'Bezos owns the Post, Whole Foods, Zappos and Blue Origin, and that is worth over a hundred billion.' -> one_name + photos:5 + money + list_items",
+   "'Her empire has four arms, and together they are worth a billion dollars.' -> one_name + photos:5 + money",
+   "'Every one of those companies traced back to one man and one fortune of two billion.' -> one_name + photos:5 + money"
+  ],
+  "avoid_when": [
+   "No total money figure; a person with fewer than three assets.",
+   "With no money use org-chart (people) or radial-network (icons); min 5 s."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "number_glow",
+  "name": "Number Glow",
+  "family": "number",
+  "variant": "",
+  "purpose": "Land one big figure full frame on the spoken number",
+  "duration": 6,
+  "slots": 0,
+  "number": 109,
+  "kind": "template",
+  "beats": [
+   "number",
+   "money",
+   "percent",
+   "stat"
+  ],
+  "needs": [
+   "number"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "word",
+  "min_s": 2.5,
+  "max_s": 6,
+  "weight": 5,
+  "params": [
+   "value",
+   "prefix",
+   "suffix",
+   "caption",
+   "count_s"
+  ],
+  "looks_like": "One big figure fills the frame and counts up, landing on the exact spoken number word; optional caption, prefix and suffix.",
+  "use_when": [
+   "'Judge Liman handed her four hundred and seven thousand dollars.' -> number (407000, prefix $)",
+   "'The suspect had been driving for fifty-two hours.' -> number (52, caption hours)",
+   "'The fund lost ninety percent of its value overnight.' -> number (90, suffix %)"
+  ],
+  "avoid_when": [
+   "A sentence with several figures, or a figure that is just background; beats under 3 s or a number landing within 0.45 s of the beat start (the count needs a pre-roll; pass count_s).",
+   "Max two per video and never twice in a row. In the Windows test it showed $0 until 0.45 s before the word: pass count_s = anchor time minus beat start."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "number_roll",
+  "name": "Number Roll",
+  "family": "number",
+  "variant": "",
+  "purpose": "Roll a playful yellow pill of digits up to the spoken number",
+  "duration": 6,
+  "slots": 0,
+  "number": 110,
+  "kind": "template",
+  "beats": [
+   "number",
+   "stat",
+   "percent"
+  ],
+  "needs": [
+   "number"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "word",
+  "min_s": 3,
+  "max_s": 6,
+  "weight": 3,
+  "params": [
+   "value",
+   "prefix",
+   "suffix",
+   "caption",
+   "count_s"
+  ],
+  "looks_like": "A playful yellow pill of digits spins up to the spoken number; money uses prefix $ and suffix M/K/%.",
+  "use_when": [
+   "'The film opened to $52 million in its first weekend.' -> number (52, prefix $, suffix M)",
+   "'Mourners lined up for 12 miles.' -> number (12)",
+   "'Her follower count hit 40 million in a week.' -> number (40, suffix M)"
+  ],
+  "avoid_when": [
+   "Single-digit figures (use number_glow); serious, somber sentences; two figures in the beat.",
+   "Lighter and more playful than number_glow; pick it for entertainment and sports, not crime or tragedy."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "prompt_card",
+  "name": "Prompt Card",
+  "family": "text",
+  "variant": "",
+  "purpose": "Read an instruction, rule or definition along with the narrator over blurred footage",
+  "duration": 6,
+  "slots": 0,
+  "number": 111,
+  "kind": "template",
+  "beats": [
+   "quote",
+   "proof",
+   "headline"
+  ],
+  "needs": [
+   "text",
+   "source_video"
+  ],
+  "fits": [
+   "business_tech",
+   "lists"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 25,
+  "weight": 2,
+  "params": [
+   "text",
+   "phrases",
+   "chip"
+  ],
+  "looks_like": "Reads an instruction, rule or definition with the narrator over blurred source footage; needs the member's own 16:9 member's own video.",
+  "use_when": [
+   "'The rule is simple: never reveal the answer before the second act.' -> text + source_video",
+   "'In the prompt, tell the model: write in the voice of a nineteenth-century detective.' -> text + source_video",
+   "'The definition of insider trading is trading on information the public does not have.' -> text + source_video"
+  ],
+  "avoid_when": [
+   "The flow has no own video (the planner skips it without --source-video); a sentence with no wording to show.",
+   "Tutorial / how-to look; not suitable for celebrity news or crime."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "quote_card",
+  "name": "Quote Card",
+  "family": "text",
+  "variant": "",
+  "purpose": "Write a verbatim quotation word by word with the speaker named underneath",
+  "duration": 6,
+  "slots": 0,
+  "number": 112,
+  "kind": "template",
+  "beats": [
+   "quote",
+   "person"
+  ],
+  "needs": [
+   "quote",
+   "one_name"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 5,
+  "max_s": 14,
+  "weight": 4,
+  "params": [
+   "quote",
+   "who",
+   "role",
+   "source",
+   "tint",
+   "bg",
+   "portrait",
+   "underline"
+  ],
+  "looks_like": "Writes a verbatim quotation word by word with the speaker named underneath; needs the narrator to actually read the quote and name who said it.",
+  "use_when": [
+   "'The joint statement said the concerns raised by Ms. Lively deserved to be heard.' -> quote + one_name (or a source such as 'Joint statement, both legal teams')",
+   "'Churchill told Parliament: we shall never surrender.' -> quote + one_name",
+   "'The coach said afterwards, quote, we played like children.' -> quote + one_name"
+  ],
+  "avoid_when": [
+   "Paraphrase, not the exact spoken words; a quote with no named speaker or source; a quote under 5 s.",
+   "Versus quote-profile (portrait, full frame): quote_card goes over the cut and needs no portrait."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "key_flash",
+  "name": "Key Flash",
+  "family": "text",
+  "variant": "",
+  "purpose": "Punch one shocking phrase through flashing newspaper pages and lock it on the word",
+  "duration": 6,
+  "slots": 0,
+  "number": 113,
+  "kind": "template",
+  "beats": [
+   "reveal",
+   "headline",
+   "proof",
+   "quote"
+  ],
+  "needs": [
+   "text"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 3.5,
+  "max_s": 8,
+  "weight": 4,
+  "params": [
+   "key_text",
+   "lead_text",
+   "trail_text",
+   "headline",
+   "accent",
+   "paper"
+  ],
+  "looks_like": "One shocking phrase punches through flashing newspaper pages and locks on the exact spoken word; text must be the narration itself.",
+  "use_when": [
+   "'The judge called it a blunderbuss approach.' -> text (the phrase)",
+   "'And the cause of death was ruled a homicide.' -> text",
+   "'He had been dead for three weeks.' -> text"
+  ],
+  "avoid_when": [
+   "More than one phrase in the beat; a phrase over about 8 words; used on mundane statements.",
+   "Max twice per video; hold it for the single strongest line."
+  ],
+  "energy": "punchy"
+ },
+ {
+  "id": "lens_highlight",
+  "name": "Lens Highlight",
+  "family": "text",
+  "variant": "",
+  "purpose": "Sweep a marker over one to three key phrases on a typed page seen through a lens",
+  "duration": 6,
+  "slots": 0,
+  "number": 114,
+  "kind": "template",
+  "beats": [
+   "proof",
+   "quote",
+   "headline"
+  ],
+  "needs": [
+   "text"
+  ],
+  "fits": [
+   "true_crime",
+   "business_tech",
+   "history"
+  ],
+  "anchor": "sentence",
+  "min_s": 4,
+  "max_s": 15,
+  "weight": 3,
+  "params": [
+   "pages",
+   "paper"
+  ],
+  "looks_like": "A marker sweeps over one to three key phrases on a typed page seen through a lens; the phrase must be spoken at least a moment into the beat and the piece needs a hold after.",
+  "use_when": [
+   "'The lawyers said the case was never about money.' -> text (1-3 phrases)",
+   "'The memo called the plan reckless, unauthorised and illegal.' -> text",
+   "'The terms said: no refunds, no exceptions, no appeals.' -> text"
+  ],
+  "avoid_when": [
+   "A beat under 4 s; a beat followed immediately by another piece (the hold can be refused); sentences with no key phrase to mark.",
+   "Failed in the Windows test when a piece was added to the next beat: check the gap after the last phrase."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "light_leak",
+  "name": "Light Leak",
+  "family": "look",
+  "variant": "",
+  "purpose": "Pass a warm flash over the footage as a reveal or section join",
+  "duration": 5,
+  "slots": 0,
+  "number": 115,
+  "kind": "template",
+  "beats": [
+   "mood",
+   "transition",
+   "reveal"
+  ],
+  "needs": [
+   "source_video"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 1.5,
+  "max_s": 5,
+  "weight": 2,
+  "params": [
+   "warm",
+   "dur"
+  ],
+  "looks_like": "A warm flash passes over the footage on the word that opens a new section; needs the member's own video.",
+  "use_when": [
+   "'And then everything changed.' -> source_video (a reveal or section join)",
+   "'Fast forward to the night of the premiere.' -> source_video",
+   "'That was day one. Day two was worse.' -> source_video"
+  ],
+  "avoid_when": [
+   "The flow has no own video; used more than once or twice; used together with the purple leak.",
+   "Pick one leak style per video; this is the warm default."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "light_leak_purple",
+  "name": "Purple Light Leak",
+  "family": "look",
+  "variant": "",
+  "purpose": "Pass a purple-to-orange wash over the footage as a reveal or section join (use one leak style per video)",
+  "duration": 5,
+  "slots": 0,
+  "number": 116,
+  "kind": "template",
+  "beats": [
+   "mood",
+   "transition",
+   "reveal"
+  ],
+  "needs": [
+   "source_video"
+  ],
+  "fits": [
+   "all"
+  ],
+  "anchor": "sentence",
+  "min_s": 1.5,
+  "max_s": 5,
+  "weight": 1,
+  "params": [
+   "palette",
+   "dur"
+  ],
+  "looks_like": "A purple-to-orange wash passes over the footage as a reveal or section join; needs the member's own video.",
+  "use_when": [
+   "'And this is where it gets strange.' -> source_video",
+   "'Meanwhile, in a studio in Burbank.' -> source_video",
+   "'Three years later.' -> source_video"
+  ],
+  "avoid_when": [
+   "No member's own video; any video already using light_leak; weight 1, at most once.",
+   "Pick it over light_leak only when the video's colour is cool or purple."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "retro_footage",
+  "name": "Retro Footage",
+  "family": "look",
+  "variant": "",
+  "purpose": "Turn the footage into VHS tape, a CRT screen or an old TV set for archive and found-tape moments",
+  "duration": 6,
+  "slots": 0,
+  "number": 117,
+  "kind": "template",
+  "beats": [
+   "mood",
+   "transition",
+   "proof",
+   "year"
+  ],
+  "needs": [
+   "source_video"
+  ],
+  "fits": [
+   "history",
+   "true_crime",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 3,
+  "max_s": 20,
+  "weight": 2,
+  "params": [
+   "look",
+   "intensity",
+   "osd_text",
+   "title",
+   "accent"
+  ],
+  "looks_like": "Turns the footage into VHS tape, a CRT screen or an old TV set; needs the member's own video.",
+  "use_when": [
+   "'The tape from that night was recovered from a VHS cassette in her garage.' -> source_video",
+   "'Back in 1994 the whole city watched on grainy television.' -> source_video",
+   "'The old home video shows a young boy on a bike.' -> source_video"
+  ],
+  "avoid_when": [
+   "The sentence is about the present; no member's own video; a beat over 20 s.",
+   "Pairs with film_8mm for memories: pick retro_footage for tape or TV evidence, film_8mm for family memories."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "film_8mm",
+  "name": "Old 8mm Film",
+  "family": "look",
+  "variant": "",
+  "purpose": "Roll footage or photos inside an old 8mm film frame for memories and backstory",
+  "duration": 6,
+  "slots": 0,
+  "number": 118,
+  "kind": "template",
+  "beats": [
+   "mood",
+   "timeline",
+   "proof",
+   "year",
+   "person"
+  ],
+  "needs": [
+   "source_video"
+  ],
+  "fits": [
+   "history",
+   "true_crime",
+   "celebrity_news"
+  ],
+  "anchor": "sentence",
+  "min_s": 5,
+  "max_s": 20,
+  "weight": 2,
+  "params": [
+   "layout",
+   "shots",
+   "tint"
+  ],
+  "looks_like": "Rolls footage or photos inside an old 8mm film frame for memories and backstory; needs the member's own video.",
+  "use_when": [
+   "'As a child she spent summers on her grandmother's farm.' -> source_video (backstory)",
+   "'Home movies from 1978 show the family at the beach.' -> source_video",
+   "'The early years were simple: a small house, two parents, one dog.' -> source_video"
+  ],
+  "avoid_when": [
+   "Present-day or recent events; no member's own video; beat under 5 s.",
+   "Pick it for childhood and backstory; for tape or TV evidence use retro_footage."
+  ],
+  "energy": "calm"
+ },
+ {
+  "id": "calendar_streak",
+  "name": "Calendar Streak",
+  "family": "timeline",
+  "variant": "",
+  "purpose": "Light up posting days on a month grid while a streak counter rolls",
+  "duration": 6,
+  "slots": 0,
+  "number": 119,
+  "kind": "template",
+  "beats": [
+   "timeline",
+   "date",
+   "number",
+   "stat"
+  ],
+  "needs": [
+   "date"
+  ],
+  "fits": [
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 6,
+  "max_s": 25,
+  "weight": 1,
+  "params": [
+   "title",
+   "weeks",
+   "start_dow",
+   "days",
+   "post_days",
+   "icon",
+   "streak",
+   "streak_label",
+   "pattern_label",
+   "miss",
+   "color"
+  ],
+  "buildable": false,
+  "looks_like": "Lights up posting days on a month grid while a streak counter rolls. The catalog marks it buildable:false, so the planner skips it.",
+  "use_when": [
+   "'He posted every single day for 90 days straight.' -> date + days",
+   "'Her upload streak ran from January to March without a gap.' -> date + days",
+   "'Miss one day and the streak goes back to zero.' -> date + days"
+  ],
+  "avoid_when": [
+   "Anything that is not about a streak or a posting habit; the engine cannot build it yet.",
+   "Never pick while buildable:false."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "timeline_track",
+  "name": "Timeline Track",
+  "family": "timeline",
+  "variant": "",
+  "purpose": "Drop dated pins on a glowing track and move the camera from event to event",
+  "duration": 6,
+  "slots": 0,
+  "number": 120,
+  "kind": "template",
+  "beats": [
+   "timeline",
+   "date",
+   "year",
+   "list"
+  ],
+  "needs": [
+   "date",
+   "list_items"
+  ],
+  "fits": [
+   "history",
+   "true_crime",
+   "celebrity_news",
+   "business_tech"
+  ],
+  "anchor": "sentence",
+  "min_s": 6,
+  "max_s": 25,
+  "weight": 4,
+  "params": [
+   "pins",
+   "today",
+   "spacing",
+   "color"
+  ],
+  "looks_like": "Drops two to five dated pins on a glowing track and moves the camera from event to event; each pin needs a date and a label, and each pin needs about 1.5 s.",
+  "use_when": [
+   "'In March she filed, in June the judge ruled, in September they settled, and in December the case closed.' -> date + list_items (4 dated pins)",
+   "'The company was founded in 1998, went public in 2004 and collapsed in 2012.' -> date + list_items",
+   "'The driver crashed on lap 12, was pulled out by lap 15 and was dead by midnight.' -> date + list_items"
+  ],
+  "avoid_when": [
+   "Only one date (use date-center or date-slide); events with no dates; more than five events; beats under 6 s.",
+   "Dates are the point and photos are not available; with photos use photo-timeline."
+  ],
+  "energy": "medium"
+ },
+ {
+  "id": "history_sequence",
+  "name": "History Sequence",
+  "family": "timeline",
+  "variant": "",
+  "purpose": "Walk through dated moments with a photo card for each, on a drawn line or full bleed",
+  "duration": 6,
+  "slots": 0,
+  "number": 121,
+  "kind": "template",
+  "beats": [
+   "timeline",
+   "year",
+   "date",
+   "person",
+   "list"
+  ],
+  "needs": [
+   "year",
+   "list_items"
+  ],
+  "fits": [
+   "history",
+   "celebrity_news",
+   "sports_news",
+   "true_crime"
+  ],
+  "anchor": "sentence",
+  "min_s": 6,
+  "max_s": 25,
+  "weight": 4,
+  "params": [
+   "entries",
+   "layout",
+   "surface",
+   "tone",
+   "linestyle",
+   "title"
+  ],
+  "buildable": false,
+  "looks_like": "Walks through dated moments with a photo card for each on a drawn line or full bleed. The catalog marks it buildable:false, so the planner skips it.",
+  "use_when": [
+   "'1998, the debut. 2003, the first title. 2010, the scandal. 2015, the return.' -> year + list_items + photos",
+   "'First came the first single, then the first tour, then the lawsuit.' -> year + list_items",
+   "'Napoleon crowned himself in 1804, invaded Russia in 1812 and fell in 1815.' -> year + list_items"
+  ],
+  "avoid_when": [
+   "The engine cannot build it yet; never pick while buildable:false. Use timeline_track or photo-timeline instead.",
+   "Beats under 6 s."
+  ],
+  "energy": "medium"
+ }
+]

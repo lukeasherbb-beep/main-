@@ -1,0 +1,14 @@
+# rendered output and large media (too big for GitHub; keep these elsewhere)
+thompson/build/
+thompson/clips/
+*.mp4
+*.mov
+*.wav
+*.mp3
+!assets/*.mp4
+# dependencies and caches
+node_modules/
+__pycache__/
+fx/test/
+# original template packs (licensed, not for redistribution; fx/effects holds the part the build uses)
+vendor/

@@ -1,0 +1,35 @@
+{
+ "id": "photo-flip",
+ "name": "Photo flip transition",
+ "family": "transition",
+ "purpose": "Turn from outgoing image to incoming image",
+ "duration": {
+  "default": 8,
+  "min": 4,
+  "max": 24
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 2,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "images": {
+   "type": "image_list",
+   "maxItems": 3,
+   "slots": 2,
+   "required": true,
+   "default": [
+    "assets/original-highland.png",
+    "assets/landscape-2.png"
+   ]
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  }
+ }
+}

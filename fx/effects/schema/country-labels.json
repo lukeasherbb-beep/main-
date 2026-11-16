@@ -1,0 +1,100 @@
+{
+ "id": "country-labels",
+ "name": "Regional comparison labels",
+ "family": "map",
+ "purpose": "Reveal several countries with independent editable value labels",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#b01d2a"
+  },
+  "secondary": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#d95765"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  },
+  "prefix": {
+   "type": "text",
+   "maxLength": 8,
+   "default": ""
+  },
+  "suffix": {
+   "type": "text",
+   "maxLength": 12,
+   "default": "%"
+  },
+  "countries": {
+   "type": "country_list",
+   "required": true,
+   "minItems": 1,
+   "maxItems": 8,
+   "default": [
+    "United Kingdom",
+    "Germany",
+    "Portugal"
+   ]
+  },
+  "mapBounds": {
+   "type": "bounds",
+   "required": true,
+   "format": "[west, south, east, north] in degrees",
+   "default": [
+    -18,
+    33,
+    34,
+    64
+   ]
+  },
+  "data": {
+   "type": "series_list",
+   "mode": "value",
+   "required": true,
+   "minItems": 1,
+   "maxItems": 8,
+   "needLabel": false,
+   "label": {
+    "maxLength": 40
+   },
+   "number": {
+    "min": 0,
+    "max": 1000000000
+   },
+   "matchCount": "countries",
+   "note": "each entry is {label, value}; replaces the sample data entirely",
+   "default": [
+    {
+     "value": 1.3
+    },
+    {
+     "value": 0.6
+    },
+    {
+     "value": 2.9
+    }
+   ]
+  }
+ }
+}

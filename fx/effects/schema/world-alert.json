@@ -1,0 +1,71 @@
+{
+ "id": "world-alert",
+ "name": "World alert",
+ "family": "map",
+ "purpose": "Show a spreading issue across locations",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "subtitle": {
+   "type": "text",
+   "maxLength": 160,
+   "default": "GLOBAL SPREAD"
+  },
+  "secondary": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#ff3340"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#050505"
+  },
+  "mapBounds": {
+   "type": "bounds",
+   "required": true,
+   "format": "[west, south, east, north] in degrees",
+   "default": [
+    -180,
+    -58,
+    180,
+    83
+   ]
+  },
+  "points": {
+   "type": "point_list",
+   "required": true,
+   "format": "[longitude, latitude] pairs, longitude first",
+   "minItems": 1,
+   "maxItems": 8,
+   "default": [
+    [
+     -100,
+     45
+    ],
+    [
+     8,
+     50
+    ],
+    [
+     90,
+     40
+    ],
+    [
+     140,
+     -25
+    ]
+   ]
+  }
+ }
+}

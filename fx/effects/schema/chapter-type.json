@@ -1,0 +1,35 @@
+{
+ "id": "chapter-type",
+ "name": "Typed chapter heading",
+ "family": "title",
+ "purpose": "Type a chapter title onto a graphic background",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "Chapter Title"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  }
+ }
+}

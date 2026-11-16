@@ -1,0 +1,40 @@
+{
+ "id": "news-lower-third",
+ "name": "News lower third",
+ "family": "title",
+ "purpose": "Reveal a topic banner at the bottom of footage",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "MIND OVER MUSCLE"
+  },
+  "label": {
+   "type": "text",
+   "maxLength": 80,
+   "default": "BREAKING NEWS"
+  },
+  "backgroundImage": {
+   "type": "image",
+   "required": true,
+   "default": "assets/original-highland.png"
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#d40916"
+  }
+ }
+}

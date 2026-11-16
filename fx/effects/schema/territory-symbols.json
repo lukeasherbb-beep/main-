@@ -1,0 +1,57 @@
+{
+ "id": "territory-symbols",
+ "name": "Territory and symbols",
+ "family": "map",
+ "purpose": "Show organizations or flags associated with a region",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 3,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "subtitle": {
+   "type": "text",
+   "maxLength": 160,
+   "default": "Sample region, 1900"
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 3,
+   "slots": 3,
+   "required": true,
+   "default": [
+    "assets/flag-uk.png",
+    "assets/flag-russia.png",
+    "assets/flag-uk.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#b91d2b"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  },
+  "enter": {
+   "type": "number",
+   "min": 0.03,
+   "max": 0.45,
+   "default": 0.22
+  },
+  "country": {
+   "type": "country",
+   "required": true,
+   "default": "Iran"
+  }
+ }
+}

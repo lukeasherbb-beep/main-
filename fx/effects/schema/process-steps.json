@@ -1,0 +1,55 @@
+{
+ "id": "process-steps",
+ "name": "Process steps",
+ "family": "diagram",
+ "purpose": "Show a sequence of stages with editable icons and labels",
+ "duration": {
+  "default": 8,
+  "min": 4,
+  "max": 24
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 3,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "labels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 3,
+   "pad": 3,
+   "item": {
+    "maxLength": 100
+   },
+   "default": [
+    "FUEL",
+    "TRANSPORT",
+    "LAUNCH"
+   ]
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 6,
+   "slots": 3,
+   "required": true,
+   "default": [
+    "assets/fuel.png",
+    "assets/truck.png",
+    "assets/rocket.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#4e965e"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#061010"
+  }
+ }
+}

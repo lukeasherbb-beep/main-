@@ -1,0 +1,42 @@
+{
+ "id": "flag-lineup",
+ "name": "Symbol lineup",
+ "family": "gallery",
+ "purpose": "Introduce several editable flags or logos in sequence",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 4,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "TITLE TEXT HERE"
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 6,
+   "slots": 4,
+   "required": true,
+   "default": [
+    "assets/flag-uk.png",
+    "assets/flag-france.png",
+    "assets/flag-russia.png",
+    "assets/flag-italy.png"
+   ]
+  },
+  "backgroundImage": {
+   "type": "image",
+   "required": true,
+   "default": "assets/original-highland.png"
+  }
+ }
+}

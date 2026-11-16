@@ -1,0 +1,77 @@
+{
+ "id": "radial-network",
+ "name": "Radial tool network",
+ "family": "diagram",
+ "purpose": "Connect a central concept to surrounding editable icons",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 9,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "labels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 8,
+   "pad": 8,
+   "item": {
+    "maxLength": 100
+   },
+   "default": [
+    "Writing",
+    "Research",
+    "Images",
+    "Editing",
+    "Voice",
+    "Video",
+    "Design",
+    "Planning"
+   ]
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 9,
+   "slots": 9,
+   "required": true,
+   "default": [
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#ffe738"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  },
+  "enter": {
+   "type": "number",
+   "min": 0.03,
+   "max": 0.45,
+   "default": 0.22
+  }
+ }
+}

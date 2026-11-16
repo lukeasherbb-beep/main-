@@ -1,0 +1,52 @@
+{
+ "id": "country-outlines",
+ "name": "Colored territory outlines",
+ "family": "map",
+ "purpose": "Trace selected territories in different colors",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#e6cf35"
+  },
+  "secondary": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#c573ac"
+  },
+  "countries": {
+   "type": "country_list",
+   "required": true,
+   "minItems": 1,
+   "maxItems": 8,
+   "default": [
+    "United Kingdom",
+    "Germany",
+    "Portugal"
+   ]
+  },
+  "mapBounds": {
+   "type": "bounds",
+   "required": true,
+   "format": "[west, south, east, north] in degrees",
+   "default": [
+    -18,
+    33,
+    34,
+    64
+   ]
+  }
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "id": "news-column",
+ "name": "Editorial headline and column",
+ "family": "article",
+ "purpose": "Build a source-like headline and paragraph layout",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "RESIDENTS ARE ANGRY AT THE PLAN,|BUT FORGIVING OF THE MAYOR"
+  },
+  "body": {
+   "type": "text",
+   "maxLength": 600,
+   "default": "A generation ago, local fury over the old stadium deal often blurred into distrust of the council. Now, some residents seem ready to separate the plan from the people."
+  }
+ }
+}

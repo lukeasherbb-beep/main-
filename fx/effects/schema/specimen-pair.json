@@ -1,0 +1,58 @@
+{
+ "id": "specimen-pair",
+ "name": "Specimen comparison",
+ "family": "profile",
+ "purpose": "Compare two cutout subjects with shared explanatory text",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 2,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "Frogs"
+  },
+  "subtitle": {
+   "type": "text",
+   "maxLength": 160,
+   "default": "Compare two subjects side by side"
+  },
+  "labels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 2,
+   "pad": 2,
+   "item": {
+    "maxLength": 100
+   },
+   "default": [
+    "",
+    ""
+   ]
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 3,
+   "slots": 2,
+   "required": true,
+   "default": [
+    "assets/original-frog-a.png",
+    "assets/original-frog-b.png"
+   ]
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#161616"
+  }
+ }
+}

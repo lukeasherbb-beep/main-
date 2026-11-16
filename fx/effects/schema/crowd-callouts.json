@@ -1,0 +1,50 @@
+{
+ "id": "crowd-callouts",
+ "name": "Population and callouts",
+ "family": "diagram",
+ "purpose": "Build a group of people and connect explanatory totals",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "labels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 2,
+   "pad": 2,
+   "item": {
+    "maxLength": 100
+   },
+   "default": [
+    "65,000",
+    "140,000"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f4b333"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "number": {
+   "type": "number",
+   "min": 0,
+   "max": 1000000000000000,
+   "required": true,
+   "default": 50
+  }
+ }
+}

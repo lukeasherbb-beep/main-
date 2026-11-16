@@ -1,0 +1,55 @@
+{
+ "id": "legacy-title",
+ "name": "Portrait behind title",
+ "family": "profile",
+ "purpose": "Reveal a portrait against oversized background typography",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 1,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "LEGACY"
+  },
+  "subtitle": {
+   "type": "text",
+   "maxLength": 160,
+   "default": ""
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 3,
+   "slots": 1,
+   "required": true,
+   "default": [
+    "assets/original-person-a.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#157540"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "enter": {
+   "type": "number",
+   "min": 0.03,
+   "max": 0.45,
+   "default": 0.22
+  }
+ }
+}

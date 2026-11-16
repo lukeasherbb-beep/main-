@@ -1,0 +1,71 @@
+{
+ "id": "portrait-bars",
+ "name": "Portrait value bars",
+ "family": "chart",
+ "purpose": "Compare values associated with people or brands",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 3,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "images": {
+   "type": "image_list",
+   "maxItems": 3,
+   "slots": 3,
+   "required": true,
+   "default": [
+    "assets/original-person-a.png",
+    "assets/original-person-a.png",
+    "assets/original-person-b.png"
+   ]
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "prefix": {
+   "type": "text",
+   "maxLength": 8,
+   "default": "$"
+  },
+  "data": {
+   "type": "series_list",
+   "mode": "value",
+   "required": true,
+   "minItems": 1,
+   "maxItems": 3,
+   "needLabel": false,
+   "label": {
+    "maxLength": 40
+   },
+   "number": {
+    "min": 0,
+    "max": 1000000000000
+   },
+   "note": "each entry is {label, value}; replaces the sample data entirely",
+   "default": [
+    {
+     "label": "A",
+     "value": 975000
+    },
+    {
+     "label": "B",
+     "value": 65000000
+    },
+    {
+     "label": "C",
+     "value": 160000000
+    }
+   ]
+  }
+ }
+}

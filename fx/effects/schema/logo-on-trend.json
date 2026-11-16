@@ -1,0 +1,108 @@
+{
+ "id": "logo-on-trend",
+ "name": "Logo follows a trend",
+ "family": "chart",
+ "purpose": "Move a replaceable brand mark along a data line",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 1,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": ""
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 3,
+   "slots": 1,
+   "required": true,
+   "default": [
+    "assets/mark.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#a4ef3e"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  },
+  "prefix": {
+   "type": "text",
+   "maxLength": 8,
+   "default": ""
+  },
+  "suffix": {
+   "type": "text",
+   "maxLength": 12,
+   "default": ""
+  },
+  "data": {
+   "type": "series_list",
+   "mode": "values",
+   "required": true,
+   "minItems": 1,
+   "maxItems": 1,
+   "needLabel": true,
+   "label": {
+    "maxLength": 40
+   },
+   "number": {
+    "min": 0,
+    "max": 1000000000
+   },
+   "values": {
+    "minItems": 2,
+    "maxItems": 24
+   },
+   "note": "each series is {label, values:[numbers]}; replaces the sample data entirely",
+   "default": [
+    {
+     "label": "",
+     "values": [
+      0,
+      50,
+      28,
+      95,
+      40,
+      107
+     ]
+    }
+   ]
+  },
+  "axisLabels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 8,
+   "item": {
+    "maxLength": 24
+   },
+   "default": [
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+   ]
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "id": "paper-typewriter",
+ "name": "Paper typewriter",
+ "family": "article",
+ "purpose": "Reveal editable type on a moving sheet of paper",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "Book History"
+  }
+ }
+}

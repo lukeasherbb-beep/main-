@@ -1,0 +1,63 @@
+{
+ "id": "ranked-bars",
+ "name": "Ranked bars",
+ "family": "chart",
+ "purpose": "Compare ordered values with labelled bars",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "Top Countries by Sample Score"
+  },
+  "data": {
+   "type": "series_list",
+   "mode": "value",
+   "required": true,
+   "minItems": 1,
+   "maxItems": 5,
+   "needLabel": true,
+   "label": {
+    "maxLength": 40
+   },
+   "number": {
+    "min": 0,
+    "max": 100
+   },
+   "note": "each entry is {label, value}; replaces the sample data entirely",
+   "default": [
+    {
+     "label": "United States",
+     "value": 90
+    },
+    {
+     "label": "United Kingdom",
+     "value": 79
+    },
+    {
+     "label": "Germany",
+     "value": 69
+    },
+    {
+     "label": "France",
+     "value": 58
+    },
+    {
+     "label": "Japan",
+     "value": 47
+    }
+   ]
+  }
+ }
+}

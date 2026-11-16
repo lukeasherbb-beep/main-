@@ -1,0 +1,50 @@
+{
+ "id": "press-stack",
+ "name": "Stack of press clippings",
+ "family": "article",
+ "purpose": "Build a stack of editable source articles and highlight a headline",
+ "duration": {
+  "default": 10,
+  "min": 5,
+  "max": 30
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "WHY FEARS OF A SAMPLE MARKET BUBBLE ARE GROWING"
+  },
+  "body": {
+   "type": "text",
+   "maxLength": 600,
+   "default": "Observers are looking closely at the rapid growth of a made-up industry. Fresh products have attracted large sums, and some experts worry about what comes next."
+  },
+  "label": {
+   "type": "text",
+   "maxLength": 80,
+   "default": "NEWS WIRE"
+  },
+  "labels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 4,
+   "pad": 4,
+   "item": {
+    "maxLength": 100
+   },
+   "default": [
+    "NEWS WIRE",
+    "The Daily Sample",
+    "NEWS",
+    "NEWS WIRE"
+   ]
+  }
+ }
+}

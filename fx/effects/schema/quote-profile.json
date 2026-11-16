@@ -1,0 +1,60 @@
+{
+ "id": "quote-profile",
+ "name": "Portrait quotation",
+ "family": "profile",
+ "purpose": "Attribute an editable quote to a visible subject",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 1,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "Sample attribution"
+  },
+  "subtitle": {
+   "type": "text",
+   "maxLength": 160,
+   "default": "Fictional portrait · sample quote"
+  },
+  "body": {
+   "type": "text",
+   "maxLength": 600,
+   "default": "Replace this sample quotation with your own sourced text."
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 3,
+   "slots": 1,
+   "required": true,
+   "default": [
+    "assets/original-person-a.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#ffe738"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#161616"
+  },
+  "enter": {
+   "type": "number",
+   "min": 0.03,
+   "max": 0.45,
+   "default": 0.22
+  }
+ }
+}

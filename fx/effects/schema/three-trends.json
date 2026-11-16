@@ -1,0 +1,121 @@
+{
+ "id": "three-trends",
+ "name": "Three growth curves",
+ "family": "chart",
+ "purpose": "Compare three editable data series",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "CHART TITLE HERE"
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#ba5258"
+  },
+  "secondary": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#bf843a"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#161616"
+  },
+  "prefix": {
+   "type": "text",
+   "maxLength": 8,
+   "default": ""
+  },
+  "suffix": {
+   "type": "text",
+   "maxLength": 12,
+   "default": ""
+  },
+  "data": {
+   "type": "series_list",
+   "mode": "values",
+   "required": true,
+   "minItems": 3,
+   "maxItems": 3,
+   "needLabel": true,
+   "label": {
+    "maxLength": 40
+   },
+   "number": {
+    "min": 0,
+    "max": 1000000000
+   },
+   "values": {
+    "minItems": 2,
+    "maxItems": 24
+   },
+   "note": "each series is {label, values:[numbers]}; replaces the sample data entirely",
+   "default": [
+    {
+     "label": "FIRST",
+     "values": [
+      15,
+      22,
+      36,
+      58,
+      95,
+      153
+     ]
+    },
+    {
+     "label": "SECOND",
+     "values": [
+      10,
+      18,
+      30,
+      47,
+      81,
+      131
+     ]
+    },
+    {
+     "label": "THIRD",
+     "values": [
+      2,
+      8,
+      20,
+      38,
+      63,
+      112
+     ]
+    }
+   ]
+  },
+  "axisLabels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 8,
+   "item": {
+    "maxLength": 24
+   },
+   "default": [
+    "1990",
+    "1995",
+    "2000",
+    "2005",
+    "2015",
+    "2025"
+   ]
+  }
+ }
+}

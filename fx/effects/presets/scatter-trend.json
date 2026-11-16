@@ -1,0 +1,96 @@
+{
+ "template": "scatter-trend",
+ "title": "Generated Chart",
+ "subtitle": "",
+ "body": "Every detail contributes to the bigger picture. Follow the evidence, compare the possibilities, and discover what changes next.",
+ "label": "",
+ "labels": [],
+ "images": [
+  "assets/original-highland.png",
+  "assets/original-highland.png",
+  "assets/landscape-2.png",
+  "assets/original-highland.png",
+  "assets/original-highland.png",
+  "assets/original-highland.png"
+ ],
+ "backgroundImage": "",
+ "accent": "#222222",
+ "secondary": "#d95765",
+ "background": "#eeeeeb",
+ "foreground": "#161616",
+ "theme": "dark",
+ "font": "Anton",
+ "duration": 6,
+ "enter": 0.22,
+ "exit": 0,
+ "motion": 1,
+ "transparent": false,
+ "number": 73,
+ "prefix": "",
+ "suffix": "",
+ "yearStart": 1995,
+ "yearEnd": 2026,
+ "chapter": "01",
+ "highlight": "bigger picture",
+ "country": "United States of America",
+ "countries": [
+  "France",
+  "Germany",
+  "Italy"
+ ],
+ "mapBounds": [
+  -135,
+  15,
+  45,
+  65
+ ],
+ "points": [
+  [
+   -122.4,
+   37.8
+  ],
+  [
+   -74,
+   40.7
+  ],
+  [
+   2.35,
+   48.86
+  ]
+ ],
+ "pointLabels": [
+  "San Francisco",
+  "New York",
+  "Paris"
+ ],
+ "focusX": 0.5,
+ "focusY": 0.45,
+ "zoom": 1.7,
+ "fit": "cover",
+ "data": [
+  {
+   "label": "Value",
+   "values": [
+    4,
+    16,
+    28,
+    39,
+    53,
+    68
+   ]
+  }
+ ],
+ "axisLabels": [
+  "2000",
+  "2005",
+  "2010",
+  "2015",
+  "2020",
+  "2025"
+ ],
+ "unit": "",
+ "mediaStart": 0,
+ "crops": [],
+ "backdrop": "white",
+ "autoFit": true
+}

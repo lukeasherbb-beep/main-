@@ -1,0 +1,94 @@
+{
+ "id": "scatter-trend",
+ "name": "Points to trend",
+ "family": "chart",
+ "purpose": "Build data points and a connecting trend",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "Generated Chart"
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#222222"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#161616"
+  },
+  "prefix": {
+   "type": "text",
+   "maxLength": 8,
+   "default": ""
+  },
+  "suffix": {
+   "type": "text",
+   "maxLength": 12,
+   "default": ""
+  },
+  "data": {
+   "type": "series_list",
+   "mode": "values",
+   "required": true,
+   "minItems": 1,
+   "maxItems": 1,
+   "needLabel": true,
+   "label": {
+    "maxLength": 40
+   },
+   "number": {
+    "min": 0,
+    "max": 1000000000
+   },
+   "values": {
+    "minItems": 2,
+    "maxItems": 24
+   },
+   "note": "each series is {label, values:[numbers]}; replaces the sample data entirely",
+   "default": [
+    {
+     "label": "Value",
+     "values": [
+      4,
+      16,
+      28,
+      39,
+      53,
+      68
+     ]
+    }
+   ]
+  },
+  "axisLabels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 8,
+   "item": {
+    "maxLength": 24
+   },
+   "default": [
+    "2000",
+    "2005",
+    "2010",
+    "2015",
+    "2020",
+    "2025"
+   ]
+  }
+ }
+}

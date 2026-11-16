@@ -1,0 +1,41 @@
+{
+ "id": "circled-caption",
+ "name": "Circled identity label",
+ "family": "title",
+ "purpose": "Identify a visible subject with an animated circled name",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "Fictional portrait"
+  },
+  "backgroundImage": {
+   "type": "image",
+   "required": true,
+   "default": "assets/original-person-b.png"
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#acc233"
+  },
+  "backgroundFocusY": {
+   "type": "number",
+   "min": 0,
+   "max": 1,
+   "default": 0
+  }
+ }
+}

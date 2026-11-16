@@ -1,0 +1,44 @@
+{
+ "id": "article-zoom",
+ "name": "Article focus",
+ "family": "article",
+ "purpose": "Push into a source-style image and highlighted paragraph",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 1,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "body": {
+   "type": "text",
+   "maxLength": 600,
+   "default": "A SPOKESPERSON SAYS THE TEAM HAS FOUND AND LOGGED A COLLECTION OF 14,000 SAMPLE ITEMS WORTH CLOSE TO $2.5 MILLION AT CURRENT RATES."
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 3,
+   "slots": 1,
+   "required": true,
+   "default": [
+    "assets/original-highland.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#ffe738"
+  },
+  "highlight": {
+   "type": "text",
+   "maxLength": 160,
+   "default": "A SPOKESPERSON"
+  }
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "id": "sovereign-profile",
+ "name": "Portrait and territory",
+ "family": "map",
+ "purpose": "Associate a portrait and role with an emphasized territory",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 1,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "subtitle": {
+   "type": "text",
+   "maxLength": 160,
+   "default": "Name and role"
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 3,
+   "slots": 1,
+   "required": true,
+   "default": [
+    "assets/original-person-a.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#b31d34"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  },
+  "enter": {
+   "type": "number",
+   "min": 0.03,
+   "max": 0.45,
+   "default": 0.22
+  },
+  "country": {
+   "type": "country",
+   "required": true,
+   "default": "United Kingdom"
+  }
+ }
+}

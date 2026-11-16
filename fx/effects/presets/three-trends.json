@@ -1,0 +1,118 @@
+{
+ "template": "three-trends",
+ "title": "CHART TITLE HERE",
+ "subtitle": "",
+ "body": "Every detail contributes to the bigger picture. Follow the evidence, compare the possibilities, and discover what changes next.",
+ "label": "",
+ "labels": [],
+ "images": [
+  "assets/original-highland.png",
+  "assets/original-highland.png",
+  "assets/landscape-2.png",
+  "assets/original-highland.png",
+  "assets/original-highland.png",
+  "assets/original-highland.png"
+ ],
+ "backgroundImage": "",
+ "accent": "#ba5258",
+ "secondary": "#bf843a",
+ "background": "#eeeeeb",
+ "foreground": "#161616",
+ "theme": "dark",
+ "font": "Anton",
+ "duration": 6,
+ "enter": 0.22,
+ "exit": 0,
+ "motion": 1,
+ "transparent": false,
+ "number": 73,
+ "prefix": "",
+ "suffix": "",
+ "yearStart": 1995,
+ "yearEnd": 2026,
+ "chapter": "01",
+ "highlight": "bigger picture",
+ "country": "United States of America",
+ "countries": [
+  "France",
+  "Germany",
+  "Italy"
+ ],
+ "mapBounds": [
+  -135,
+  15,
+  45,
+  65
+ ],
+ "points": [
+  [
+   -122.4,
+   37.8
+  ],
+  [
+   -74,
+   40.7
+  ],
+  [
+   2.35,
+   48.86
+  ]
+ ],
+ "pointLabels": [
+  "San Francisco",
+  "New York",
+  "Paris"
+ ],
+ "focusX": 0.5,
+ "focusY": 0.45,
+ "zoom": 1.7,
+ "fit": "cover",
+ "data": [
+  {
+   "label": "FIRST",
+   "values": [
+    15,
+    22,
+    36,
+    58,
+    95,
+    153
+   ]
+  },
+  {
+   "label": "SECOND",
+   "values": [
+    10,
+    18,
+    30,
+    47,
+    81,
+    131
+   ]
+  },
+  {
+   "label": "THIRD",
+   "values": [
+    2,
+    8,
+    20,
+    38,
+    63,
+    112
+   ]
+  }
+ ],
+ "axisLabels": [
+  "1990",
+  "1995",
+  "2000",
+  "2005",
+  "2015",
+  "2025"
+ ],
+ "unit": "",
+ "mediaStart": 0,
+ "crops": [],
+ "backdrop": "white",
+ "autoFit": true
+}

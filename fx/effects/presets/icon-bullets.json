@@ -1,0 +1,149 @@
+{
+ "template": "icon-bullets",
+ "title": "",
+ "subtitle": "",
+ "body": "Every detail contributes to the bigger picture. Follow the evidence, compare the possibilities, and discover what changes next.",
+ "label": "",
+ "labels": [
+  "TEXT 1",
+  "TEXT 2",
+  "TEXT 3"
+ ],
+ "images": [
+  "assets/original-highland.png",
+  "assets/original-highland.png",
+  "assets/landscape-2.png",
+  "assets/original-highland.png",
+  "assets/original-highland.png",
+  "assets/original-highland.png"
+ ],
+ "backgroundImage": "",
+ "accent": "#ffe738",
+ "secondary": "#d95765",
+ "background": "#151515",
+ "foreground": "#f3f1e9",
+ "theme": "dark",
+ "font": "Anton",
+ "duration": 6,
+ "enter": 0.22,
+ "exit": 0,
+ "motion": 1,
+ "transparent": false,
+ "number": 73,
+ "prefix": "",
+ "suffix": "",
+ "yearStart": 1995,
+ "yearEnd": 2026,
+ "chapter": "01",
+ "highlight": "bigger picture",
+ "country": "United States of America",
+ "countries": [
+  "France",
+  "Germany",
+  "Italy"
+ ],
+ "mapBounds": [
+  -135,
+  15,
+  45,
+  65
+ ],
+ "points": [
+  [
+   -122.4,
+   37.8
+  ],
+  [
+   -74,
+   40.7
+  ],
+  [
+   2.35,
+   48.86
+  ]
+ ],
+ "pointLabels": [
+  "San Francisco",
+  "New York",
+  "Paris"
+ ],
+ "focusX": 0.5,
+ "focusY": 0.45,
+ "zoom": 1.7,
+ "fit": "cover",
+ "data": [
+  {
+   "label": "North",
+   "values": [
+    14,
+    22,
+    36,
+    42,
+    66,
+    82
+   ],
+   "value": 82
+  },
+  {
+   "label": "Central",
+   "values": [
+    72,
+    64,
+    52,
+    46,
+    30,
+    20
+   ],
+   "value": 62
+  },
+  {
+   "label": "South",
+   "values": [
+    8,
+    12,
+    24,
+    27,
+    40,
+    55
+   ],
+   "value": 46
+  },
+  {
+   "label": "East",
+   "values": [
+    12,
+    19,
+    25,
+    31,
+    38,
+    46
+   ],
+   "value": 35
+  },
+  {
+   "label": "West",
+   "values": [
+    5,
+    10,
+    18,
+    21,
+    25,
+    30
+   ],
+   "value": 24
+  }
+ ],
+ "axisLabels": [
+  "2021",
+  "2022",
+  "2023",
+  "2024",
+  "2025",
+  "2026"
+ ],
+ "unit": "",
+ "mediaStart": 0,
+ "crops": [],
+ "backdrop": "black",
+ "autoFit": true
+}

@@ -1,0 +1,57 @@
+{
+ "id": "falling-subjects",
+ "name": "Falling subjects title",
+ "family": "profile",
+ "purpose": "Move replaceable objects through depth behind a title",
+ "duration": {
+  "default": 6,
+  "min": 3,
+  "max": 18
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 3,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "SUBJECTS"
+  },
+  "subtitle": {
+   "type": "text",
+   "maxLength": 160,
+   "default": ""
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 3,
+   "slots": 3,
+   "required": true,
+   "default": [
+    "assets/object.png",
+    "assets/object.png",
+    "assets/object.png"
+   ]
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#f3f1e9"
+  },
+  "motion": {
+   "type": "number",
+   "min": 0,
+   "max": 2,
+   "default": 1
+  }
+ }
+}

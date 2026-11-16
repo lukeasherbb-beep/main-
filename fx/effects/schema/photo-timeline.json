@@ -1,0 +1,60 @@
+{
+ "id": "photo-timeline",
+ "name": "Travelling photo timeline",
+ "family": "gallery",
+ "purpose": "Move through successive illustrated milestones",
+ "duration": {
+  "default": 8,
+  "min": 4,
+  "max": 24
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 6,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "labels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 5,
+   "pad": 5,
+   "item": {
+    "maxLength": 100
+   },
+   "default": [
+    "FIRST TEXT",
+    "SECOND TEXT",
+    "THIRD TEXT",
+    "FOURTH TEXT",
+    "FIFTH TEXT"
+   ]
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 6,
+   "slots": 6,
+   "required": true,
+   "default": [
+    "assets/original-highland.png",
+    "assets/original-highland.png",
+    "assets/original-highland.png",
+    "assets/original-highland.png",
+    "assets/original-highland.png",
+    "assets/original-highland.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#bd292e"
+  },
+  "background": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#151515"
+  }
+ }
+}

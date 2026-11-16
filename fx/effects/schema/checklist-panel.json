@@ -1,0 +1,55 @@
+{
+ "id": "checklist-panel",
+ "name": "Checklist panel",
+ "family": "diagram",
+ "purpose": "Bring a checklist into footage and tick items in sequence",
+ "duration": {
+  "default": 4,
+  "min": 2,
+  "max": 12
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 0,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "title": {
+   "type": "text",
+   "maxLength": 120,
+   "default": "BULLET POINT OVERLAY"
+  },
+  "labels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 3,
+   "pad": 3,
+   "item": {
+    "maxLength": 100
+   },
+   "default": [
+    "Key takeaway one",
+    "Key takeaway two",
+    "Key takeaway three"
+   ]
+  },
+  "backgroundImage": {
+   "type": "image",
+   "required": true,
+   "default": "assets/original-highland.png"
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#819a45"
+  },
+  "enter": {
+   "type": "number",
+   "min": 0.03,
+   "max": 0.45,
+   "default": 0.22
+  }
+ }
+}

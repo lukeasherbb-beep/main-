@@ -1,0 +1,81 @@
+{
+ "id": "wealth-network",
+ "name": "Subject and brand orbit",
+ "family": "diagram",
+ "purpose": "Connect a portrait to brands and an editable total",
+ "duration": {
+  "default": 9.5,
+  "min": 5,
+  "max": 29
+ },
+ "fps": {
+  "default": 30,
+  "min": 10,
+  "max": 60
+ },
+ "imageSlots": 5,
+ "notes": "Image paths are relative to the folder holding the overrides file. Fewer images than the layout has: they repeat. Keys marked required have no usable sample figure and must be supplied. Text may use \"|\" as a line break where the sample does.",
+ "keys": {
+  "labels": {
+   "type": "text_list",
+   "minItems": 1,
+   "maxItems": 4,
+   "pad": 4,
+   "item": {
+    "maxLength": 100
+   },
+   "default": [
+    "Brand A",
+    "Brand B",
+    "Brand C",
+    "Brand D"
+   ]
+  },
+  "images": {
+   "type": "image_list",
+   "maxItems": 6,
+   "slots": 5,
+   "required": true,
+   "default": [
+    "assets/original-person-a.png",
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png",
+    "assets/mark.png"
+   ]
+  },
+  "accent": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#41875b"
+  },
+  "foreground": {
+   "type": "color",
+   "format": "#rrggbb",
+   "default": "#161616"
+  },
+  "enter": {
+   "type": "number",
+   "min": 0.03,
+   "max": 0.45,
+   "default": 0.22
+  },
+  "number": {
+   "type": "number",
+   "min": 0,
+   "max": 1000000000000000,
+   "required": true,
+   "default": 1100000000000
+  },
+  "prefix": {
+   "type": "text",
+   "maxLength": 8,
+   "default": "$"
+  },
+  "suffix": {
+   "type": "text",
+   "maxLength": 12,
+   "default": ""
+  }
+ }
+}
