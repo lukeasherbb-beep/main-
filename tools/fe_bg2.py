@@ -341,9 +341,16 @@ def torn_panels():
             im.paste(st, (0, y), st)
         ov = Image.new("RGBA", (W, H))
         d = ImageDraw.Draw(ov)
-        for k in range(7):  # thin light streaks sliding diagonally across the panels
-            x = (k * 330 + ph * 330 * 2) % 2310 - 200
-            d.line([(x, 860), (x + 180, 230)], fill=GOLD_DIM + (90,), width=3)
+        lines = Image.new("RGBA", (W, H))
+        ld = ImageDraw.Draw(lines)
+        for k in range(14):  # gold streaks sliding diagonally across the paper panels
+            x = (k * 165 + ph * 165 * 2) % 2310 - 200
+            wdt = (14, 6, 10, 4)[k % 4]
+            ld.line([(x, 900), (x + 200, 180)], fill=tuple(GOLD.astype(int)) + ((235, 190, 220, 170)[k % 4],), width=wdt)
+        la = np.asarray(lines).copy()
+        la[..., 3] = (la[..., 3] * cols).astype(np.uint8)  # only on the paper
+        lines = Image.fromarray(la, "RGBA")
+        im.paste(lines, (0, 0), lines)
         for k, (x, y) in enumerate(dots):
             a = int(120 + 135 * (0.5 + 0.5 * math.sin(2 * math.pi * (ph * 2 - k / 9))))
             d.ellipse([x - 5, y - 5, x + 5, y + 5], fill=tuple(GOLD.astype(int)) + (a,))
