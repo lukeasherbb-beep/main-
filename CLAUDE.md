@@ -10,7 +10,7 @@ Claude Code makes this channel's videos. Read this file first; it holds the deci
 - Brand color: #C48E16 (gold).
 - FE logo cover for the first 4 seconds.
 - No section headers in TTS scripts.
-- Clips and images sit in white-framed boxes (with drop shadow) on a moving background, NOT full screen (user, Nov 16; this reverses the earlier full-screen rule).
+- Clips and images sit in gold-framed boxes (#C48E16 outline, with drop shadow) on a moving background, NOT full screen (user, Nov 16; this reverses the earlier full-screen rule).
 - Clips play a big role: ~2.5 min of LET IT PLAY time where narration stops.
 - Mix real clips with FE cards and Faceless Studio template graphics.
 - Source labels readable on mobile.

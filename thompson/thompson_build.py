@@ -351,7 +351,7 @@ def render_item(args):
             card = card_image(v["marker"], v["dark"])
         s = box_scale(v, i)
         cw, ch = int(1920 * s) // 2 * 2, int(1080 * s) // 2 * 2
-        panel = Image.new("RGB", (cw + 16, ch + 16), (245, 245, 245))  # white frame around the card
+        panel = Image.new("RGB", (cw + 16, ch + 16), (196, 142, 22))  # gold frame around the card
         panel.paste(card.resize((cw, ch), Image.LANCZOS), (8, 8))
         panel.save(png)
         bg = os.path.join(ASSETS, "bg_dark.mp4" if v["dark"] else "bg_gold.mp4")
@@ -370,7 +370,7 @@ def render_item(args):
         start = offset % max(src_dur - 0.5, 0.1) if src_dur > dur + 0.5 else 0
         # every clip sits in a white-framed box on the moving background (user's choice, Nov 16)
         size = f"{(1500, 1300, 1400)[i % 3]}:-2" if aspect(v["file"]) >= 1.5 else f"-2:{(900, 820, 860)[i % 3]}"
-        fcx = (f"[0:v]scale={size},fps={FPS},setsar=1,pad=iw+16:ih+16:8:8:color=0xF5F5F5[v];"
+        fcx = (f"[0:v]scale={size},fps={FPS},setsar=1,pad=iw+16:ih+16:8:8:color=0xC48E16[v];"
                f"[2:v]fps={FPS},setsar=1[b];[b][v]overlay=(W-w)/2:(H-h)/2[bv];[bv][1:v]overlay=0:0[o]")
         ins = ["-stream_loop", "-1", "-i", os.path.join(ASSETS, "bg_gold.mp4")]
         run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-ss", f"{start:.3f}", "-i", v["file"],
