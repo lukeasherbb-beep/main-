@@ -10,7 +10,7 @@ Claude Code makes this channel's videos. Read this file first; it holds the deci
 - Brand color: #C48E16 (gold).
 - FE logo cover for the first 4 seconds.
 - No section headers in TTS scripts.
-- All clips full screen, no background.
+- Clips and images sit in white-framed boxes (with drop shadow) on a moving background, NOT full screen (user, Nov 16; this reverses the earlier full-screen rule).
 - Clips play a big role: ~2.5 min of LET IT PLAY time where narration stops.
 - Mix real clips with FE cards and Faceless Studio template graphics.
 - Source labels readable on mobile.
@@ -101,4 +101,5 @@ The build version's narration must stay word-for-word identical to the TTS versi
 - `fe_logo_intro.mp4`: 4 s logo ident in the Full Mount style (scratched dark board, gold plus clusters, grey octagon, paper corner, logo slam + shine, corner bug) with the riser underneath; the logo lands on the riser peak at 1.7 s. Rebuild: `python3 tools/fe_logo_intro.py assets/fe_logo_intro.mp4 4`. Approved look pending; not yet used in the Thompson build.
 - `bg_gold.mp4` (chevrons going down) and `bg_dark.mp4` (octagons): card backgrounds, both with a faint FE logo watermark.
 - `sfx/`: sound effects cut from a "Top 10 sound effects for creators" TikTok (@sasvisuals) the user supplied: whoosh, pop, click, camera_flash, keyboard_typing, ding, riser (intro), bass_drop, chime, glitch. Use them for transitions and hits in future videos (e.g. whoosh on card whip-ins, bass_drop on big reveals, glitch on chapter cuts). Their original licence is unknown.
+- `bg_torn_split.mp4`, `bg_brush_chevrons.mp4`, `bg_gradient_streak.mp4`, `bg_torn_panels.mp4` (`tools/fe_bg2.py`, 8 s loops): second background set modelled on Full Mount / MMA Talk / MMA Zone references the user sent, recoloured to FE gold. Pairing: torn_split for wide clips and photos, brush_chevrons for square clips, gradient_streak and torn_panels for vertical (phone/interview) clips. `bg_preview_reel.mp4` shows all six with sample boxes. Not yet used by the Thompson build.
 - Box sizes vary by card type (data cards large, titles/quotes/moments smaller and off-center); the logo is never boxed.
