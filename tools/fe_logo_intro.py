@@ -1,6 +1,7 @@
 """FE logo intro (Full Mount-style ident), standalone clip.
 
 Usage: python3 fe_logo_intro.py OUT.mp4 [SECONDS]
+Audio: assets/sfx/riser.wav, whose peak (~1.7 s) lands on the logo impact (IMPACT).
 Dark scratched backdrop, gold plus-sign clusters, grey octagon outline, light paper corner,
 the FE logo punched in at center with a shine sweep, and a small logo bug bottom-right.
 """
@@ -14,6 +15,7 @@ from PIL import Image, ImageDraw, ImageFilter
 
 W, H, FPS = 1920, 1080, 30
 GOLD = (196, 142, 22)
+IMPACT = 1.7  # logo lands on the riser peak
 ASSETS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets")
 rng = np.random.default_rng(11)
 
@@ -69,7 +71,7 @@ def paper_corner():
 
 def plus_cluster(spec):
     """spec: list of (x, y). Returns positions with a random pop-in delay each."""
-    return [(x, y, rng.uniform(0.15, 0.9), rng.uniform(0, 1)) for x, y in spec]
+    return [(x, y, rng.uniform(0.2, IMPACT - 0.2), rng.uniform(0, 1)) for x, y in spec]
 
 
 def grid(x0, y0, cols, rows, keep, step=44):
@@ -110,7 +112,7 @@ def main():
         ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(ov)
         # octagon outline, top right: draws in then rotates slowly
-        ok = min(1, t / 0.5)
+        ok = min(1, max(0, (t - 0.3) / 0.6))
         octagon(d, 1600, 200, 150 * ease_out_back(ok, 1.4) if ok > 0 else 0, 0.35 + t * 0.12, (70, 70, 74, 255), 18)
         # plus clusters: each pops in on its own delay, then gently flickers
         for pts in (tl, br):
@@ -126,13 +128,13 @@ def main():
                 d.line([(x, y - s), (x, y + s)], fill=col, width=5)
         fr.paste(ov, (0, 0), ov)
         # logo: punch in with overshoot, slight shake on impact, then a slow push
-        lk = min(1, max(0, (t - 0.2) / 0.45))
+        lk = min(1, max(0, (t - (IMPACT - 0.45)) / 0.45))
         if lk > 0:
-            sc = (0.55 + 0.45 * ease_out_back(lk, 2.2)) * (1 + 0.012 * max(0, t - 0.65))
+            sc = (0.55 + 0.45 * ease_out_back(lk, 2.2)) * (1 + 0.012 * max(0, t - IMPACT))
             lw = max(2, int(logo.width * sc))
             lh = max(2, int(logo.height * sc))
             im = logo.resize((lw, lh), Image.LANCZOS)
-            sweep = (t - 1.1) / 0.7  # shine sweep across the logo
+            sweep = (t - IMPACT - 0.45) / 0.7  # shine sweep across the logo
             if 0 < sweep < 1:
                 arr = np.asarray(im).astype(np.float32)
                 xs = np.arange(lw)[None, :] + np.arange(lh)[:, None] * 0.5
@@ -143,14 +145,14 @@ def main():
                 a = np.asarray(im).copy()
                 a[..., 3] = (a[..., 3] * min(1, lk * 2.5)).astype(np.uint8)
                 im = Image.fromarray(a, "RGBA")
-            shake = 6 * math.exp(-(t - 0.65) * 14) * math.sin(t * 90) if t > 0.65 else 0
+            shake = 8 * math.exp(-(t - IMPACT) * 14) * math.sin(t * 90) if t > IMPACT else 0
             fr.paste(im, (int((W - lw) / 2 + shake), int((H - lh) / 2 - 20)), im)
         # impact flash
-        if 0.6 < t < 0.85:
-            fl = 1 - (t - 0.6) / 0.25
+        if IMPACT - 0.03 < t < IMPACT + 0.25:
+            fl = 1 - (t - IMPACT + 0.03) / 0.28
             fr = Image.blend(fr, Image.new("RGB", (W, H), (255, 225, 150)), 0.22 * fl)
         # small logo bug, bottom right
-        bk = min(1, max(0, (t - 0.9) / 0.3))
+        bk = min(1, max(0, (t - IMPACT - 0.3) / 0.3))
         if bk > 0:
             b = bug.copy()
             arr = np.asarray(b).copy()
@@ -163,6 +165,14 @@ def main():
         proc.stdin.write(fr.tobytes())
     proc.stdin.close()
     proc.wait()
+    riser = os.path.join(ASSETS, "sfx", "riser.wav")
+    if os.path.exists(riser):
+        tmp = out + ".tmp.mp4"
+        os.replace(out, tmp)
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", tmp, "-i", riser, "-map", "0:v", "-map", "1:a", "-c:v", "copy",
+                        "-c:a", "aac", "-b:a", "192k", "-af", f"apad,atrim=0:{secs},afade=out:st={secs - 0.4}:d=0.4",
+                        "-t", str(secs), out], check=True)
+        os.remove(tmp)
     print("wrote", out)
 
 

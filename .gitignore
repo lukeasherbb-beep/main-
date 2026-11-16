@@ -6,6 +6,7 @@ thompson/clips/
 *.wav
 *.mp3
 !assets/*.mp4
+!assets/sfx/*.wav
 # dependencies and caches
 node_modules/
 __pycache__/
