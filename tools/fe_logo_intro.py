@@ -36,20 +36,20 @@ def keyed_logo(size):
     return Image.fromarray(np.dstack([a.astype(np.uint8), alpha]), "RGBA")
 
 
-def backdrop():
-    """Near-black grungy board: noise, scratches, faint panel lines, vignette."""
+def backdrop(scratches=True):
+    """Near-black grungy board: noise, optional scratches and faint panel lines, vignette."""
     base = np.full((H, W), 22.0, dtype=np.float32)
     n = Image.fromarray((rng.random((H // 4, W // 4)) * 255).astype(np.uint8)).resize((W, H), Image.BICUBIC)
     base += (np.asarray(n, dtype=np.float32) / 255 - 0.5) * 14
     grain = rng.normal(0, 4, (H, W)).astype(np.float32)
     lines = Image.new("L", (W, H), 0)
     d = ImageDraw.Draw(lines)
-    for _ in range(260):  # scratches
+    for _ in range(260 if scratches else 0):  # scratches
         x, y = rng.uniform(0, W), rng.uniform(0, H)
         ang = rng.normal(0, 0.25) + (math.pi / 2 if rng.random() < 0.3 else 0)
         ln = rng.uniform(40, 420)
         d.line([(x, y), (x + ln * math.cos(ang), y + ln * math.sin(ang))], fill=int(rng.uniform(10, 40)), width=1)
-    for _ in range(14):  # faint panel/frame lines like a worn print
+    for _ in range(14 if scratches else 0):  # faint panel/frame lines like a worn print
         x0, y0 = rng.uniform(0, W), rng.uniform(0, H)
         d.rectangle([x0, y0, x0 + rng.uniform(200, 900), y0 + rng.uniform(80, 400)], outline=14, width=2)
     base += np.asarray(lines.filter(ImageFilter.GaussianBlur(0.6)), dtype=np.float32)

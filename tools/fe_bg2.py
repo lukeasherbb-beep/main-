@@ -1,7 +1,7 @@
 """Second set of FE box backgrounds (seamless 8 s loops, 1920x1080, 30 fps).
 
 Usage: python3 fe_bg2.py OUT_DIR [name ...]
-Palette matches the logo intro: scratched near-black board, light grey paper for big shapes,
+Palette matches the logo intro: near-black board (grain, no scratches), light grey paper for big shapes,
 brand gold for plus signs and highlights, dark grey for outlines.
 Styles (layouts modelled on reference channels):
   torn_split      black board torn over a grey paper half, plus-sign grids
@@ -29,7 +29,7 @@ import fe_logo_intro  # noqa: E402  same scratched board as the logo intro
 
 GREY = (70, 70, 74)  # intro octagon grey
 GOLD_DIM = (150, 104, 12)  # intro plus colour over paper
-BOARD = np.asarray(fe_logo_intro.backdrop(), np.float32)
+BOARD = np.asarray(fe_logo_intro.backdrop(scratches=False), np.float32)  # user: no scratches
 
 
 def paper(r, shade=None):
@@ -223,9 +223,6 @@ def brush_chevrons():
     d = ImageDraw.Draw(lines)
     for cx, cy, rad in ((420, 260, 120), (1700, 820, 160), (980, 980, 90), (300, 900, 70)):
         d.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], outline=22, width=3)
-    for k in range(10):
-        x = r.uniform(-400, W)
-        d.line([(x, H), (x + 700, 0)], fill=10, width=2)
     base += np.asarray(lines, np.float32)[..., None]
     # vertical brush splash behind the box (right of centre)
     left = 1180 + brush_edge(r, H, 70) + jagged(r, H, 40)
