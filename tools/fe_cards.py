@@ -3,8 +3,11 @@
 Stand-in for the original build7.py / Faceless Studio templates until those are uploaded.
 Styles: "gold" (chapter headings, major numbers) and "dark" (setbacks, serious passages).
 """
+import os
 import re
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
+
+ASSETS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets")
 
 W, H = 1920, 1080
 GOLD = (196, 142, 22)  # #C48E16
@@ -260,11 +263,20 @@ def stacked(top, bottom, style="dark"):
 
 
 def logo_cover():
-    """Stand-in FE logo cover (replace with logo.png when uploaded)."""
-    im, d, p = base("dark")
-    d.rounded_rectangle((W // 2 - 190, 250, W // 2 + 190, 630), 40, fill=GOLD)
-    d.text((W // 2, 440), "FE", font=font(FONT_X, 250), fill=(11, 11, 13), anchor="mm")
-    spaced(d, (W // 2, 700), "FIGHT ERA", font(FONT_X, 110), (245, 245, 245), spacing=22, anchor="m")
+    """FE logo cover using the real logo file."""
+    im = Image.new("RGB", (W, H), (0, 0, 0))
+    logo_path = os.path.join(ASSETS, "logo_square.png")
+    if os.path.exists(logo_path):
+        logo = Image.open(logo_path).convert("RGBA")
+        logo = logo.resize((640, 640), Image.LANCZOS)
+        x = (W - 640) // 2
+        y = (H - 640) // 2
+        im.paste(logo, (x, y), logo)
+    else:
+        d = ImageDraw.Draw(im)
+        d.rounded_rectangle((W // 2 - 190, 250, W // 2 + 190, 630), 40, fill=GOLD)
+        d.text((W // 2, 440), "FE", font=font(FONT_X, 250), fill=(11, 11, 13), anchor="mm")
+        spaced(d, (W // 2, 700), "FIGHT ERA", font(FONT_X, 110), (245, 245, 245), spacing=22, anchor="m")
     return im
 
 
