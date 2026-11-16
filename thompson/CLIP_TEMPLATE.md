@@ -43,6 +43,8 @@ Not used by the build (skip unless we add them): Till, Luque, Neal, Belal, MSG e
 
 ## B. Images: none were wired into v1 of the video
 
+Received Nov 16: IMG-1 to IMG-5 plus a bonus NMF belt close-up, saved in `thompson/images/` (sources in `sources.csv`). Still open: IMG-6, IMG-7.
+
 These template graphics in the build need photos. Without them they render as plain text cards.
 
 | ID | Photo | Used in | Where |
