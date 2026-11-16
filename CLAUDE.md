@@ -15,6 +15,7 @@ Claude Code makes this channel's videos. Read this file first; it holds the deci
 - Mix real clips with FE cards and Faceless Studio template graphics.
 - Source labels readable on mobile.
 - Never more than 30 s without something new on screen.
+- Transition sounds (user, Nov 16): whoosh on every visual change (as the box flies in), pop when a boxed card lands (0.3 s in). Mixed under the narration by `mix_sfx` in `thompson_build.py` (whoosh gain 0.45, pop 0.35).
 - Dark backgrounds for setbacks and serious passages; gold cards for chapter headings and major numbers.
 - Channel is based in Bowling Green, Kentucky.
 - Voiceover: ElevenLabs, exported as MP3. The user generates it in ElevenLabs and uploads the MP3 (no API key here).

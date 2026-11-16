@@ -386,6 +386,30 @@ def render_item(args):
     return out, wav
 
 
+def load_wav(path):
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-f", "f32le", "-ac", "2", "-ar", "44100", "-"],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.float32).reshape(-1, 2).copy()
+
+
+def mix_sfx(audio_path, events):
+    """Lay transition sound effects (assets/sfx/<name>.wav) over the finished audio track in place."""
+    track = load_wav(audio_path)
+    cache = {}
+    for t, name, gain in events:
+        if name not in cache:
+            cache[name] = load_wav(os.path.join(ASSETS, "sfx", f"{name}.wav"))
+        fx = cache[name] * gain
+        a = int(t * 44100)
+        b = min(a + len(fx), len(track))
+        if a < b:
+            track[a:b] += fx[:b - a]
+    np.clip(track, -1, 1, out=track)
+    p = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-f", "f32le", "-ac", "2", "-ar", "44100", "-i", "-",
+                          "-c:a", "pcm_s16le", audio_path], stdin=subprocess.PIPE)
+    p.communicate(track.tobytes())
+
+
 def main():
     preview = "--preview" in sys.argv
     os.makedirs(SEG, exist_ok=True)
@@ -397,7 +421,7 @@ def main():
     if preview:
         items = [it for it in items if it[0] != "narr" or it[1] < 60]
 
-    jobs, audio_parts, log, out_t, offsets = [], [], [], 0.0, {}
+    jobs, audio_parts, log, out_t, offsets, sfx = [], [], [], 0.0, {}, []
     for i, it in enumerate(items):
         if it[0] == "narr":
             _, t0, t1, v = it
@@ -413,6 +437,11 @@ def main():
         if v["kind"] != "card":
             offsets[v["file"]] = off + frames / FPS
         jobs.append((i, it[0], frames, v, off, it[0] == "brk"))
+        if out_t > 0.05:  # every visual change: whoosh as it flies in, pop when a boxed card lands
+            sfx.append((max(out_t - 0.05, 0), "whoosh", 0.45))
+            boxed = v["kind"] == "card" and not fx_spec(v) and not v.get("marker", "").startswith("[FE LOGO COVER")
+            if boxed:
+                sfx.append((out_t + 0.30, "pop", 0.35))
         log.append(f"{int(out_t // 60)}:{out_t % 60:05.2f}  {frames / FPS:6.2f}s  {it[0]:4}  {v['kind']:5}  {v['desc'][:90]}")
         out_t += frames / FPS
     open(os.path.join(BUILD, "timeline.txt"), "w").write("\n".join(log) + "\n")
@@ -451,6 +480,7 @@ def main():
     open(alst, "w").write("".join(f"file '{w}'\n" for w in parts))
     audio = os.path.join(BUILD, "audio.wav")
     run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", alst, "-c:a", "pcm_s16le", audio])
+    mix_sfx(audio, sfx)
 
     final = os.path.join(BUILD, "thompson_preview.mp4" if preview else "thompson_draft.mp4")
     run(["ffmpeg", "-y", "-v", "error", "-i", silent, "-i", audio, "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
