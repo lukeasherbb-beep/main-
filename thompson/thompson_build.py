@@ -278,7 +278,10 @@ def plan(sents, groups, vo_dur):
         if i == 0 and visuals and "LOGO" in visuals[0].get("marker", ""):
             items.append(("intro", LOGO_SECONDS, visuals.pop(0)))  # logo intro with its riser, before any narration
             if not visuals:
-                visuals = [{"kind": "card", "moment": 0, "marker": "", "dark": False, "desc": "(opening card)", "bg": BG_ORDER[0]}]
+                teaser = find_clips(0)  # clips/00_*.mp4: opening teaser under the first narration
+                visuals = [{"kind": "clip", "file": teaser[0], "label": None, "n": 0, "desc": "(opening teaser)",
+                            "bg": BG_ORDER[0], "dark": False} if teaser else
+                           {"kind": "card", "moment": 0, "marker": "", "dark": False, "desc": "(opening card)", "bg": BG_ORDER[0]}]
         for secs, v in breaks:
             items.append(("brk", q(secs), v))
         if t >= vo_dur:  # markers after the last sentence: end card over a silent tail
