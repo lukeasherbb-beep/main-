@@ -33,6 +33,7 @@ TARGETS = {
     "long (>25 words) %": (15, "≥"),
     "similar-length run": (3, "≤"),
     "MATTR (50-word)": (0.72, "≥"),
+    "questions": (3, "≤"),  # 2-3 direct viewer questions only
 }
 
 

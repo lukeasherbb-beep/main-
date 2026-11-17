@@ -23,6 +23,11 @@ Claude Code makes this channel's videos. Read this file first; it holds the deci
 - Humanization targets: `HUMANIZATION.md`. Run `python3 script_metrics.py <script>` and hit every target before delivering a script.
 - Blocked words and phrases: `blocklist.txt`. Run `python3 check_script.py <script>` on every script before it goes to the user or to ElevenLabs; it must print "Clean". Rewrite any hit naturally instead of swapping in a synonym.
 - Full build pipeline, card helpers, FX template IDs and description format: see `HANDOFF_thompson.md` in this folder (handoff from regular Claude).
+- **Engagement + titles (user, Nov 17, from the competitor study in `competitors/`; applies to every script after Wonderboy):**
+  - Scripts follow the ENGAGEMENT RULES in `SCRIPT_PROMPT.md` Part 2: a one-sentence subscribe ask within the first 30 s; exactly 2-3 direct viewer questions (the only `?` allowed; `script_metrics.py` flags more than 3), each followed by a comment prompt; one clearly worded opinion line per section; a "how the MMA world reacted" passage with 4-6 verified, attributed quotes (exact wording, source link in the research); outro = comment prompt + point to the next video, no promised upload schedule.
+  - Titles: lead with the most viral moment, caps on the action word, stack 2-3 names or hooks with "+" or "!", payoff first. Still ad-safe (rule 7: no "brutal/bloody/destroyed"). Example: "Wonderboy's FINAL Fight Ended EXACTLY Like It Began + Joe Rogan in TEARS".
+  - Deep single-story videos stay the core format (no competitor in the sample does them). A weekly, mostly narrated news roundup is a possible second format later; not daily, and not clip-heavy like Full Mount (reused-content and Content ID risk).
+  - Earlier scripts are in `scripts/` (Topuria, McGregor/Holloway + Rakhmonov, Merab, Perry/Ngannou); competitor transcript notes in `competitors/`.
 - **Niche:** MMA stories, fighter breakdowns, stats, MMA business. Faceless: narration over original visuals, licensed photos and stock B-roll.
 - **Strategy doc:** https://claude.ai/artifact/UmBzVPLzKJgfYCX26dSRcV (niche, policy risks, tool stack, pipeline, 90-day plan).
 - **History:** The user first considered basketball (NBA/college) and dropped it because of footage rights. MMA was chosen next with the same rule: no fight footage.

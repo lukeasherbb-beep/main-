@@ -19,6 +19,8 @@ Research and compile the following:
 * Timeline of major events in chronological order
 * Contrasting viewpoints or controversies if applicable
 * Current status or recent developments
+* How the MMA world reacted: 4-6 exact quotes from named fighters, coaches, pundits or journalists (X posts, interviews), each with the person, the platform, the date and a source link. Copy the wording exactly; mark anything you cannot open and confirm as [UNVERIFIED]
+* 2-3 open debates fans are arguing about (was the decision right, who wins the rematch, greatest of all time), with the facts on each side
 
 CRITICAL RULES:
 
@@ -54,6 +56,15 @@ STRUCTURE:
 * Organized sections that flow logically
 * Natural transition sentences between sections
 * End with a conclusion that ties back to the premise
+* Include a "how the MMA world reacted" passage using 4-6 of the verified quotes from the research, each attributed by name (where it fits the story, usually right after the main event)
+
+ENGAGEMENT RULES (added Nov 17, 2026 after studying Full Mount, MMA Zone and MMA Talk):
+
+* Subscribe ask: one plain sentence right after the premise, within the first 30 seconds (for example, "If you're new here, subscribing helps the channel and costs you nothing.")
+* Viewer questions: exactly 2 or 3 direct questions to the viewer, written as real questions with a question mark, each about one of the open debates in the research, placed at the end of a section or in the outro, each followed by a short comment prompt ("Tell me in the comments.")
+* Opinion: each section may carry one clear line where the narrator takes a side or makes a light aside. Label it as opinion through wording ("I think", "for my money"), never present it as fact
+* Outro: one comment prompt tied to the last viewer question, then point to the next video. Do not promise an upload schedule the channel does not keep
+* These are the only questions allowed in the script; no rhetorical questions anywhere else
 
 CRITICAL ACCURACY RULE: Do NOT add any facts, statistics, dates, numbers, or claims that are not explicitly included in the research above. If the research doesn't provide a specific detail, do not invent one. Use only what has been verified.
 
@@ -87,7 +98,7 @@ This script will be read by AI voice software. Write for smooth spoken delivery:
 * Write in complete, flowing sentences rather than fragments
 * Connect related short ideas with commas instead of periods
 * Avoid one-word sentences and two-word sentences entirely
-* Do not use rhetorical questions
+* Do not use rhetorical questions. Keep the 2-3 direct viewer questions from Part 2 exactly as questions (they are the only ones allowed)
 * Minimize em-dashes as they create awkward pauses
 * Do not use ellipses
 * Vary sentence length naturally between 10-30 words but avoid extremes in either direction
@@ -104,7 +115,7 @@ To avoid AI detection patterns while maintaining TTS quality:
 * Vary how you introduce facts (don't start every sentence with "He" or "She" or "The")
 * Include specific details from the research and position them for emphasis
 * Use natural spoken transitions like "and that's when," "which meant," "but here's the thing," "the result was," "what nobody expected was"
-* Let the narrator have a subtle point of view through word choice rather than stating opinions directly
+* Let the narrator have a point of view through word choice, and keep the one clearly worded opinion line per section from Part 2
 * Combine multiple facts into single flowing sentences where it makes sense
 
 ### 4. REMOVE HEDGING LANGUAGE
@@ -118,7 +129,7 @@ Cut non-committal phrases entirely. State things directly:
 * Cut: "Interestingly enough..."
 
 ### 5. PRESERVE THE INTRO FORMAT
-Keep the direct premise-stating intro from Part 2. Do not convert it into a narrative or storytelling hook. The first two sentences should still clearly state what the video is about.
+Keep the direct premise-stating intro from Part 2. Do not convert it into a narrative or storytelling hook. The first two sentences should still clearly state what the video is about. Keep the subscribe sentence, the viewer questions, the comment prompts and the reaction quotes (quotes stay word for word).
 
 ### 6. PRESERVE TONE AND STYLE
 Match the channel style specified in Part 2. You are making the voice less predictable and more natural, not changing the voice itself.
