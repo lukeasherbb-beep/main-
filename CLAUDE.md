@@ -29,6 +29,7 @@ Claude Code makes this channel's videos. Read this file first; it holds the deci
 
 ## Hard rules
 1. **Claude does not download or rip UFC/broadcast fight footage** from YouTube, UFC Fight Pass, social media or ripper sites. The user sources clips themselves and uploads them; Claude edits what the user supplies. Remind the user once per video that long uncut UFC clips (e.g. LET IT PLAY sections) are the most likely to be claimed or struck: the UFC enforces Content ID aggressively, and 3 strikes delete the channel.
+1b. What Claude MAY download (user discussed Nov 17): openly licensed footage/images (Pixabay, Pexels, Wikimedia CC with attribution) and media kits explicitly offered for editorial use. NOT interviews, press conferences or fight footage from YouTube/TikTok/X/Instagram etc., even when topic-related. The user raised a "7-second grace period for interviews": that is a myth (no safe length in copyright or Content ID); keep interview clips short and surrounded by commentary, but treat them as user-supplied only.
 2. Fight moments are shown with **licensed photos** (Getty Images / Imagn, bought by the user), **original animated diagrams** and **stats graphics**.
 3. Social-media photos of fighters or their families need the owner's permission; skip them otherwise (especially photos of children).
 4. Verify every fact before narration; flag anything unconfirmed.
