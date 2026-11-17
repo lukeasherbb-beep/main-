@@ -13,3 +13,4 @@ __pycache__/
 fx/test/
 # original template packs (licensed, not for redistribution; fx/effects holds the part the build uses)
 vendor/
+!assets/music/*.mp3

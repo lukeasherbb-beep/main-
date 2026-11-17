@@ -33,8 +33,12 @@ CLIPS = os.path.join(HERE, "clips")
 BROLL = "/home/user/wonderboy-broll/pixabay"
 VO = os.path.join(BUILD, "vo.mp3")
 LOGO_SECONDS = 4.0
+UPLOAD_MAX_MB = 390  # largest file that can be sent back through the chat
+LOUDNESS = -14.0  # YouTube's playback level; quieter uploads are never turned up
+MUSIC_DIR = os.environ.get("FE_MUSIC_DIR", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "music"))
+MUSIC_UNDER_VO_DB = -22.0  # music bed level relative to the narration
 TAIL_SECONDS = 4.0
-ENC = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "25", "-pix_fmt", "yuv420p", "-r", str(FPS),
+ENC = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-pix_fmt", "yuv420p", "-r", str(FPS),
        "-video_track_timescale", "15360", "-an"]
 
 ASSETS = os.path.join(HERE, "..", "assets")
@@ -85,6 +89,8 @@ PHOTOS = [
 F_TITLE = "/usr/share/fonts/opentype/inter/InterDisplay-BlackItalic.otf"
 F_KICK = "/usr/share/fonts/opentype/inter/Inter-Bold.otf"
 F_QUOTE = "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf"
+_title = open(os.path.join(HERE, "thompson_build.md")).readline().strip()
+TITLE_CAPTION = _title.split(".")[0][:60] if _title and not _title.startswith("[") else None
 # source labels by clip file name prefix (override LABELS); None = no label
 FILE_LABELS = {"00_": None, "01_": None, "02_": "UFC 334 · Nov 14, 2026", "03a": "UFC feature · Upstate Karate",
                "03b": "Kickboxing era", "12_": "UFC Nashville · March 2019", "15_": "UFC feature · Upstate Karate",
@@ -241,6 +247,7 @@ def plan(sents, groups, vo_dur):
     beats = []  # (time, [breaks], [visuals])
     dark = False
     chapter = 0
+    caption = TITLE_CAPTION
     for idx, markers in groups:
         t = vo_dur if idx >= len(sents) else (0.0 if idx == 0 else q(max(sents[idx]["start"] - 0.12, 0)))
         breaks, visuals = [], []
@@ -251,6 +258,10 @@ def plan(sents, groups, vo_dur):
                 dark = False
             if "chapter-number" in mk:
                 chapter += 1
+                caption = mk.split(" · ", 1)[1].split("]")[0].strip()
+            if mk.startswith("[CAPTION:"):
+                caption = mk[len("[CAPTION:"):].rstrip("]").strip()
+                continue
             bg = BG_ORDER[chapter % len(BG_ORDER)]
             if mk.startswith("[CLIP:") or mk.startswith("[LET IT PLAY:"):
                 n = clip_number(mk)
@@ -260,7 +271,7 @@ def plan(sents, groups, vo_dur):
                     f = files[used.get(n, 0) % len(files)]
                     used[n] = used.get(n, 0) + 1
                     lab = next((l for k, l in FILE_LABELS.items() if os.path.basename(f).startswith(k)), LABELS.get(n))
-                    v = {"kind": "clip", "file": f, "label": lab, "n": n, "desc": mk, "bg": bg, "dark": dark}
+                    v = {"kind": "clip", "file": f, "label": lab, "n": n, "desc": mk, "bg": bg, "dark": dark, "caption": caption}
                     if letplay:
                         secs = float(re.search(r"— (\d+)s", mk).group(1))
                         breaks.append((min(secs, probe(f)[0]), v))
@@ -269,14 +280,14 @@ def plan(sents, groups, vo_dur):
                 else:
                     missing.append(mk)
                     if not letplay:
-                        visuals.append({"kind": "card", "moment": n, "marker": "", "dark": dark, "desc": mk, "bg": bg})
+                        visuals.append({"kind": "card", "moment": n, "marker": "", "dark": dark, "desc": mk, "bg": bg, "caption": caption})
             else:
                 photos = next((specs for key, specs in PHOTOS if key in mk), None)
                 if photos:
                     for spec in photos:
                         visuals.append({"kind": "card", "photo": spec, "marker": mk, "dark": dark, "desc": mk, "bg": bg})
                 else:
-                    visuals.append({"kind": "card", "marker": mk, "dark": dark, "desc": mk, "bg": bg})
+                    visuals.append({"kind": "card", "marker": mk, "dark": dark, "desc": mk, "bg": bg, "caption": caption})
         beats.append((t, breaks, visuals))
     items = []
     last_visual = None
@@ -291,7 +302,7 @@ def plan(sents, groups, vo_dur):
             if not visuals:
                 teaser = find_clips(0)  # clips/00_*.mp4: opening teaser under the first narration
                 visuals = [{"kind": "clip", "file": teaser[0], "label": None, "n": 0, "desc": "(opening teaser)",
-                            "bg": BG_ORDER[0], "dark": False} if teaser else
+                            "bg": BG_ORDER[0], "dark": False, "caption": TITLE_CAPTION} if teaser else
                            {"kind": "card", "moment": 0, "marker": "", "dark": False, "desc": "(opening card)", "bg": BG_ORDER[0]}]
         for secs, v in breaks:
             items.append(("brk", q(secs), v))
@@ -460,6 +471,25 @@ def photo_overlay(spec):
     return c
 
 
+def draw_caption(canvas, text, box_top):
+    """Headline caption centred above the box (in place on an RGBA canvas): what this part of the video is about."""
+    if not text or box_top < 110:
+        return
+    d = ImageDraw.Draw(canvas)
+    size = 44
+    f = ImageFont.truetype(F_TITLE, size)
+    text = text.upper()
+    while d.textlength(text, font=f) > 1240 and size > 28:
+        size -= 2
+        f = ImageFont.truetype(F_TITLE, size)
+    w = int(d.textlength(text, font=f)) + 72
+    h = size + 26
+    x, y = (1920 - w) // 2, max(24, box_top - h - 22)
+    d.rectangle((x, y, x + w, y + h), fill=(10, 10, 12, 235))
+    d.rectangle((x, y + h - 6, x + w, y + h), fill=GOLD + (255,))
+    d.text((1920 // 2, y + (h - 6) // 2), text, font=f, fill=(245, 245, 245, 255), anchor="mm")
+
+
 def label_overlay(label, y):
     """Source label centred under the box (clear of the corner badges)."""
     im = Image.new("RGBA", (1920, 1080), (0, 0, 0, 0))
@@ -542,6 +572,7 @@ def render_item(args):
         panel = Image.new("RGBA", (cw + 16, ch + 16), GOLD + (255,))  # gold frame around the card
         panel.paste(card.resize((cw, ch), Image.LANCZOS), (8, 8))
         canvas.paste(panel, (x0, y0))
+        draw_caption(canvas, v.get("caption"), y0)
         canvas.save(png)
         whip_overlay(i, frames, bg, png, 0, 0, out, side)
     else:
@@ -559,7 +590,9 @@ def render_item(args):
             bw = int(bh * a) // 2 * 2
             bgname = "torn_panels" if a < 0.9 else "brush_chevrons"
         x0, y0 = (1920 - bw - 16) // 2, (1080 - bh - 16) // 2  # always centred
-        label_overlay(v.get("label") if v["kind"] == "clip" else None, y0 + bh + 16 + 14).save(ov)
+        lo = label_overlay(v.get("label") if v["kind"] == "clip" else None, y0 + bh + 16 + 14)
+        draw_caption(lo, v.get("caption"), y0)
+        lo.save(ov)
         sh = os.path.join(SEG, f"{i:03d}_sh.png")
         add_shadow(Image.new("RGBA", (1920, 1080), (0, 0, 0, 0)), (x0, y0, x0 + bw + 16, y0 + bh + 16)).save(sh)
         side = 1 if i % 2 else -1
@@ -585,6 +618,65 @@ def load_wav(path):
     raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-f", "f32le", "-ac", "2", "-ar", "44100", "-"],
                          capture_output=True, check=True).stdout
     return np.frombuffer(raw, np.float32).reshape(-1, 2).copy()
+
+
+def mix_music(audio_path, narr_ranges):
+    """Lay a quiet music bed (assets/music/*, looped in order) under the narration only, with 0.8 s fades in
+    and out; silent during LET IT PLAY breaks, the logo intro and the tail. Skipped when there is no music."""
+    files = sorted(glob.glob(os.path.join(MUSIC_DIR, "*.mp3")) + glob.glob(os.path.join(MUSIC_DIR, "*.wav")))
+    if not files:
+        print("no music in", MUSIC_DIR, "- music bed skipped")
+        return
+    track = load_wav(audio_path)
+    bed = np.concatenate([load_wav(f) for f in files])
+    reps = int(np.ceil(len(track) / len(bed)))
+    bed = np.tile(bed, (reps, 1))[:len(track)]
+    env = np.zeros(len(track), np.float32)
+    ramp = int(0.8 * 44100)
+    for t0, t1 in narr_ranges:
+        a, b = int(t0 * 44100), min(int(t1 * 44100), len(track))
+        if b <= a:
+            continue
+        seg = np.ones(b - a, np.float32)
+        r = min(ramp, (b - a) // 2)
+        seg[:r] = np.linspace(0, 1, r)
+        seg[len(seg) - r:] = np.linspace(1, 0, r)
+        env[a:b] = np.maximum(env[a:b], seg)
+    vo_rms = np.sqrt(np.mean(track[env > 0.99] ** 2)) if (env > 0.99).any() else 0.05
+    bed_rms = np.sqrt(np.mean(bed ** 2)) + 1e-9
+    gain = vo_rms * 10 ** (MUSIC_UNDER_VO_DB / 20) / bed_rms
+    track += bed * gain * env[:, None]
+    np.clip(track, -1, 1, out=track)
+    p = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-f", "f32le", "-ac", "2", "-ar", "44100", "-i", "-",
+                          "-c:a", "pcm_s16le", audio_path], stdin=subprocess.PIPE)
+    p.communicate(track.tobytes())
+
+
+def normalize_loudness(audio_path):
+    """Two-pass loudnorm to YouTube's -14 LUFS (true peak -1 dB)."""
+    r = subprocess.run(["ffmpeg", "-v", "info", "-i", audio_path, "-af",
+                        f"loudnorm=I={LOUDNESS}:TP=-1:LRA=11:print_format=json", "-f", "null", "-"],
+                       capture_output=True, text=True)
+    m = json.loads(r.stderr[r.stderr.rindex("{"):r.stderr.rindex("}") + 1])
+    tmp = audio_path + ".norm.wav"
+    run(["ffmpeg", "-y", "-v", "error", "-i", audio_path, "-af",
+         f"loudnorm=I={LOUDNESS}:TP=-1:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:"
+         f"measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true",
+         "-ar", "44100", "-c:a", "pcm_s16le", tmp])
+    os.replace(tmp, audio_path)
+
+
+def upload_encode(master, out):
+    """The file for YouTube: two-pass x264 at the highest bitrate that still fits UPLOAD_MAX_MB."""
+    dur = probe(master)[0]
+    kbps = min(int(UPLOAD_MAX_MB * 8 * 1024 / dur) - 200, 12000)  # room for 192k audio; 12 Mb/s is plenty
+    log = os.path.join(BUILD, "x264pass")
+    common = ["-c:v", "libx264", "-preset", "slow", "-b:v", f"{kbps}k", "-maxrate", f"{int(kbps * 1.5)}k",
+              "-bufsize", f"{kbps * 3}k", "-pix_fmt", "yuv420p", "-passlogfile", log]
+    run(["ffmpeg", "-y", "-v", "error", "-i", master] + common + ["-pass", "1", "-an", "-f", "mp4", os.devnull])
+    run(["ffmpeg", "-y", "-v", "error", "-i", master] + common +
+        ["-pass", "2", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", out])
+    return kbps
 
 
 def mix_sfx(audio_path, events):
@@ -617,7 +709,7 @@ def fit_clips(items):
         f = v["file"]
         left = probe(f)[0] - used.get(f, 0.0) - 0.1
         slot = t1 - t0
-        card = {"kind": "card", "moment": v["n"], "marker": "", "dark": v.get("dark", False),
+        card = {"kind": "card", "moment": v["n"], "marker": "", "dark": v.get("dark", False), "caption": v.get("caption"),
                 "desc": v["desc"] + " (card after footage ran out)", "bg": v.get("bg", BG_ORDER[0])}
         if v["n"] not in MOMENT:
             card["moment"] = 1
@@ -646,7 +738,7 @@ def main():
     if preview:
         items = [it for it in items if it[0] != "narr" or it[1] < 60]
 
-    jobs, audio_parts, log, out_t, offsets, sfx = [], [], [], 0.0, {}, []
+    jobs, audio_parts, log, out_t, offsets, sfx, narr_ranges = [], [], [], 0.0, {}, [], []
     for i, it in enumerate(items):
         if it[0] == "narr":
             _, t0, t1, v = it
@@ -667,6 +759,11 @@ def main():
             boxed = v["kind"] == "card" and not fx_spec(v) and not v.get("marker", "").startswith("[FE LOGO COVER")
             if boxed:
                 sfx.append((out_t + 0.30, "pop", 0.35))
+        if it[0] == "narr":
+            if narr_ranges and abs(narr_ranges[-1][1] - out_t) < 0.01:
+                narr_ranges[-1][1] = out_t + frames / FPS
+            else:
+                narr_ranges.append([out_t, out_t + frames / FPS])
         log.append(f"{int(out_t // 60)}:{out_t % 60:05.2f}  {frames / FPS:6.2f}s  {it[0]:4}  {v['kind']:5}  {v['desc'][:90]}")
         out_t += frames / FPS
     open(os.path.join(BUILD, "timeline.txt"), "w").write("\n".join(log) + "\n")
@@ -709,11 +806,15 @@ def main():
     audio = os.path.join(BUILD, "audio.wav")
     run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", alst, "-c:a", "pcm_s16le", audio])
     mix_sfx(audio, sfx)
+    mix_music(audio, narr_ranges)
+    normalize_loudness(audio)
 
+    master = os.path.join(BUILD, "thompson_master.mp4")  # near-lossless segments, too big to send
+    run(["ffmpeg", "-y", "-v", "error", "-i", silent, "-i", audio, "-c:v", "copy", "-c:a", "aac", "-b:a", "256k",
+         "-movflags", "+faststart", master])
     final = os.path.join(BUILD, "thompson_preview.mp4" if preview else "thompson_draft.mp4")
-    run(["ffmpeg", "-y", "-v", "error", "-i", silent, "-i", audio, "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
-         "-movflags", "+faststart", final])
-    print("wrote", final, f"{probe(final)[0]:.1f}s")
+    kbps = upload_encode(master, final)
+    print("wrote", final, f"{probe(final)[0]:.1f}s at {kbps} kb/s, {os.path.getsize(final) / 2**20:.0f} MB")
     if missing:
         open(os.path.join(BUILD, "missing_clips.txt"), "w").write("\n".join(missing) + "\n")
 
