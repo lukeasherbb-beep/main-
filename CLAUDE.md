@@ -8,7 +8,8 @@ Claude Code makes this channel's videos. Read this file first; it holds the deci
 
 ## FE video rules (from the user)
 - Brand color: #C48E16 (gold).
-- FE logo cover for the first 4 seconds.
+- Open on the hook (user, Nov 17, from retention data: 30-50% of viewers left in the first 30 s on every video): the first 5 s are the strongest moment, a cold-open clip or a line that states the payoff. The 4 s FE logo intro comes AFTER the hook (about 8-20 s in), never first. Every script starts with a cold-open `[LET IT PLAY: ...]` marker before the logo marker; `thompson_build.py` plays cold open → logo intro → narration.
+- Documentaries run 10-14 minutes (user, Nov 17: the 9-min video held best; 20-25 min ones were under 15% by the midpoint). About 1,500-2,000 words of narration plus LET IT PLAY time.
 - No section headers in TTS scripts.
 - Clips and images sit in gold-framed boxes (#C48E16 outline, with drop shadow) on a moving background, NOT full screen (user, Nov 16; this reverses the earlier full-screen rule).
 - Clips play a big role: ~2.5 min of LET IT PLAY time where narration stops.
@@ -46,9 +47,9 @@ Claude Code makes this channel's videos. Read this file first; it holds the deci
 | | Long-form | Shorts (also TikTok + Reels) |
 |---|---|---|
 | Aspect / size | 16:9, 1920x1080 | 9:16, 1080x1920 |
-| Length | 8-15 min (8+ allows mid-roll ads) | 20-60 s |
+| Length | 10-14 min (8+ allows mid-roll ads; see the 10-14 min rule above) | 20-60 s |
 | Script | 1,200-2,200 words | 60-150 words |
-| Hook | Payoff stated in the first 15-30 s | First 1-2 s |
+| Hook | Cold open + payoff in the first 5 s; logo after | First 1-2 s |
 | Captions | SRT upload, optional burn-in | Big word-by-word burned-in captions |
 
 Write the long script first, then cut 3-5 Shorts from its strongest moments, each re-rendered vertically with its own hook.

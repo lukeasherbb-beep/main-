@@ -283,7 +283,11 @@ def plan(sents, groups, vo_dur):
     for i, (t, breaks, visuals) in enumerate(beats):
         t_next = beats[i + 1][0] if i + 1 < len(beats) else vo_dur
         if i == 0 and visuals and "LOGO" in visuals[0].get("marker", ""):
-            items.append(("intro", LOGO_SECONDS, visuals.pop(0)))  # logo intro with its riser, before any narration
+            # hook first (retention, Nov 17): the cold-open clip plays, THEN the logo intro, then narration
+            for secs, v in breaks:
+                items.append(("brk", q(secs), v))
+            breaks = []
+            items.append(("intro", LOGO_SECONDS, visuals.pop(0)))
             if not visuals:
                 teaser = find_clips(0)  # clips/00_*.mp4: opening teaser under the first narration
                 visuals = [{"kind": "clip", "file": teaser[0], "label": None, "n": 0, "desc": "(opening teaser)",

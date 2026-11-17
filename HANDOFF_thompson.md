@@ -8,7 +8,7 @@ Fight Era (FE) MMA YouTube video about Stephen "Wonderboy" Thompson's career and
 
 ## CHANNEL RULES
 - Brand color: #C48E16 (gold)
-- FE logo cover for first **4 seconds** (not 10)
+- FE logo intro is 4 seconds, and since Nov 17 it plays AFTER the cold-open hook, not first (see CLAUDE.md)
 - No section headers in TTS scripts (TTS voice would read them aloud)
 - **All clips full screen, no background** — clips are NOT framed in a panel; they fill 1920x1080
 - Clips play a bigger role than previous videos — more clips, longer holds, more moments where narration stops

@@ -36,7 +36,7 @@ Output the research in a clear, organized format. This will be used as the found
 
 ## PART 2: SCRIPT WRITING
 
-You are a YouTube scriptwriter. Using ONLY the research you provided above, write a script for a 20-minute video about [Video Title Or Topic]
+You are a YouTube scriptwriter. Using ONLY the research you provided above, write a script for a 10-14 minute video (about 1,500-2,000 words of narration) about [Video Title Or Topic]
 
 SCRIPT REQUIREMENTS:
 
@@ -49,6 +49,8 @@ INTRO RULES:
 * Use this format: "These are [number] [subject] who [compelling contrast or outcome]" OR "This is [the story/the reason/what happened when] [specific premise]"
 * No narrative scene-setting, no "imagine this," no fictional openings, no dramatic storytelling hooks
 * State the premise within the first two sentences then move into the content
+* The very first sentence carries the payoff (the result, the shock, the number), because the video opens on a cold-open clip and viewers decide in the first 5-10 seconds whether to stay
+* Suggest the cold-open moment (the single strongest clip from the story) on a line above the script, marked COLD OPEN, so the build places it before the logo
 
 STRUCTURE:
 
