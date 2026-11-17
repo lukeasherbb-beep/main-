@@ -73,8 +73,8 @@ PHOTOS = [
     ('T("WONDERBOY")', [{"layout": "single", "img": "img1_thompson_stance.jpg",
                          "kicker": "STEPHEN THOMPSON", "title": "WONDERBOY"}]),
     ("paired-profiles", [{"layout": "pair", "items": [
-        ("img2_weidman.png", "BROTHER TONY'S BROTHER-IN-LAW", "CHRIS WEIDMAN"),
-        ("img3_machado.jpg", "SISTER LINDSAY'S HUSBAND · HIS BJJ COACH", "CARLOS MACHADO")]}]),
+        ("img2_weidman.png", "TONY'S BROTHER-IN-LAW", "CHRIS WEIDMAN"),
+        ("img3_machado.jpg", "SISTER'S HUSBAND · COACH", "CARLOS MACHADO")]}]),
     ("quote-profile", [{"layout": "quote", "img": "img4_thompson_portrait.jpg",
                         "quote": "I don't see the title anymore.", "attr": "STEPHEN THOMPSON TO ARIEL HELWANI"}]),
     ('T("THE NMF")', [{"layout": "single", "img": "img5b_nmf_belt_closeup.jpg",
@@ -85,6 +85,12 @@ PHOTOS = [
 F_TITLE = "/usr/share/fonts/opentype/inter/InterDisplay-BlackItalic.otf"
 F_KICK = "/usr/share/fonts/opentype/inter/Inter-Bold.otf"
 F_QUOTE = "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf"
+# source labels by clip file name prefix (override LABELS); None = no label
+FILE_LABELS = {"00_": None, "01_": None, "02_": "UFC 334 · Nov 14, 2026", "03a": "UFC feature · Upstate Karate",
+               "03b": "Kickboxing era", "12_": "UFC Nashville · March 2019", "15_": "UFC feature · Upstate Karate",
+               "16_": "UFC 334 · Nov 14, 2026", "22_": "UFC 334 · Nov 14, 2026", "26_": "MMA Junkie · UFC 334"}
+# boxes stay centred and clear of the corner logo badges: max box sizes (frame included)
+BOX_MAX_W, BOX_MAX_H = 1336, 836
 # (unused now) clip number -> stock B-roll file numbers
 FALLBACK = {1: [2], 3: [1, 2], 4: [17], 5: [3], 6: [4], 7: [18], 8: [3], 9: [8, 9], 10: [11], 11: [4],
             13: [19], 14: [13], 15: [1], 16: [6], 17: [17], 18: [5, 16], 22: [14], 26: [14],
@@ -253,7 +259,8 @@ def plan(sents, groups, vo_dur):
                 if files:
                     f = files[used.get(n, 0) % len(files)]
                     used[n] = used.get(n, 0) + 1
-                    v = {"kind": "clip", "file": f, "label": LABELS.get(n), "n": n, "desc": mk, "bg": bg, "dark": dark}
+                    lab = next((l for k, l in FILE_LABELS.items() if os.path.basename(f).startswith(k)), LABELS.get(n))
+                    v = {"kind": "clip", "file": f, "label": lab, "n": n, "desc": mk, "bg": bg, "dark": dark}
                     if letplay:
                         secs = float(re.search(r"— (\d+)s", mk).group(1))
                         breaks.append((min(secs, probe(f)[0]), v))
@@ -371,7 +378,7 @@ def framed_photo(canvas, im, x, y, w, h, centering=(0.5, 0.35)):
     return canvas
 
 
-def caption_bar(canvas, x, y, kicker, title, max_w, size=84):
+def caption_bar(canvas, x, y, kicker, title, max_w, size=84, cx=None):
     """Lower-third style caption: black bar, gold stripe, gold kicker, white italic title."""
     d = ImageDraw.Draw(canvas)
     while size > 40 and d.textlength(title, font=ImageFont.truetype(F_TITLE, size)) > max_w - 70:
@@ -379,6 +386,8 @@ def caption_bar(canvas, x, y, kicker, title, max_w, size=84):
     ft, fk = ImageFont.truetype(F_TITLE, size), ImageFont.truetype(F_KICK, 30)
     w = int(max(d.textlength(title, font=ft), d.textlength(kicker, font=fk) + 4 * len(kicker))) + 76
     h = int(size * 1.15) + (52 if kicker else 18)
+    if cx is not None:
+        x = int(cx - w / 2)
     bar = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
     bd = ImageDraw.Draw(bar)
     bd.rectangle([x, y, x + w, y + h], fill=(10, 10, 12, 240))
@@ -400,33 +409,35 @@ def photo_overlay(spec):
     c = Image.new("RGBA", (1920, 1080), (0, 0, 0, 0))
     if spec["layout"] == "single":
         im = load_photo(spec["img"])
-        if im.width / im.height < 1:  # portrait photo: left, caption beside it
-            h = 820
+        if im.width / im.height < 1:  # portrait photo: centred, caption across its lower edge
+            h = 780
             w = int(h * im.width / im.height)
-            c = framed_photo(c, im, 300, 100, w, h)
-            c = caption_bar(c, 300 + w - 30, 640, spec["kicker"], spec["title"], 960, 110)
+            x, y = (1920 - w - 16) // 2, 90
+            c = framed_photo(c, im, x, y, w, h)
+            c = caption_bar(c, 0, y + h - 90, spec["kicker"], spec["title"], 1100, 100, cx=960)
         else:
-            w = 1280
+            w = BOX_MAX_W - 16
             h = int(w * im.height / im.width)
-            c = framed_photo(c, im, (1920 - w - 16) // 2, 70, w, h)
-            c = caption_bar(c, (1920 - w) // 2 - 70, 70 + h - 60, spec["kicker"], spec["title"], 1100)
+            x, y = (1920 - w - 16) // 2, (1080 - h - 16) // 2 - 30
+            c = framed_photo(c, im, x, y, w, h)
+            c = caption_bar(c, 0, y + h - 70, spec["kicker"], spec["title"], 1100, cx=960)
     elif spec["layout"] == "pair":
         for k, (img, kicker, title) in enumerate(spec["items"]):
-            x = (300, 1020)[k]
-            c = framed_photo(c, load_photo(img), x, 110, 600, 600, (0.5, 0.25))
-            c = caption_bar(c, x - 30, 650, kicker, title, 700, 70)
+            x = (318, 986)[k]  # two 616 px frames, symmetric about the centre
+            c = framed_photo(c, load_photo(img), x, 140, 600, 600, (0.5, 0.25))
+            c = caption_bar(c, 0, 680, kicker, title, 600, 60, cx=x + 308)
     elif spec["layout"] == "quote":
         im = load_photo(spec["img"])
-        c = framed_photo(c, im, 130, 200, 860, int(860 * im.height / im.width))
+        c = framed_photo(c, im, 300, 280, 600, int(600 * im.height / im.width))
         panel = Image.new("RGBA", c.size, (0, 0, 0, 0))
         pd = ImageDraw.Draw(panel)
-        x0, y0, x1, y1 = 960, 300, 1800, 800
+        x0, y0, x1, y1 = 900, 250, 1620, 780
         c = add_shadow(c, (x0, y0, x1, y1))
         pd.rectangle([x0, y0, x1, y1], fill=(10, 10, 12, 240), outline=GOLD + (255,), width=6)
         c = Image.alpha_composite(c, panel)
         d = ImageDraw.Draw(c)
         d.text((x0 + 50, y0 - 40), "\u201c", font=ImageFont.truetype(F_TITLE, 220), fill=GOLD)
-        fq = ImageFont.truetype(F_QUOTE, 74)
+        fq = ImageFont.truetype(F_QUOTE, 68)
         words, lines, cur = spec["quote"].split(), [], ""
         for wd in words:
             t = (cur + " " + wd).strip()
@@ -445,6 +456,22 @@ def photo_overlay(spec):
     return c
 
 
+def label_overlay(label, y):
+    """Source label centred under the box (clear of the corner badges)."""
+    im = Image.new("RGBA", (1920, 1080), (0, 0, 0, 0))
+    if not label:
+        return im
+    d = ImageDraw.Draw(im)
+    f = ImageFont.truetype(F_KICK, 40)
+    w = int(d.textlength(label, font=f)) + 68
+    y = min(y, 1080 - 76)
+    x = (1920 - w) // 2
+    d.rounded_rectangle((x, y, x + w, y + 62), 10, fill=(0, 0, 0, 200))
+    d.rectangle((x, y, x + 10, y + 62), fill=GOLD + (255,))
+    d.text((x + 38, y + 31), label, font=f, fill=(255, 255, 255, 255), anchor="lm")
+    return im
+
+
 def whip_overlay(i, frames, bg, png, x0, y0, out, side):
     """Overlay a still (box or full-frame RGBA) that whips in from the side over a looping background."""
     fcx = (f"[0:v]fps={FPS},setsar=1[b];[b][1:v]overlay=x='{x0}+{side}*1900*pow(1-min(t/0.35\\,1)\\,3)':y={y0}[o]")
@@ -456,17 +483,15 @@ def whip_overlay(i, frames, bg, png, x0, y0, out, side):
 def box_scale(v, i):
     """Card box size as a fraction of the frame: data-heavy cards big, titles/quotes/moments smaller."""
     if "moment" in v:
-        return (0.70, 0.80, 0.74)[v["moment"] % 3]
+        return (0.62, 0.68, 0.65)[v["moment"] % 3]
     m = v.get("marker", "")
     fn = re.match(r"\[(?:FE CARD: ?(\w+)|FX: ([\w-]+))", m)
     kind = (fn.group(1) or fn.group(2)) if fn else ""
-    if kind in ("S", "TL", "Ls", "bars", "pairs", "stacked"):
-        return 0.80 if kind == "S" and i % 2 else 0.86
-    if kind == "V":
-        return 0.82
+    if kind in ("S", "TL", "Ls", "bars", "pairs", "stacked", "V"):
+        return 0.687  # largest box that stays clear of the corner badges
     if kind == "Q":
-        return 0.72
-    return (0.78, 0.68, 0.74)[i % 3]
+        return 0.64
+    return (0.66, 0.61, 0.64)[i % 3]
 
 
 def render_logo(i, frames, png, out):
@@ -508,10 +533,7 @@ def render_item(args):
             card = card_image(v["marker"], v["dark"])
         s = box_scale(v, i)
         cw, ch = int(1920 * s) // 2 * 2, int(1080 * s) // 2 * 2
-        x0 = (1920 - cw - 16) // 2
-        if s < 0.8:  # smaller boxes sit off-center so the layout doesn't repeat
-            x0 += side * 150
-        y0 = (1080 - ch - 16) // 2
+        x0, y0 = (1920 - cw - 16) // 2, (1080 - ch - 16) // 2  # always centred
         canvas = add_shadow(Image.new("RGBA", (1920, 1080), (0, 0, 0, 0)), (x0, y0, x0 + cw + 16, y0 + ch + 16))
         panel = Image.new("RGBA", (cw + 16, ch + 16), GOLD + (255,))  # gold frame around the card
         panel.paste(card.resize((cw, ch), Image.LANCZOS), (8, 8))
@@ -520,20 +542,20 @@ def render_item(args):
         whip_overlay(i, frames, bg, png, 0, 0, out, side)
     else:
         ov = os.path.join(SEG, f"{i:03d}_ov.png")
-        fc.overlay(v.get("label") if v["kind"] == "clip" else None, watermark=False).save(ov)  # the background carries the logo badge
         src_dur = probe(v["file"])[0]
         start = offset % max(src_dur - 0.5, 0.1) if src_dur > dur + 0.5 else 0
         # every clip sits in a gold-framed box with a shadow on the moving background
         a = aspect(v["file"])
         if a >= 1.5:
-            bw = (1500, 1340, 1420)[i % 3]
+            bw = (BOX_MAX_W - 16, 1240, 1280)[i % 3]
             bh = int(bw / a) // 2 * 2
             bgname = "torn_split"
         else:
-            bh = (900, 860, 880)[i % 3] if a < 0.9 else 820
+            bh = (BOX_MAX_H - 16, 780, 800)[i % 3] if a < 0.9 else 780
             bw = int(bh * a) // 2 * 2
             bgname = "torn_panels" if a < 0.9 else "brush_chevrons"
-        x0, y0 = (1920 - bw - 16) // 2, (1080 - bh - 16) // 2
+        x0, y0 = (1920 - bw - 16) // 2, (1080 - bh - 16) // 2  # always centred
+        label_overlay(v.get("label") if v["kind"] == "clip" else None, y0 + bh + 16 + 14).save(ov)
         sh = os.path.join(SEG, f"{i:03d}_sh.png")
         add_shadow(Image.new("RGBA", (1920, 1080), (0, 0, 0, 0)), (x0, y0, x0 + bw + 16, y0 + bh + 16)).save(sh)
         side = 1 if i % 2 else -1
@@ -549,7 +571,7 @@ def render_item(args):
         wav = os.path.join(SEG, f"{i:03d}.wav")
         if probe(v["file"])[1]:
             run(["ffmpeg", "-y", "-v", "error", "-i", v["file"], "-t", f"{dur:.3f}", "-vn", "-ac", "2", "-ar", "44100",
-                 "-af", f"afade=in:st=0:d=0.15,afade=out:st={max(dur - 0.25, 0):.3f}:d=0.25,apad,atrim=0:{dur:.3f}", wav])
+                 "-af", f"loudnorm=I=-20:TP=-2:LRA=11,afade=in:st=0:d=0.15,afade=out:st={max(dur - 0.25, 0):.3f}:d=0.25,apad,atrim=0:{dur:.3f}", wav])
         else:
             run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo", "-t", f"{dur:.3f}", wav])
     return out, wav
