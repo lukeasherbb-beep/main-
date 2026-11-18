@@ -86,8 +86,8 @@ def sprite(radius, alpha):
 
 def build():
     r = b2.rng(77)
-    # user, Nov 18: "very grainy": smooth the board noise, keep its soft mottled texture
-    board = np.asarray(Image.fromarray(np.clip(b2.BOARD, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(2.5)), np.float32) * 0.92
+    # user, Nov 18: "very grainy" / higher quality: board smoothed to a faint soft texture (blur 10)
+    board = np.asarray(Image.fromarray(np.clip(b2.BOARD, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(10)), np.float32) * 0.92
     base = Image.fromarray(np.clip(board, 0, 255).astype(np.uint8)).convert("RGBA")
 
     glow = np.exp(-(((XX - W / 2) / 900) ** 2 + ((YY + 120) / 520) ** 2))[..., None] * np.array(GOLD, np.float32)
@@ -151,7 +151,7 @@ def main():
     frames = N if "--preview" not in sys.argv else FPS * 4
     frame = build()
     ff = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
-                           "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "18",
+                           "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "10", "-x264-params", "aq-mode=3",
                            "-pix_fmt", "yuv420p", out], stdin=subprocess.PIPE)
     for n in range(frames):
         ff.stdin.write(frame(n).tobytes())

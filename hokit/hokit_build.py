@@ -39,7 +39,7 @@ LOUDNESS = -14.0  # YouTube's playback level; quieter uploads are never turned u
 MUSIC_DIR = os.environ.get("FE_MUSIC_DIR", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "music"))
 MUSIC_UNDER_VO_DB = -19.0  # music bed level relative to the narration
 TAIL_SECONDS = 4.0
-ENC = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-pix_fmt", "yuv420p", "-r", str(FPS),
+ENC = ["-c:v", "libx264", "-preset", "medium", "-crf", "14", "-x264-params", "aq-mode=3", "-pix_fmt", "yuv420p", "-r", str(FPS),
        "-video_track_timescale", "15360", "-an"]
 
 ASSETS = os.path.join(HERE, "..", "assets")

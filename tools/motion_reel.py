@@ -26,7 +26,7 @@ GOLD, RED, INK, PAPER = (196, 142, 22), (200, 30, 30), (10, 10, 12), (243, 241, 
 F_BLACK = "/usr/share/fonts/opentype/inter/InterDisplay-BlackItalic.otf"
 F_BOLD = "/usr/share/fonts/opentype/inter/Inter-Bold.otf"
 F_XB = "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf"
-ENC = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-pix_fmt", "yuv420p", "-r", str(FPS),
+ENC = ["-c:v", "libx264", "-preset", "medium", "-crf", "14", "-x264-params", "aq-mode=3", "-pix_fmt", "yuv420p", "-r", str(FPS),
        "-video_track_timescale", "15360"]
 _fonts = {}
 
