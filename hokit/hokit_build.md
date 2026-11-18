@@ -9,6 +9,7 @@ Josh Hokit lost his heavyweight championship fight against Ciryl Gane at UFC thr
 
 [FX: chapter-number — 01 · THE FINGER]
 [FE CARD: T("BRUCE BUFFER")]
+[CLIP: #20 MSG arena wide shot before the main event]
 [CLIP: #2 Hokit flips off Buffer during the introduction]
 On November fourteenth, Hokit walked out as the challenger in his first title fight, and the night started ugly before a single punch was thrown. Buffer had said a month earlier that he didn't like what Hokit talks about, calling him disrespectful and telling him to show some class. When the most famous voice in the sport stood in the cage and called his name, Hokit put his middle finger right in front of Buffer's face, something Dana White says nobody had ever done before.
 
