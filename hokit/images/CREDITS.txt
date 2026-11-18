@@ -1,0 +1,75 @@
+hokit_portrait_2026.jpg
+  Source: https://commons.wikimedia.org/wiki/File:JoshHokit.jpg
+  Author: unknown
+  License: CC BY 4.0
+
+hokit_greenroom_freedom250.jpg
+  Source: https://commons.wikimedia.org/wiki/File:UFC_Freedom_250,_the_mixed_martial_arts_event_produced_by_the_Ultimate_Fighting_Championship,_Sunday,_June_14,_2026,_in_the_Grand_Foyer_of_the_White_House_-_45.jpg
+  Author: The White House
+  License: Public domain
+
+hokit_weighin_freedom250.jpg
+  Source: https://commons.wikimedia.org/wiki/File:UFC_Freedom_250_Ceremonial_Weigh-In_at_the_Ellipse_in_Washington,_D.C.,_June_13,_2026_-_12.jpg
+  Author: usarmyband
+  License: Public domain
+
+hokit_lincoln_memorial.jpg
+  Source: https://commons.wikimedia.org/wiki/File:UFC_Freedom_250_Press_Conference_(9747953)_(cropped).jpg
+  Author: U.S. Army photo by Sgt. 1st Class Brittany Primavera
+  License: Public domain
+
+jones_interview.png
+  Source: https://commons.wikimedia.org/wiki/File:Jon_Jones_being_interviewed.png
+  Author: K.O. Artist Sports
+  License: CC BY 3.0
+
+jones_ufc100_expo.jpg
+  Source: https://commons.wikimedia.org/wiki/File:Jon_Jones_-_UFC_100_Fan_Expo_-_Mandalay_Bay_Casino,_Las_Vegas.jpg
+  Author: Mark Richardson
+  License: CC BY 2.0
+
+gane_walkout_freedom250.jpg
+  Source: https://commons.wikimedia.org/wiki/File:UFC_Freedom_250,_the_mixed_martial_arts_event_produced_by_the_Ultimate_Fighting_Championship,_Sunday,_June_14,_2026,_in_the_Grand_Foyer_of_the_White_House_-_61.jpg
+  Author: The White House
+  License: Public domain
+
+gane_freedom250_64.jpg
+  Source: https://commons.wikimedia.org/wiki/File:UFC_Freedom_250,_the_mixed_martial_arts_event_produced_by_the_Ultimate_Fighting_Championship,_Sunday,_June_14,_2026,_in_the_Grand_Foyer_of_the_White_House_-_64(cropped).jpg
+  Author: The White House
+  License: Public domain
+
+gane_oval_office.jpg
+  Source: https://commons.wikimedia.org/wiki/File:Ciryl_Gane_in_the_Oval_Office_(while_President_Donald_J._Trump_is_holding_a_meeting_with_UFC_fighters).jpg
+  Author: The White House
+  License: Public domain
+
+pereira_ufc300.png
+  Source: https://commons.wikimedia.org/wiki/File:Alex_Pereira_UFC_300.png
+  Author: Chamatkar Sandhu
+  License: CC BY 3.0
+
+pereira_oval_office.jpg
+  Source: https://commons.wikimedia.org/wiki/File:Alex_Pereira_in_the_Oval_Office_(while_President_Donald_J._Trump_is_holding_a_meeting_with_UFC_fighters).jpg
+  Author: The White House
+  License: Public domain
+
+buffer_ufc.png
+  Source: https://commons.wikimedia.org/wiki/File:Bruce_Buffer_UFC.png
+  Author: VoiceColombia
+  License: CC0
+
+buffer_interview_2023.png
+  Source: https://commons.wikimedia.org/wiki/File:Bruce_Buffer_-_Interview,_2023.png
+  Author: Front Office Sports
+  License: CC BY 3.0
+
+dana_white_headshot.jpg
+  Source: https://commons.wikimedia.org/wiki/File:Dana_White_headshot.jpg
+  Author: Justin Moore
+  License: CC BY 2.0
+
+dana_white_london2015.jpg
+  Source: https://commons.wikimedia.org/wiki/File:Dana_White_-_London_2015_(cropped).jpg
+  Author: Andrius Petrucenia
+  License: CC BY-SA 2.0
+
