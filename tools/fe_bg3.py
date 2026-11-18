@@ -86,14 +86,15 @@ def sprite(radius, alpha):
 
 def build():
     r = b2.rng(77)
-    board = b2.BOARD * 0.92
+    # user, Nov 18: "very grainy": smooth the board noise, keep its soft mottled texture
+    board = np.asarray(Image.fromarray(np.clip(b2.BOARD, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(2.5)), np.float32) * 0.92
     base = Image.fromarray(np.clip(board, 0, 255).astype(np.uint8)).convert("RGBA")
 
     glow = np.exp(-(((XX - W / 2) / 900) ** 2 + ((YY + 120) / 520) ** 2))[..., None] * np.array(GOLD, np.float32)
     global DIAG
     DIAG = XX * 0.8 + YY * 0.6
     vign = (1 - 0.55 * (((XX - W / 2) / (W * 0.62)) ** 2 + ((YY - H / 2) / (H * 0.75)) ** 2))[..., None].clip(0.35, 1)
-    grains = [r.normal(0, 5.0, (H, W, 1)).astype(np.float32) for _ in range(8)]
+    grains = [r.normal(0, 0.8, (H, W, 1)).astype(np.float32) for _ in range(8)]  # just enough to stop banding
 
     waves = [WaveText(250, 55, 1500, 74, GREY + (120,), 1, 1, 0.0),          # back: faint grey, drifts right
              WaveText(560, 70, 1800, 92, (150, 104, 12, 70), -1, 1, 0.35),    # middle: dim gold, drifts left
@@ -150,7 +151,7 @@ def main():
     frames = N if "--preview" not in sys.argv else FPS * 4
     frame = build()
     ff = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
-                           "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "23",
+                           "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "18",
                            "-pix_fmt", "yuv420p", out], stdin=subprocess.PIPE)
     for n in range(frames):
         ff.stdin.write(frame(n).tobytes())
