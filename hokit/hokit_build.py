@@ -93,7 +93,7 @@ FALLBACK = {1: [2], 3: [1, 2], 4: [17], 5: [3], 6: [4], 7: [18], 8: [3], 9: [8, 
             13: [19], 14: [13], 15: [1], 16: [6], 17: [17], 18: [5, 16], 22: [14], 26: [14],
             27: [3], 28: [18], 29: [7], 30: [5]}
 # source labels shown on real clips (readable on mobile)
-LABELS = {1: "UFC 334 · Nov 14, 2026 · fan video", 2: "UFC 334 · Nov 14, 2026", 3: "UFC 334 · Round 1",
+LABELS = {1: "UFC 334 · Nov 14, 2026", 2: "UFC 334 · Nov 14, 2026", 3: "UFC 334 · Round 1",
           4: "UFC 334 · Round 1", 5: "UFC 334 · Round 3", 6: "UFC 334 · Rounds 4-5", 7: "UFC 334 · fan video",
           8: "Jon Jones · Instagram", 9: "UFC 285 · March 2023", 10: "UFC 331 · Sept 2026", 11: "Josh Hokit · diss track",
           12: "UFC 334 · Round 1", 13: "UFC 334 · Round 1", 14: "UFC 334 · octagon interview",
