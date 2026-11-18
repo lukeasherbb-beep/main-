@@ -127,7 +127,7 @@ def main():
     frames = N if "--preview" not in sys.argv else FPS * 4
     frame = build()
     ff = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
-                           "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "15",
+                           "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "23",
                            "-pix_fmt", "yuv420p", out], stdin=subprocess.PIPE)
     for n in range(frames):
         ff.stdin.write(frame(n).tobytes())
