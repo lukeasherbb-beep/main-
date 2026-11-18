@@ -703,7 +703,7 @@ def fit_clips(items):
                 "desc": v["desc"] + " (card after footage ran out)", "bg": v.get("bg", BG_ORDER[0])}
         if v["n"] not in MOMENT:
             card["moment"] = 1
-        if left + 0.4 >= slot:  # a few frames short is fine; the last frames repeat
+        if left + 1.5 >= slot:  # a few frames short is fine; the last frames repeat
             out.append(it)
             used[f] = used.get(f, 0.0) + slot
         elif left >= 2.5:
