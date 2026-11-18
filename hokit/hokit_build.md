@@ -18,7 +18,6 @@ On November fourteenth, Hokit walked out as the challenger in his first title fi
 Then the bell rang, and Hokit turned a title fight into a bar fight. He shot for takedowns from the opening second, swung wild hooks in bunches, and never gave the champion a single inch of room. Early in the first round, Gane's fingers caught him in the left eye, the same kind of foul that ended Gane's fight with Tom Aspinall in a no contest a year earlier. Referee Marc Goddard let it go, with no warning and no point taken. Hokit kept coming anyway, and late in that round he picked Gane up on a single leg and slammed him to the canvas.
 
 [FE CARD: S("ROUND 3", [("71-37", "Total strikes, Hokit"), ("2-2", "Judges after 4 rounds")]) — gold]
-[CLIP: #5 Round 3 Hokit flips Gane off at the horn]
 For three rounds the pace looked impossible for a heavyweight. In the third, Hokit out-landed Gane seventy-one to thirty-seven in total strikes, Gane's corner was begging him to rest, and Hokit finished the round by flipping the champion off twice. Going into the fifth, the judges had it dead even at two rounds apiece.
 
 [CLIP: #6 Rounds 4-5 Gane jabs and uppercuts, Hokit tired]
