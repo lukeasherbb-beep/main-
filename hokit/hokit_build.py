@@ -48,6 +48,7 @@ MOMENT = {
     2: ("UFC 334 · INTRODUCTIONS", "THE FINGER", "Hokit flips off Bruce Buffer"),
     4: ("UFC 334 · ROUND 1", "THE SLAM", "Single-leg takedown"),
     5: ("UFC 334 · ROUND 3", "71-37", "Hokit out-strikes Gane"),
+    16: ("UFC 334 · BACKSTAGE", "\"FOR ME, YOU WON\"", "Alex Pereira to Josh Hokit"),
 }
 IMAGES = os.path.join(HERE, "images")
 # the highlight-video clips carry a thin red border: crop it off
@@ -69,6 +70,8 @@ PHOTOS = [
                             "quote": "He's the real deal.", "attr": "DANA WHITE · UFC 334 PRESS CONFERENCE"}]),
     ('T("THE RISE")', [{"layout": "single", "img": "hokit_greenroom_freedom250.jpg",
                         "kicker": "UFC FREEDOM 250 · JUNE 2026", "title": "THE WHITE HOUSE"}]),
+    ('Q("I thought that was a robbery, man."', [{"layout": "quote", "img": "pereira_oval_office.jpg",
+                        "quote": "I thought that was a robbery, man.", "attr": "ALEX PEREIRA · BACKSTAGE, UFC 334"}]),
     ('T("NEXT AT HEAVYWEIGHT")', [{"layout": "pair", "items": [
         ("gane_freedom250_64.jpg", "THE CHAMPION", "CIRYL GANE"),
         ("pereira_ufc300.png", "UFC 335 · DEC 12", "ALEX PEREIRA")]}]),
@@ -547,7 +550,7 @@ def render_item(args):
             whip_overlay(i, frames, bg, png, 0, 0, out, side)
             return out, None
         if "moment" in v:
-            k, head, sub = MOMENT[v["moment"]]
+            k, head, sub = MOMENT.get(v["moment"], ("UFC 334 · NOV 14, 2026", "GANE VS HOKIT", "Heavyweight championship"))
             card = fc.T(head, sub=sub, kicker=k, style="dark")
         else:
             card = card_image(v["marker"], v["dark"])

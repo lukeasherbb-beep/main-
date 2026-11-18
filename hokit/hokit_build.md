@@ -49,6 +49,7 @@ The beef itself goes back to September. Gable Steveson, the Olympic gold medalis
 Hokit was in the comments of that Instagram post almost immediately, writing that Jon Jones moves like Sean Combs, with the hashtag rent free. The next day Jones posted on X that fighters who disrespect him tend to lose their next fight, calling it the craziest coincidence. That lit the fuse. Hokit answered with a list of Jones' past legal charges and scandals, and from there the whole thing went off the rails.
 
 [FE CARD: Q("He's not on drugs, you idiot.", "JON JONES · X") — dark]
+[FE CARD: T("NO PROOF", sub="An MMA agent backed Jones' account", kicker="THE TEAMMATE CLAIM") — dark]
 Hokit claimed a former teammate from the gym fell apart after getting involved with drugs while hanging around Jones. Jones fired back that the young man was never on drugs, and that he was the one who got him admitted to a hospital and paid for his flight home to Switzerland. An MMA agent publicly backed Jones' version, and none of Hokit's accusation has been proven. Out of everything in this feud, that one crossed a line, and dragging a private person into a Twitter fight helped nobody.
 
 [FE CARD: Q("Watching you break the record for most punches absorbed in UFC heavyweight history at Madison Square Garden was entertaining enough.", "JON JONES · X")]
@@ -75,7 +76,9 @@ Then Jones made a promise. "You can't go from being a punching bag to begging fo
 Here's how the MMA world reacted, and the surprise is who ended up on Hokit's side.
 
 [LET IT PLAY: #15lip Pereira backstage "I thought that was a robbery, man" — 12s]
+[FE CARD: Q("I thought that was a robbery, man.", "ALEX PEREIRA")]
 [CLIP: #16 Pereira and Hokit backstage "For me, you won"]
+[FE CARD: Q("Hey, bro. Chama, congrats, my brother. For me, you won.", "ALEX PEREIRA TO JOSH HOKIT")]
 Alex Pereira, a man Hokit has mocked for months and even flipped off at the UFC three thirty-four press conference, watched from the crowd and couldn't believe the cards. "I thought that was a robbery, man," Pereira said backstage. "I thought Hokit won the fight. Man, Gane didn't do anything. I wanted Ciryl Gane to win, but come on, not like that." Then he found Hokit backstage and told him, "Hey, bro. Chama, congrats, my brother. For me, you won." Hokit's reply was short and almost polite. "Best of luck in your fight, Chama."
 
 [LET IT PLAY: #17lip Dana White presser "He's the real deal" — 10s]
@@ -101,5 +104,6 @@ All of this leaves Hokit in a strange spot. He's ten and one now, with one loss 
 Jones, meanwhile, is retired and still the most talked-about heavyweight in the sport without throwing a punch. He said he was done addressing Hokit, then kept posting anyway. For my money, he isn't finished. Twelve months ago, Josh Hokit was making his UFC debut, and this week he has Jon Jones, Bruce Buffer, Dana White and Alex Pereira all talking about him, which might be exactly the point.
 
 [CAPTION: JONES OR HOKIT?]
+[FE CARD: T("JONES VS HOKIT")]
 [FE CARD: T("COMMENT BELOW", sub="Jones or Hokit?") — gold]
 If Jon Jones came out of retirement for one more fight, who wins between Jones and Hokit? Tell me in the comments. Should Hokit get the immediate rematch with Gane, or does he have to earn it back? Let me know below. If you want another heavyweight story told start to finish, the video on your screen right now is the one to watch next.
