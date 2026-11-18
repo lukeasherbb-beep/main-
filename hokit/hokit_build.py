@@ -95,7 +95,7 @@ LABELS = {1: "UFC 334 · Nov 14, 2026 · fan video", 2: "UFC 334 · Nov 14, 2026
           8: "Jon Jones · Instagram", 9: "UFC 285 · March 2023", 10: "UFC 331 · Sept 2026", 11: "Josh Hokit · diss track",
           12: "UFC 334 · Round 1", 13: "UFC 334 · Round 1", 14: "UFC 334 · octagon interview",
           15: "Alex Pereira · UFC 334", 16: "UFC 334 · backstage", 17: "UFC 334 post-fight press conference",
-          18: "Bruce Buffer with Jon Anik", 19: "UFC 334 · Nov 14, 2026"}
+          18: "Bruce Buffer with Jon Anik", 19: "UFC 334 · Nov 14, 2026", 20: "Madison Square Garden · fan video"}
 
 
 def run(cmd):
