@@ -23,6 +23,7 @@ from concurrent.futures import ThreadPoolExecutor
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "tools"))
 import fe_cards as fc  # noqa: E402
+import fe_motion as fm  # noqa: E402
 import numpy as np  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps  # noqa: E402
 
@@ -270,11 +271,21 @@ def plan(sents, groups, vo_dur):
                     missing.append(mk)
                     if not letplay:
                         visuals.append({"kind": "card", "moment": n, "marker": "", "dark": dark, "desc": mk, "bg": bg, "caption": caption})
+            elif mk.startswith("[MG:"):
+                visuals.append({"kind": "card", "mg": fm.parse(mk), "marker": mk, "dark": dark, "desc": mk, "bg": bg})
+            elif "chapter-number" in mk:
+                num, title = mk.split("— ", 1)[1].rstrip("]").split(" · ", 1)
+                visuals.append({"kind": "card", "mg": ("chapter", [num.strip(), title.strip()]), "marker": mk,
+                                "dark": dark, "desc": mk, "bg": bg})
             else:
                 photos = next((specs for key, specs in PHOTOS if key in mk), None)
                 if photos:
                     for spec in photos:
-                        visuals.append({"kind": "card", "photo": spec, "marker": mk, "dark": dark, "desc": mk, "bg": bg})
+                        if spec["layout"] == "post":  # screenshots get the animated push-in
+                            visuals.append({"kind": "card", "mg": ("post", [spec["img"]]), "marker": mk, "dark": dark,
+                                            "desc": mk, "bg": bg})
+                        else:
+                            visuals.append({"kind": "card", "photo": spec, "marker": mk, "dark": dark, "desc": mk, "bg": bg})
                 else:
                     visuals.append({"kind": "card", "marker": mk, "dark": dark, "desc": mk, "bg": bg, "caption": caption})
         beats.append((t, breaks, visuals))
@@ -538,6 +549,10 @@ def render_logo(i, frames, png, out):
     return out
 
 
+def img_path(name):
+    return name if os.path.isabs(name) else os.path.join(IMAGES, name)
+
+
 def render_item(args):
     i, kind, frames, v, offset, with_audio = args
     out = os.path.join(SEG, f"{i:03d}.mp4")
@@ -546,6 +561,9 @@ def render_item(args):
         run(["ffmpeg", "-y", "-v", "error", "-i", INTRO, "-vf", f"fps={FPS},setsar=1,tpad=stop_mode=clone:stop_duration=1",
              "-frames:v", str(frames)] + ENC + [out])
         return out, None
+    if v["kind"] == "card" and "mg" in v:
+        kind, params = v["mg"]
+        return fm.render(kind, params, frames, out, img_path, os.path.join(SEG, "mg")), None
     if v["kind"] == "card":
         spec = fx_spec(v)
         if spec:
@@ -592,12 +610,20 @@ def render_item(args):
         lo.save(ov)
         sh = os.path.join(SEG, f"{i:03d}_sh.png")
         add_shadow(Image.new("RGBA", (1920, 1080), (0, 0, 0, 0)), (x0, y0, x0 + bw + 16, y0 + bh + 16)).save(sh)
-        side = 1 if i % 2 else -1
+        punch = kind == "narr" and i % 3 == 0
+        side = 0 if punch else (1 if i % 2 else -1)
         whip = f"{side}*1900*pow(1-min(t/0.35\\,1)\\,3)"
         crop = "crop=iw-12:ih-12:6:6," if v.get("n") in CROP else ""
         fcx = (f"[0:v]{crop}scale={bw}:{bh},fps={FPS},setsar=1,pad=iw+16:ih+16:8:8:color=0xC48E16[v];"
                f"[2:v]fps={FPS},setsar=1[b];[b][3:v]overlay=x='{whip}':y=0[bs];"
-               f"[bs][v]overlay=x='{x0}+{whip}':y={y0}[bv];[bv][1:v]overlay=0:0[o]")
+               f"[bs][v]overlay=x='{x0}+{whip}':y={y0}[bv];[bv][1:v]overlay=0:0[o0]")
+        if kind == "brk":  # white flash into clips that play with their own sound
+            fcx += ";[o0]fade=t=in:st=0:d=0.3:color=white[o]"
+        elif punch:  # zoom punch: starts 12% in and settles in 0.25 s
+            fcx += (f";[o0]zoompan=z='max(1\\,1.12-0.48*in_time)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+                    f":d=1:s={1920}x{1080}:fps={FPS}[o]")
+        else:
+            fcx += ";[o0]null[o]"
         run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-ss", f"{start:.3f}", "-i", v["file"],
              "-i", ov, "-stream_loop", "-1", "-i", bg_path(bgname), "-loop", "1", "-i", sh,
              "-filter_complex", fcx, "-map", "[o]", "-frames:v", str(frames)] + ENC + [out])
@@ -754,9 +780,15 @@ def main():
         jobs.append((i, it[0], frames, v, off, it[0] == "brk"))
         if out_t > 0.05:  # every visual change: whoosh as it flies in, pop when a boxed card lands
             sfx.append((max(out_t - 0.05, 0), "whoosh", 0.45))
-            boxed = v["kind"] == "card" and not fx_spec(v) and not v.get("marker", "").startswith("[FE LOGO COVER")
+            boxed = (v["kind"] == "card" and not fx_spec(v) and "mg" not in v
+                     and not v.get("marker", "").startswith("[FE LOGO COVER"))
+            if it[0] == "brk":
+                sfx.append((out_t, "camera_flash", 0.3))
             if boxed:
                 sfx.append((out_t + 0.30, "pop", 0.35))
+        if v.get("mg"):
+            for st, name, gain in fm.sfx_for(v["mg"][0], v["mg"][1], frames / FPS, img_path):
+                sfx.append((out_t + st, name, gain))
         if it[0] == "narr":
             if narr_ranges and abs(narr_ranges[-1][1] - out_t) < 0.01:
                 narr_ranges[-1][1] = out_t + frames / FPS

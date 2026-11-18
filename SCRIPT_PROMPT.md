@@ -190,5 +190,5 @@ Provide the full rewritten script with no commentary or explanations. Just the s
 
 ## How Claude Code runs this for FE
 - Part 1 research uses WebSearch, cites sources and dates, and is saved as `research_<topic>.md`.
-- After Part 3, for the FE build: add the [CLIP], [FE CARD] and [LET IT PLAY] markers to a separate copy. The TTS version has no markers and no section headers.
+- After Part 3, for the FE build: add the [CLIP], [FE CARD], [MG: ...] (motion graphics, see CLAUDE.md "Motion graphics") and [LET IT PLAY] markers to a separate copy. Use MG graphics for stats, quotes, posts, name intros, face-offs, word slams and timelines. The TTS version has no markers and no section headers.
 - Defaults unless the user says otherwise: channel style = mix of documentary / educational / entertainment / nostalgia; length 20 minutes.

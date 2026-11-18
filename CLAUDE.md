@@ -118,6 +118,20 @@ The build version's narration must stay word-for-word identical to the TTS versi
 - `bg_torn_split.mp4`, `bg_brush_chevrons.mp4`, `bg_gradient_streak.mp4`, `bg_torn_panels.mp4` (`tools/fe_bg2.py`, 8 s loops): second background set; layouts modelled on Full Mount / MMA Talk / MMA Zone references the user sent, in the intro palette. These four are THE background set going forward. Pairing: torn_split for wide clips and photos, brush_chevrons for square clips, gradient_streak and torn_panels for vertical (phone/interview) clips. Each carries subtle branding: torn_split a vertical scrolling FIGHT ERA ticker on the left edge plus a ghost logo printed into the paper; brush_chevrons a large faint FIGHT ERA wordmark drifting along the bottom of the board; gradient_streak a ghost logo right of the streak; torn_panels FIGHT ERA tickers running through the grey torn strips. Plus the gold logo badge in a corner. `bg_preview_reel.mp4` shows the four with sample gold-framed boxes. Used by the Thompson build from draft v4.
 - Box sizes vary a little by card type, but every box is centred and stays clear of the corner logo badge (user, Nov 17); the logo is never boxed.
 
+## Motion graphics (user approved all nine from the sample reel, Nov 18; standard for every video)
+- Module: `tools/fe_motion.py` (docstring lists the marker syntax). Sample reel: `tools/motion_reel.py` → `hokit/build/motion_reel.mp4`.
+- Build-script markers (one per graphic, full screen, with their own sound effects):
+  - `[MG: stat — KICKER | 237 | BANNER | BARS TITLE | NAME 71, NAME 37]` count-up number (non-numbers like 48-47 pop in), red banner, filling bars.
+  - `[MG: quote — NAME | meta | avatar.png or - | exact quote | phrase / phrase]` line-by-line reveal + gold highlighter. Exact words only, never a paraphrase or two quotes joined.
+  - `[MG: post — screenshot.png]` X/Instagram screenshot with push-in (PHOTOS entries with layout "post" use it automatically).
+  - `[MG: name — NAME | label | subtitle | photo]` torn-paper name intro (template).
+  - `[MG: faceoff — left.png | NAME | sub | right.png | NAME | sub]` VS face-off.
+  - `[MG: slam — WORD | setup line | background.png]` word slam (template).
+  - `[MG: timeline — title | six labels separated by " · "]` milestone path (template, exactly 6 labels).
+  - Chapter openers: `[FX: chapter-number — 03 · TITLE]` now renders the animated gold opener (outlined number, typed title, glitch sound).
+  - Transitions (automatic): white flash + camera_flash sound into every LET IT PLAY clip; zoom punch instead of the side whip on every third narrated clip.
+- Builder for the next video: copy `hokit/hokit_build.py` (it imports fe_motion) and change its project constants (MOMENT, PHOTOS, LABELS, CROP, TITLE_CAPTION).
+
 ## Project: Josh Hokit vs Jon Jones beef (Nov 18, 2026)
 - Files in `hokit/`: `research_hokit_jones.md` (Part 1, sources), `hokit_tts.txt` (voiceover text), `hokit_build.md` (markers), `CLIP_TEMPLATE.md`, `hokit_build.py` (copy of the Thompson builder with Hokit cards, photos, labels; crops the 4 px red border off clips 3, 4, 5, 6, 12, 13), `images/` (Wikimedia / White House photos, credits in `images/CREDITS.txt`; CC BY / BY-SA ones need credit in the description).
 - Voiceover: ElevenLabs MP3 in `hokit/build/vo.mp3` (10:37), aligned with `tools/align.py` (gaps at -35 dB / 0.25 s, 0.34 s mean error) → `build/sent.json`.
