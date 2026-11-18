@@ -5,7 +5,7 @@ Seamless 16 s loop, 1920x1080, 30 fps. Palette from the logo intro: near-black b
 light grey paper, brand gold, dark grey outlines. Most of the centre is covered by clip/card boxes
 (max 1336x836, centred), so the motion lives in the margins and in the depth behind the boxes:
   breathing gold top light, slow diagonal light sweep, counter-rotating octagon rings,
-  rising gold dust and bokeh, left torn-paper strip with a vertical FIGHT ERA ticker,
+  rising gold dust and bokeh (user, Nov 18: left grey paper strip removed, "too much going on"),
   drifting gold slashes and twinkling plus grid on the right, ghost logo, corner logo badge,
   vignette and film grain.
 """
@@ -53,13 +53,7 @@ def sprite(radius, alpha):
 def build():
     r = b2.rng(77)
     board = b2.BOARD * 0.92
-    # left torn paper strip (x 0..~150) with a torn right edge
-    edge = 128 + b2.jagged(r, H, 16) + 10 * np.sin(np.linspace(0, 3 * math.pi, H))
-    pmask = np.clip((edge[:, None] - XX) / 2.0, 0, 1)
-    static = b2.blend(board, b2.paper(r, 0.95), pmask)
-    rim = np.clip(1 - np.abs(XX - edge[:, None] + 3) / 4, 0, 1) * 0.45
-    static = b2.blend(static, np.full_like(static, 235), rim)
-    base = Image.fromarray(np.clip(static, 0, 255).astype(np.uint8)).convert("RGBA")
+    base = Image.fromarray(np.clip(board, 0, 255).astype(np.uint8)).convert("RGBA")
     ghost = b2.ghost_logo(560, (120, 120, 118), 34)
     base.alpha_composite(ghost, (W - ghost.width + 120, 300))
 
@@ -71,7 +65,6 @@ def build():
 
     rings = [(octagon_ring(560, 3, GREY + (150,)), 5.0, 0.0), (octagon_ring(720, 2, GOLD + (70,)), -4.0, 1.3),
              (octagon_ring(900, 4, GREY + (110,)), 3.0, 2.1)]
-    tile = b2.ticker("FIGHT ERA", 58, GREY, 170)
     parts = []
     for _ in range(70):
         rad = float(r.choice([1.5, 2, 2.5, 3, 4, 9, 14, 20], p=[.2, .2, .15, .15, .1, .1, .06, .04]))
@@ -94,8 +87,6 @@ def build():
         for x, y, p in plus:
             a = 0.35 + 0.65 * (0.5 + 0.5 * math.sin(2 * math.pi * (ph * 3 + p)))
             b2.plus(d, x, y, 9, GOLD + (int(210 * a),), w=4)
-        st = b2.scroll_strip(tile, H + 200, ph * 4 % 1.0).rotate(90, expand=True)  # 4 tiles per loop
-        im.alpha_composite(st, (24, -100))
         for p in parts:
             y = (p["y"] - p["k"] * (H + 120) * ph) % (H + 120) - 60
             x = p["x"] + p["sway"] * math.sin(2 * math.pi * (ph * 2 + p["ph"]))
