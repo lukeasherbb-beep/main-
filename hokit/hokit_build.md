@@ -1,6 +1,6 @@
 JOSH HOKIT Goes OFF on Jon Jones + Pereira SAYS He Got ROBBED!
 
-[LET IT PLAY: #1lip Buffer reads the decision, Hokit's hand half up, "and STILL" — 10s, arena audio. Cold open]
+[LET IT PLAY: #1lip Buffer reads the decision, Hokit's hand half up, "and STILL" — 12s, arena audio. Cold open]
 [FE LOGO COVER — 4 seconds]
 [FE CARD: T("JONES VS HOKIT")]
 [CLIP: #6 Rounds 4-5 Gane jabs and uppercuts, Hokit tired]
@@ -46,13 +46,15 @@ The beef itself goes back to September. Gable Steveson, the Olympic gold medalis
 [FX: chapter-number — 03 · THE WAR OF WORDS]
 [FE CARD: Q("Jon Jones moves like Sean Combs lol. #rentfree", "JOSH HOKIT · INSTAGRAM")]
 [FE CARD: Q("The craziest coincidence.", "JON JONES · X")]
+[FE CARD: T("X POST JONES LOG OFF")]
+[FE CARD: T("X POST HOKIT CHARGES")]
 Hokit was in the comments of that Instagram post almost immediately, writing that Jon Jones moves like Sean Combs, with the hashtag rent free. The next day Jones posted on X that fighters who disrespect him tend to lose their next fight, calling it the craziest coincidence. That lit the fuse. Hokit answered with a list of Jones' past legal charges and scandals, and from there the whole thing went off the rails.
 
 [FE CARD: Q("He's not on drugs, you idiot.", "JON JONES · X") — dark]
 [FE CARD: T("NO PROOF", sub="An MMA agent backed Jones' account", kicker="THE TEAMMATE CLAIM") — dark]
 Hokit claimed a former teammate from the gym fell apart after getting involved with drugs while hanging around Jones. Jones fired back that the young man was never on drugs, and that he was the one who got him admitted to a hospital and paid for his flight home to Switzerland. An MMA agent publicly backed Jones' version, and none of Hokit's accusation has been proven. Out of everything in this feud, that one crossed a line, and dragging a private person into a Twitter fight helped nobody.
 
-[FE CARD: Q("Watching you break the record for most punches absorbed in UFC heavyweight history at Madison Square Garden was entertaining enough.", "JON JONES · X")]
+[FE CARD: T("X POST JONES WOKE UP")]
 [FE CARD: T("GOOD LUCK LITTLE MAN", kicker="JON JONES · X") — dark]
 By Monday, Jones tried to close the book. He wrote that watching Hokit break the record for most punches absorbed in UFC heavyweight history at Madison Square Garden was entertaining enough, but recycling the same insults he'd been hearing for ten years was weak. "Say whatever you want about me," Jones added. "I'm still simply better than you." He signed off by saying it was his last time addressing Hokit until he gets to a certain level, and a four-word send-off. "Good luck little man."
 

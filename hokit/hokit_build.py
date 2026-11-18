@@ -72,6 +72,9 @@ PHOTOS = [
                         "kicker": "UFC FREEDOM 250 · JUNE 2026", "title": "THE WHITE HOUSE"}]),
     ('Q("I thought that was a robbery, man."', [{"layout": "quote", "img": "pereira_oval_office.jpg",
                         "quote": "I thought that was a robbery, man.", "attr": "ALEX PEREIRA · BACKSTAGE, UFC 334"}]),
+    ('T("X POST JONES WOKE UP")', [{"layout": "post", "img": "x_jones_woke_up.png"}]),
+    ('T("X POST JONES LOG OFF")', [{"layout": "post", "img": "x_jones_log_off.png"}]),
+    ('T("X POST HOKIT CHARGES")', [{"layout": "post", "img": "x_hokit_charges.png"}]),
     ('T("NEXT AT HEAVYWEIGHT")', [{"layout": "pair", "items": [
         ("gane_freedom250_64.jpg", "THE CHAMPION", "CIRYL GANE"),
         ("pereira_ufc300.png", "UFC 335 · DEC 12", "ALEX PEREIRA")]}]),
@@ -425,6 +428,11 @@ def photo_overlay(spec):
             x, y = (1920 - w - 16) // 2, (1080 - h - 16) // 2 - 30
             c = framed_photo(c, im, x, y, w, h)
             c = caption_bar(c, 0, y + h - 70, spec["kicker"], spec["title"], 1100, cx=960)
+    elif spec["layout"] == "post":  # X/Instagram screenshot: framed, centred, no caption
+        im = load_photo(spec["img"])
+        s = min((BOX_MAX_W - 16) / im.width, (BOX_MAX_H - 16) / im.height, 1.6)
+        w, h = int(im.width * s), int(im.height * s)
+        c = framed_photo(c, im, (1920 - w - 16) // 2, (1080 - h - 16) // 2, w, h, (0.5, 0.5))
     elif spec["layout"] == "pair":
         for k, (img, kicker, title) in enumerate(spec["items"]):
             x = (318, 986)[k]  # two 616 px frames, symmetric about the centre
