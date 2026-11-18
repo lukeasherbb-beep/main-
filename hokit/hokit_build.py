@@ -699,11 +699,14 @@ def normalize_loudness(audio_path):
 
 
 def upload_encode(master, out):
-    """The file for YouTube: two-pass x264 at the highest bitrate that still fits UPLOAD_MAX_MB."""
+    """The file for YouTube: 1440p (upscaled with lanczos), two-pass x264 at the highest bitrate that still fits
+    UPLOAD_MAX_MB. 1440p uploads get YouTube's higher-quality VP9/AV1 streams, which look better even at 1080p
+    (Nov 18 test: the 1440p encode loses almost nothing: SSIM 0.998 vs a 0.999 ceiling from scaling alone)."""
     dur = probe(master)[0]
-    kbps = min(int(UPLOAD_MAX_MB * 8 * 1024 / dur) - 200, 12000)  # room for 192k audio; 12 Mb/s is plenty
+    kbps = min(int(UPLOAD_MAX_MB * 8 * 1024 / dur) - 200, 16000)  # room for 192k audio
     log = os.path.join(BUILD, "x264pass")
-    common = ["-c:v", "libx264", "-preset", "slow", "-b:v", f"{kbps}k", "-maxrate", f"{int(kbps * 1.5)}k",
+    common = ["-vf", "scale=2560:1440:flags=lanczos", "-c:v", "libx264", "-preset", "slow", "-b:v", f"{kbps}k",
+              "-maxrate", f"{int(kbps * 1.5)}k",
               "-bufsize", f"{kbps * 3}k", "-pix_fmt", "yuv420p", "-passlogfile", log]
     run(["ffmpeg", "-y", "-v", "error", "-i", master] + common + ["-pass", "1", "-an", "-f", "mp4", os.devnull])
     run(["ffmpeg", "-y", "-v", "error", "-i", master] + common +
