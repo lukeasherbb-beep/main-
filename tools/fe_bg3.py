@@ -6,7 +6,7 @@ light grey paper, brand gold, dark grey outlines. Most of the centre is covered 
 (max 1336x836, centred), so the motion lives in the margins and in the depth behind the boxes:
   breathing gold top light, slow diagonal light sweep, FIGHT ERA text waves scrolling in the back (replaced the octagons, user Nov 18),
   rising gold dust and bokeh (user, Nov 18: left grey paper strip removed, "too much going on"),
-  drifting gold slashes and twinkling plus grid on the right, ghost logo, corner logo badge,
+  drifting gold slashes and twinkling plus grid on the right (ghost logo removed, user Nov 18), corner logo badge,
   vignette and film grain.
 """
 import math
@@ -88,8 +88,6 @@ def build():
     r = b2.rng(77)
     board = b2.BOARD * 0.92
     base = Image.fromarray(np.clip(board, 0, 255).astype(np.uint8)).convert("RGBA")
-    ghost = b2.ghost_logo(560, (120, 120, 118), 34)
-    base.alpha_composite(ghost, (W - ghost.width + 120, 300))
 
     glow = np.exp(-(((XX - W / 2) / 900) ** 2 + ((YY + 120) / 520) ** 2))[..., None] * np.array(GOLD, np.float32)
     global DIAG
