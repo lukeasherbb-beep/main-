@@ -365,8 +365,7 @@ def chapter(p, dur, images=None):
 
 
 CUSTOM = {"stat": lambda p, d, img: stat(p, d), "quote": quote, "post": post, "faceoff": faceoff, "chapter": chapter}
-BG = {"stat": "brush_chevrons", "quote": "gradient_streak", "post": "torn_panels", "faceoff": "gradient_streak",
-      "chapter": "brush_chevrons"}
+BG = {k: "arena" for k in ("stat", "quote", "post", "faceoff", "chapter")}  # one background (user, Nov 18)
 
 
 def template_overrides(kind, p, images, workdir):
@@ -400,7 +399,7 @@ def sfx_for(kind, p, dur, images):
     return CUSTOM[kind](p, dur, images)[1]
 
 
-def render(kind, p, frames, out, images, workdir, bg=None):
+def render(kind, p, frames, out, images, workdir, bg=None, bg_start=0.0):
     """Render one graphic of `frames` frames to out (video only). images(name) -> absolute path."""
     dur = frames / FPS
     if kind in TEMPLATES:
@@ -417,7 +416,7 @@ def render(kind, p, frames, out, images, workdir, bg=None):
         return out
     draw, _ = CUSTOM[kind](p, dur, images)
     bgfile = os.path.join(ASSETS, f"bg_{bg or BG[kind]}.mp4")
-    proc = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", bgfile,
+    proc = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-ss", f"{bg_start:.3f}", "-i", bgfile,
                              "-f", "rawvideo", "-pix_fmt", "rgba", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
                              "-filter_complex", f"[0:v]fps={FPS},setsar=1[b];[b][1:v]overlay=0:0[o]", "-map", "[o]",
                              "-frames:v", str(frames)] + ENC + [out], stdin=subprocess.PIPE, stderr=subprocess.PIPE)

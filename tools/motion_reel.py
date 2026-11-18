@@ -320,7 +320,7 @@ def boxed_clip(src, start, dur, out, crop=True):
     fcx = (f"[0:v]{cr}scale={bw}:{bh}:force_original_aspect_ratio=increase,crop={bw}:{bh},fps={FPS},setsar=1,"
            f"pad=iw+16:ih+16:8:8:color=0xC48E16[v];[1:v]fps={FPS},setsar=1[b];[b][v]overlay={x0}:{y0}[o]")
     run(["ffmpeg", "-y", "-v", "error", "-ss", str(start), "-i", src, "-stream_loop", "-1", "-i",
-         os.path.join(ASSETS, "bg_torn_split.mp4"), "-filter_complex", fcx, "-map", "[o]", "-t", str(dur)] + ENC + ["-an", out])
+         os.path.join(ASSETS, "bg_arena.mp4"), "-filter_complex", fcx, "-map", "[o]", "-t", str(dur)] + ENC + ["-an", out])
 
 
 def transitions(out):
@@ -372,20 +372,20 @@ def main():
         S.append((f, label, sfx))
 
     add("s1", "1 · STAT COUNT-UP", [(0.0, "whoosh", 0.5), (2.05, "bass_drop", 0.7), (2.0, "whoosh", 0.35), (3.3, "click", 0.4)],
-        lambda f: custom(f, 6.5, "brush_chevrons", seg_stat))
+        lambda f: custom(f, 6.5, "arena", seg_stat))
     add("s2", "2 · QUOTE REVEAL + HIGHLIGHT", [(0.0, "whoosh", 0.5), (4.0, "pop", 0.4), (5.4, "pop", 0.4)],
-        lambda f: custom(f, 7.5, "gradient_streak", seg_quote))
-    add("s3", "3 · SCREENSHOT PUSH-IN", [(0.0, "whoosh", 0.5)], lambda f: custom(f, 5.0, "torn_panels", seg_xpost))
+        lambda f: custom(f, 7.5, "arena", seg_quote))
+    add("s3", "3 · SCREENSHOT PUSH-IN", [(0.0, "whoosh", 0.5)], lambda f: custom(f, 5.0, "arena", seg_xpost))
     add("s4", "4 · NAME INTRO (TEMPLATE)", [(0.0, "whoosh", 0.5)],
         lambda f: template(f, "torn-profile", {"title": "JOSH HOKIT", "subtitle": "10-1 · Former Fresno State wrestler",
                                                "label": "The Challenger", "images": ["hokit_portrait_2026.png"],
                                                "accent": "#C48E16", "background": "#121214"}, 4.5))
-    add("s5", "5 · FACE-OFF", [(0.0, "whoosh", 0.5), (0.8, "bass_drop", 0.8)], lambda f: custom(f, 4.5, "gradient_streak", seg_faceoff))
+    add("s5", "5 · FACE-OFF", [(0.0, "whoosh", 0.5), (0.8, "bass_drop", 0.8)], lambda f: custom(f, 4.5, "arena", seg_faceoff))
     add("s6", "6 · WORD SLAM (TEMPLATE)", [(0.0, "whoosh", 0.4), (0.9, "bass_drop", 0.8)],
         lambda f: template(f, "title-hierarchy", {"title": "ROBBED?", "subtitle": "Alex Pereira thinks Hokit was",
                                                   "backgroundImage": "hokit_frame.png", "foreground": "#f3f1e9"}, 4.5))
     add("s7", "7 · CHAPTER OPENER", [(0.0, "glitch", 0.5), (0.8, "keyboard_typing", 0.5), (4.0, "whoosh", 0.5)],
-        lambda f: custom(f, 4.5, "brush_chevrons", seg_chapter))
+        lambda f: custom(f, 4.5, "arena", seg_chapter))
     add("s8", "8 · TIMELINE (TEMPLATE)", [(0.0, "whoosh", 0.4)],
         lambda f: template(f, "milestone-path", {"title": "How the beef built",
                                                  "labels": ["Sept: Steveson KO'd", "Oct: The diss track", "Nov 14: UFC 334",

@@ -57,7 +57,14 @@ CROP = {3, 4, 5, 6, 12, 13}
 INTRO = os.path.join(ASSETS, "fe_logo_intro.mp4")
 GOLD = (196, 142, 22)
 # card backgrounds rotate by chapter; clips use the pairing (wide, square, vertical)
-BG_ORDER = ["torn_split", "brush_chevrons", "gradient_streak", "torn_panels"]
+# one background for everything (user, Nov 18): FE Arena, tools/fe_bg3.py; it runs continuously across cuts
+BG_ORDER = ["arena"]
+BG_LOOP = 16.0
+BG_T = {}  # segment index -> its start time in the video, so the background never restarts at a cut
+
+
+def bg_ss(i):
+    return f"{BG_T.get(i, 0.0) % BG_LOOP:.3f}"
 # FE CARD / FX markers that become photo cards (key found in the marker -> one or more shots)
 PHOTOS = [
     ('T("JONES VS HOKIT")', [{"layout": "pair", "items": [
@@ -517,7 +524,7 @@ def label_overlay(label, y):
 def whip_overlay(i, frames, bg, png, x0, y0, out, side):
     """Overlay a still (box or full-frame RGBA) that whips in from the side over a looping background."""
     fcx = (f"[0:v]fps={FPS},setsar=1[b];[b][1:v]overlay=x='{x0}+{side}*1900*pow(1-min(t/0.35\\,1)\\,3)':y={y0}[o]")
-    run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-ss", f"{(i * 3.7) % 7.5:.2f}", "-i", bg, "-loop", "1",
+    run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-ss", bg_ss(i), "-i", bg, "-loop", "1",
          "-i", png, "-filter_complex", fcx, "-map", "[o]", "-frames:v", str(frames)] + ENC + [out])
 
 
@@ -544,7 +551,7 @@ def render_logo(i, frames, png, out):
     Image.fromarray(np.dstack([a.astype(np.uint8), alpha]), "RGBA").save(png)
     fcx = (f"[1:v]scale=w='760*(0.82+0.18*min(t/0.6\\,1))':h=-1:eval=frame[l];"
            f"[0:v]fps={FPS},setsar=1[b];[b][l]overlay=x='(W-w)/2':y='(H-h)/2'[o]")
-    run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", os.path.join(ASSETS, "bg_dark.mp4"),
+    run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", os.path.join(ASSETS, "bg_arena.mp4"),
          "-loop", "1", "-i", png, "-filter_complex", fcx, "-map", "[o]", "-frames:v", str(frames)] + ENC + [out])
     return out
 
@@ -563,7 +570,8 @@ def render_item(args):
         return out, None
     if v["kind"] == "card" and "mg" in v:
         kind, params = v["mg"]
-        return fm.render(kind, params, frames, out, img_path, os.path.join(SEG, "mg")), None
+        return fm.render(kind, params, frames, out, img_path, os.path.join(SEG, "mg"), bg="arena",
+                         bg_start=BG_T.get(i, 0.0) % BG_LOOP), None
     if v["kind"] == "card":
         spec = fx_spec(v)
         if spec:
@@ -599,11 +607,11 @@ def render_item(args):
         if a >= 1.5:
             bw = (BOX_MAX_W - 16, 1240, 1280)[i % 3]
             bh = int(bw / a) // 2 * 2
-            bgname = "torn_split"
+            bgname = "arena"
         else:
             bh = (BOX_MAX_H - 16, 780, 800)[i % 3] if a < 0.9 else 780
             bw = int(bh * a) // 2 * 2
-            bgname = "torn_panels" if a < 0.9 else "brush_chevrons"
+            bgname = "arena"
         x0, y0 = (1920 - bw - 16) // 2, (1080 - bh - 16) // 2  # always centred
         lo = label_overlay(v.get("label") if v["kind"] == "clip" else None, y0 + bh + 16 + 14)
         draw_caption(lo, v.get("caption"), y0)
@@ -625,7 +633,7 @@ def render_item(args):
         else:
             fcx += ";[o0]null[o]"
         run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-ss", f"{start:.3f}", "-i", v["file"],
-             "-i", ov, "-stream_loop", "-1", "-i", bg_path(bgname), "-loop", "1", "-i", sh,
+             "-i", ov, "-stream_loop", "-1", "-ss", bg_ss(i), "-i", bg_path(bgname), "-loop", "1", "-i", sh,
              "-filter_complex", fcx, "-map", "[o]", "-frames:v", str(frames)] + ENC + [out])
     wav = None
     if with_audio:  # LET IT PLAY: keep the clip's own audio
@@ -778,6 +786,7 @@ def main():
         if v["kind"] != "card":
             offsets[v["file"]] = off + frames / FPS
         jobs.append((i, it[0], frames, v, off, it[0] == "brk"))
+        BG_T[i] = out_t
         if out_t > 0.05:  # every visual change: whoosh as it flies in, pop when a boxed card lands
             sfx.append((max(out_t - 0.05, 0), "whoosh", 0.45))
             boxed = (v["kind"] == "card" and not fx_spec(v) and "mg" not in v
