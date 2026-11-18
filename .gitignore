@@ -1,6 +1,8 @@
 # rendered output and large media (too big for GitHub; keep these elsewhere)
 thompson/build/
 thompson/clips/
+hokit/build/
+hokit/clips/
 *.mp4
 *.mov
 *.wav
