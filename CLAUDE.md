@@ -145,3 +145,8 @@ The build version's narration must stay word-for-word identical to the TTS versi
 - Draft 2 (Nov 18): `hokit/build/hokit_draft.mp4`, 11:39, no filler cards. Description: `hokit/youtube_description.txt` (chapters 0:00 / 0:47 / 3:23 / 4:43 / 7:54 / 10:18).
 - Ad safety: Hokit's slur-filled posts and the teammate's name/condition are never shown or narrated.
 - A placeholder TTS via edge-tts was blocked (it sends the script to an external service); preview builds wait for the user's ElevenLabs MP3.
+
+## Project: DC vs Jones + Topuria's ex-wife (Nov 19, 2026) — POSTED
+- Files in `topuria_dc/`: research, TTS + build scripts, `topuria_dc_build.py` (copy of the Hokit builder), clip template, photos + CREDITS, YouTube description (with links).
+- Framing rule used: the Topuria domestic-abuse allegations are from Dec 2025, denied by him (extortion claim), complaint withdrawn in the Feb 2026 settlement, never ruled on; this week's news was only his ex-wife's El Cafetal interview. Never present old allegations as new.
+- Clip fixes: Paramount+ QR blurred (07), Oliveira blood close-up cut (07), English caption burned into the Spanish podcast clip (06), training clip cropped (10).
