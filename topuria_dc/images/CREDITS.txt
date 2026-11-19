@@ -1,0 +1,30 @@
+cormier.jpg (cropped)
+  Source: https://commons.wikimedia.org/wiki/File:Daniel_Cormier_promoting_EA_UFC_5.jpg
+  Author: Esfand
+  License: CC BY 3.0
+
+cormier_alt_suit.jpg (cropped)
+  Source: https://commons.wikimedia.org/wiki/File:JTF-DC_Freedom_UFC_250_Press_Conference_(9747806)(cropped).jpg
+  Author: U.S. Army National Guard photo by Spc. Shretha Broderick
+  License: Public domain
+
+topuria.jpg (cropped)
+  Source: https://commons.wikimedia.org/wiki/File:Ilia_Topuria_at_the_Orbeliani_Palace_(cropped).jpg
+  Author: საქართველოს პრეზიდენტის ადმინისტრაცია
+  License: CC BY 4.0
+
+topuria_alt_suit.jpg (cropped)
+  Source: https://commons.wikimedia.org/wiki/File:Ilia_Topuria_in_the_Oval_Office_(while_President_Donald_J._Trump_is_holding_a_meeting_with_UFC_fighters).jpg
+  Author: The White House
+  License: Public domain
+
+gaethje.jpg (cropped)
+  Source: https://commons.wikimedia.org/wiki/File:Justin_Gaethje_in_the_Oval_Office_(while_President_Donald_J._Trump_is_holding_a_meeting_with_UFC_fighters).jpg
+  Author: The White House
+  License: Public domain
+
+gaethje_alt_ufc.jpg (cropped)
+  Source: https://commons.wikimedia.org/wiki/File:Justin_Gaethje_at_press_conference.png
+  Author: K22
+  License: CC BY-SA 4.0
+
