@@ -53,3 +53,17 @@ This week (the news hook)
 - FirstSportz, Nov 19, 2026: https://firstsportz.com/jon-jones-trashing-josh-hokit-says-daniel-cormier
 - Bloody Elbow, Nov 19, 2026: https://bloodyelbow.com/2026/11/19/daniel-cormier-goes-in-on-jon-jones-for-mocking-josh-hokit-after-ufc-334-loss/
 - MMA Sucka, Nov 12, 2026: https://mmasucka.com/news/josh-hokit-defends-trash-talk-daniel-cormier-ufc-334-purse/
+
+## Additions (Nov 19)
+- **UFC Freedom 250 result:** Justin Gaethje def. Ilia Topuria by TKO (corner stoppage after Round 4), undisputed lightweight title; Topuria's first career loss. Most sources date the White House event June 14, 2026. (ESPN, LowKick, theScore)
+- **Gaethje's divorce dig, Fox Sports Australia, early June 2026** (LowKick, June 3): "All that guy is, is a gimmick. He calls himself the king. He thinks he's a God... All I can say is this: I would leave him. That's all I'm saying." [profanity in the full quote; use only this part]
+- **Topuria's reply, UFC Freedom 250 Embedded ep. 1** (BJPenn via MMA Fighting, June 8): "Actually, I thought he was a great guy. But since he crossed the personal line, he's not going to have my respect; he's not going to have my team's respect." / "All I'm going to need is 2 minutes in the octagon with you, and I'm going to put you to sleep in front of your whole family, your country, in front of everyone." (He also flipped a double middle finger; do not show.)
+- **Topuria's ex-wife on harassment** (Instagram reply, via EssentiallySports, May 28): "This has caused a lot of harassment, hate, and even people threatening to kill me and my daughter." Joe Rogan had called her "a monster" on his podcast (Dec 5, 2025), reportedly after a photo of her with her brother was mistaken for a new boyfriend; she reportedly filed a complaint with Spain's National Police against Rogan and online trolls. [secondary; NOT FOR SCRIPT: the "monster" insult and the police complaint are unverified and add legal risk]
+- **Jon Jones on the UFC 334 commentary** (Bloody Elbow headline/search summary, Nov 18): "Just watched the fight again without the glazing commentary and it was so clear who won the fight." He did not name Cormier. A fan petition to remove Cormier from commentary passed 7,000 signatures; Jon Anik defended him. [secondary wording]
+- **Jones vs Cormier history (Wikipedia):** UFC 182 (Jan 2015) Jones won by unanimous decision; UFC 214 (July 29, 2017) Jones won by third-round knockout, overturned to a no contest after Jones tested positive for Oral Turinabol, and the title returned to Cormier.
+- No public response yet from Jones to Cormier's comments, or from Topuria to his ex-wife's interview (as of Nov 19).
+
+## Open debates
+1. Is Cormier right that a retired fighter shouldn't pick fights he'll never take? (For: Jones turned down Hokit's challenge. Against: Hokit insulted Jones first, diss track, Steveson comments.)
+2. Is Cormier biased as a commentator? (petition, Jones's "glazing" dig, Cormier scored it for Gane)
+3. Where does Topuria go next: Gaethje rematch at 155, or back to 145 as Rogan suggests?
